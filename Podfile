@@ -6,6 +6,7 @@ use_frameworks!
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
+pod 'GPUImage', '~> 0.1'
 pod 'ParseFacebookUtilsV4', '~> 1.8'
 link_with 'Hourglass!'
 end
