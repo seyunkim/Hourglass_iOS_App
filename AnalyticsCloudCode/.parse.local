@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "HourglassAnalytics": {
+      "applicationId": "4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2"
+    },
+    "_default": {
+      "link": "HourglassAnalytics"
+    }
+  }
+}
