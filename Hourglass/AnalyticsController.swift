@@ -15,10 +15,23 @@ class AnalyticsController {
     
     // Any private variables we need to track things for analytics
     var userName : String
+    var topViewController : AnalyticsViewController?
     
     // Initialization function
     init() {
         userName = "Unknown"
+    }
+    
+    static func registerTopViewController(vc : AnalyticsViewController) {
+        AnalyticsController.sharedController.topViewController = vc
+    }
+    
+    static func hasTopViewController() -> Bool {
+        return (AnalyticsController.sharedController.topViewController != nil)
+    }
+    
+    static func getTopViewController() -> AnalyticsViewController? {
+        return AnalyticsController.sharedController.topViewController
     }
     
     // Serialize any screen tap that does not have outside implications
@@ -55,7 +68,7 @@ class AnalyticsController {
         })
     }
     
-    static func logScreenLoad() {
+    static func logScreenLoad(screen : String) {
         
     }
     

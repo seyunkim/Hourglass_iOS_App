@@ -9,23 +9,16 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController {
-    let tapRec = UITapGestureRecognizer();
+class ViewController: AnalyticsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        tapRec.addTarget(self, action: "tappedView:")
-        self.view.addGestureRecognizer(tapRec)
-        self.view.userInteractionEnabled = true
+        screenName = "TestScreen"
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func tappedView(tgr : UITapGestureRecognizer){
-        var touchPoint : CGPoint = tgr.locationInView(self.view)
-        AnalyticsController.logTapEvent("TestScreen", xPos: Int(touchPoint.x), yPos: Int(touchPoint.y))
     }
 
 }
