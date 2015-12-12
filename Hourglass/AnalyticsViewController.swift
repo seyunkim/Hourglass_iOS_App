@@ -16,8 +16,6 @@ class AnalyticsViewController : UIViewController, AnalyticsScrollViewDelegate {
     // Our tap gesture recognizer that covers the entirety of the view
     let tapRec = UITapGestureRecognizer();
     // Modifier to record how far the screen has been dragged
-    let panRec = UIPanGestureRecognizer();
-    var isScreenDragable : Bool = true
     var yDrag : Int = 0
     
     // Initialize our gesture recognizers
@@ -27,9 +25,6 @@ class AnalyticsViewController : UIViewController, AnalyticsScrollViewDelegate {
         tapRec.addTarget(self, action: "tappedView:")
         self.view.addGestureRecognizer(tapRec)
         self.view.userInteractionEnabled = true
-        
-        panRec.addTarget(self, action: "draggedView:")
-        self.view.addGestureRecognizer(panRec);
     }
     
     // Handle Taps
