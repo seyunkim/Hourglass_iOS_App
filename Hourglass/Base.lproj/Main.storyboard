@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="93" y="365"/>
         </scene>
-        <!--Video Play Controller-->
+        <!--Video Player Controller-->
         <scene sceneID="K6w-hP-wgx">
             <objects>
-                <viewController id="gCc-Lf-cxR" customClass="VideoPlayController" sceneMemberID="viewController">
+                <viewController id="gCc-Lf-cxR" customClass="VideoPlayerController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jH6-3m-Eir"/>
                         <viewControllerLayoutGuide type="bottom" id="3Mw-oo-8FA"/>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
+		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
 		248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248265061C1A434200CAC95B /* AnalyticsController.swift */; };
 		24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */; };
 		24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
+		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		248265061C1A434200CAC95B /* AnalyticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScrollView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		246749321C1BBE0000B26064 /* VideoControls */ = {
+			isa = PBXGroup;
+			children = (
+				246749331C1BBE1700B26064 /* VideoPlayerController.swift */,
+			);
+			name = VideoControls;
+			sourceTree = "<group>";
+		};
 		248265051C1A432400CAC95B /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		5ED613501B9681DE00D2E8FC /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
+				246749321C1BBE0000B26064 /* VideoControls */,
 				248265051C1A432400CAC95B /* Analytics */,
 				5E08AD221C198B0E009F9959 /* churchstate.mp4 */,
 				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
@@ -254,6 +265,7 @@
 				248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */,
 				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
 				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
+				246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */,
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
 				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,
 				24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */,
