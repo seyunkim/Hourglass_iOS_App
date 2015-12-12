@@ -43,7 +43,7 @@ class AnalyticsViewController : UIViewController, AnalyticsScrollViewDelegate {
         yDrag += amountDragged
     }
     
-    // Resister as top View Controller and record returning to top view controller
+    // Resister as top View Controller and record returning to top view controller, also log the event of appearing
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         

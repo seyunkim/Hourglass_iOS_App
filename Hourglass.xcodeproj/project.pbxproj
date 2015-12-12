@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
+		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
+		248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248265061C1A434200CAC95B /* AnalyticsController.swift */; };
+		24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */; };
+		24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */; };
 		5E08AD211C1989A7009F9959 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08AD201C1989A7009F9959 /* MediaPlayer.framework */; };
 		5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5E08AD221C198B0E009F9959 /* churchstate.mp4 */; };
 		5E08AD2A1C199CEB009F9959 /* VideoPlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E08AD291C199CEB009F9959 /* VideoPlayController.m */; };
@@ -29,6 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
+		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
+		248265061C1A434200CAC95B /* AnalyticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
+		24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScrollView.swift; sourceTree = "<group>"; };
 		5E08AD201C1989A7009F9959 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5E08AD221C198B0E009F9959 /* churchstate.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = churchstate.mp4; sourceTree = "<group>"; };
 		5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hourglass-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -65,6 +75,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		248265051C1A432400CAC95B /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				248265061C1A434200CAC95B /* AnalyticsController.swift */,
+				24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */,
+				24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */,
+				2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */,
+				246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		5ED613451B9681DE00D2E8FC = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +109,7 @@
 		5ED613501B9681DE00D2E8FC /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
+				248265051C1A432400CAC95B /* Analytics */,
 				5E08AD221C198B0E009F9959 /* churchstate.mp4 */,
 				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
 				5ED613551B9681DE00D2E8FC /* ViewController.swift */,
@@ -228,7 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */,
+				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
+				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
+				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,
+				24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */,
 				5E08AD2A1C199CEB009F9959 /* VideoPlayController.m in Sources */,
 				5ED613541B9681DE00D2E8FC /* AppDelegate.swift in Sources */,
 			);
