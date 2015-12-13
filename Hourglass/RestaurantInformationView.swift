@@ -22,6 +22,11 @@ class RestaurantInformationView : UIView {
     var mAddressLabel : UILabel?
     var mCategoryLabel : UILabel?
     
+    var mRatingLabel : UILabel?
+    
+    var horizontalOffset : CGFloat?
+    let verticalPadding = CGFloat(16)
+    
     // MARK: Initialization Methods
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,11 +38,19 @@ class RestaurantInformationView : UIView {
         initializationImplementation()
     }
     
+    required init(frame: CGRect, name: String, price: Double, phone: String, address: String, category: String) {
+        super.init(frame: frame)
+        mRestaurantName = name
+        mRestaurantPriceRating = price
+        mRestaurantPhoneNumber = phone
+        mRestaurantAddress = address
+        mRestaurantCategory = category
+        initializationImplementation()
+    }
+    
     func initializationImplementation() {
         self.backgroundColor = UIColor(red: CGFloat(245/255.0), green: CGFloat(245/255.0), blue: CGFloat(220/255.0), alpha: CGFloat(1.0))
-        
-        let horizontalOffset = self.frame.width / 6.0
-        let verticalPadding = CGFloat(16)
+        horizontalOffset = self.frame.width / 6.0
         
         // Name Label
         mNameLabel = UILabel(frame: CGRectMake(
@@ -50,6 +63,7 @@ class RestaurantInformationView : UIView {
         mNameLabel!.textAlignment = NSTextAlignment.Center
         mNameLabel!.font = UIFont.systemFontOfSize(36)
         mNameLabel!.text = mRestaurantName
+        mNameLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mNameLabel!)
         
         // Category
@@ -62,48 +76,51 @@ class RestaurantInformationView : UIView {
         mCategoryLabel!.textColor = UIColor.darkGrayColor()
         mCategoryLabel!.font = UIFont.systemFontOfSize(24)
         mCategoryLabel!.text = mRestaurantCategory
+        mCategoryLabel!.adjustsFontSizeToFitWidth = true
         mCategoryLabel!.sizeToFit()
         self.addSubview(mCategoryLabel!)
         
         // Rating
-        let ratingLabel = UILabel(frame: CGRectMake(
-            horizontalOffset,
+        mRatingLabel = UILabel(frame: CGRectMake(
+            horizontalOffset!,
             mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height + verticalPadding,
-            self.frame.width - (2 * horizontalOffset),
+            self.frame.width - (2 * horizontalOffset!),
             self.frame.height * 3 / 4.0))
-        ratingLabel.backgroundColor = UIColor.clearColor()
-        ratingLabel.textColor = UIColor.blackColor()
-        ratingLabel.font = UIFont.systemFontOfSize(20)
-        ratingLabel.text = "Price Rating: " + String(mRestaurantPriceRating)
-        ratingLabel.sizeToFit()
-        self.addSubview(ratingLabel)
+        mRatingLabel!.backgroundColor = UIColor.clearColor()
+        mRatingLabel!.textColor = UIColor.blackColor()
+        mRatingLabel!.font = UIFont.systemFontOfSize(20)
+        mRatingLabel!.text = "Price Rating: " + String(mRestaurantPriceRating)
+        mRatingLabel!.adjustsFontSizeToFitWidth = true
+        mRatingLabel!.sizeToFit()
+        self.addSubview(mRatingLabel!)
         
         // Phone
         mPhoneLabel = UILabel(frame: CGRectMake(
-            horizontalOffset,
-            ratingLabel.frame.origin.y + ratingLabel.frame.height + verticalPadding,
-            self.frame.width - (2 * horizontalOffset),
-            ratingLabel.frame.height))
+            horizontalOffset!,
+            mRatingLabel!.frame.origin.y + mRatingLabel!.frame.height + verticalPadding,
+            self.frame.width - (2 * horizontalOffset!),
+            mRatingLabel!.frame.height))
         mPhoneLabel!.backgroundColor = UIColor.clearColor()
         mPhoneLabel!.textColor = UIColor.blackColor()
         mPhoneLabel!.font = UIFont.systemFontOfSize(20)
         mPhoneLabel!.text = mRestaurantPhoneNumber
+        mPhoneLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mPhoneLabel!)
         
         // Map -- PLACEHOLDER
         let sampleMapView = UIImageView(frame: CGRectMake(
-            horizontalOffset,
+            horizontalOffset!,
             self.frame.height / 2.0,
-            self.frame.width - (2 * horizontalOffset),
+            self.frame.width - (2 * horizontalOffset!),
             self.frame.height / 4.0))
         sampleMapView.image = UIImage(named: "SampleHiRez")
         self.addSubview(sampleMapView)
         
         // Address
         mAddressLabel = UILabel(frame: CGRectMake(
-            horizontalOffset,
+            horizontalOffset!,
             sampleMapView.frame.origin.y + sampleMapView.frame.height + verticalPadding,
-            self.frame.width - (2 * horizontalOffset),
+            self.frame.width - (2 * horizontalOffset!),
             self.frame.height - (sampleMapView.frame.origin.y + sampleMapView.frame.height) - verticalPadding))
         mAddressLabel!.backgroundColor = UIColor.clearColor()
         mAddressLabel!.textColor = UIColor.blackColor()
@@ -112,5 +129,35 @@ class RestaurantInformationView : UIView {
         mAddressLabel!.numberOfLines = 0
         mAddressLabel!.sizeToFit()
         self.addSubview(mAddressLabel!)
+    }
+    
+    func changeRestaurant(name: String, price: Double, phone: String, address: String, category: String) {
+        mRestaurantName = name
+        mRestaurantPriceRating = price
+        mRestaurantPhoneNumber = phone
+        mRestaurantAddress = address
+        mRestaurantCategory = category
+        
+        mNameLabel?.text = mRestaurantName
+        
+        mCategoryLabel?.frame = CGRectMake(
+            self.frame.width / 5.0,
+            mNameLabel!.frame.origin.y + mNameLabel!.frame.height,
+            self.frame.width * CGFloat(3) / 5.0,
+            CGFloat(32))
+        mCategoryLabel?.text = mRestaurantCategory
+        mCategoryLabel?.sizeToFit()
+        
+        mRatingLabel?.frame = CGRectMake(
+            horizontalOffset!,
+            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height + verticalPadding,
+            self.frame.width - (2 * horizontalOffset!),
+            self.frame.height * 3 / 4.0)
+        mRatingLabel?.text = "Price Rating: " + String(mRestaurantPriceRating)
+        mRatingLabel?.sizeToFit()
+        
+        mPhoneLabel?.text = mRestaurantPhoneNumber
+        mAddressLabel?.text = mRestaurantAddress
+        
     }
 }

@@ -45,6 +45,16 @@ class HourglassNavigationController : UIViewController {
         
         self.view.backgroundColor = UIColor.clearColor()
         
+        let leftSwipe = UISwipeGestureRecognizer()
+        leftSwipe.addTarget(self, action: "handleSwipes:")
+        leftSwipe.direction = .Left
+        self.view.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer()
+        rightSwipe.addTarget(self, action: "handleSwipes:")
+        rightSwipe.direction = .Right
+        self.view.addGestureRecognizer(rightSwipe)
+        
         // Build our nav view
         let navViewHeight = CGFloat(64)
         let buttonHeight = CGFloat(56)
@@ -108,6 +118,14 @@ class HourglassNavigationController : UIViewController {
         self.addChildViewController(mCategoriesController!)
         mCategoriesController!.view.frame = rightOffscreenFrame
         self.view.addSubview(mCategoriesController!.view)
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .Left) {
+            cycleRight()
+        } else if (sender.direction == .Right) {
+            cycleLeft()
+        }
     }
     
     func cycleLeft() {

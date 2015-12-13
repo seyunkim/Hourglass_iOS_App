@@ -24,23 +24,26 @@ class VideoPlayerView : UIView {
     
     var viewDelegate : VideoPlayerViewDelegate?
     
+    var mNameLabel : UILabel?
+    var mCreditLabel : UILabel?
+    
     // MARK: Setup
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initializationImplementation("churchstate", startingVideoExtension: ".mp4")
+        initializationImplementation("The Church State", source: "@seyunkim", startingVideoName: "churchstate", startingVideoExtension: ".mp4")
     }
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
-        initializationImplementation("churchstate", startingVideoExtension: ".mp4")
+        initializationImplementation("The Church State", source: "@seyunkim", startingVideoName: "churchstate", startingVideoExtension: ".mp4")
     }
     
-    init (frame: CGRect, startingVideoName: String, startingVideoExtension: String) {
+    init (frame: CGRect, name: String, credit: String, startingVideoName: String, startingVideoExtension: String) {
         super.init(frame: frame)
-        initializationImplementation(startingVideoName, startingVideoExtension: startingVideoExtension)
+        initializationImplementation(name, source: credit, startingVideoName: startingVideoName, startingVideoExtension: startingVideoExtension)
     }
     
-    func initializationImplementation(startingVideoName : String, startingVideoExtension : String) {
+    func initializationImplementation(name : String, source : String, startingVideoName : String, startingVideoExtension : String) {
         // Initialize AVPlayer
         let value = NSNumber(integer: UIInterfaceOrientation.Portrait.rawValue)
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
@@ -95,28 +98,30 @@ class VideoPlayerView : UIView {
         
         // Labels for restaurant name and credit
         let horizontalOffset = CGFloat(96)
-        let restaurantLabel = UILabel(frame: CGRectMake(
+        mNameLabel = UILabel(frame: CGRectMake(
             translucentView.frame.origin.x + horizontalOffset,
             translucentView.frame.origin.y,
             translucentView.frame.width - horizontalOffset,
             translucentView.frame.height / 2))
-        restaurantLabel.backgroundColor = UIColor.clearColor()
-        restaurantLabel.textColor = UIColor.whiteColor()
-        restaurantLabel.text = "Restaurant Name"
-        restaurantLabel.font = UIFont.systemFontOfSize(36)
-        self.addSubview(restaurantLabel)
+        mNameLabel!.backgroundColor = UIColor.clearColor()
+        mNameLabel!.textColor = UIColor.whiteColor()
+        mNameLabel!.text = name
+        mNameLabel!.font = UIFont.systemFontOfSize(36)
+        mNameLabel!.adjustsFontSizeToFitWidth = true
+        self.addSubview(mNameLabel!)
         
-        let creditLabel = UILabel(frame: CGRectMake(
+        mCreditLabel = UILabel(frame: CGRectMake(
             translucentView.frame.origin.x + horizontalOffset,
             translucentView.frame.origin.y + translucentView.frame.height / 2,
             translucentView.frame.width - horizontalOffset,
             translucentView.frame.height / 2))
-        creditLabel.backgroundColor = UIColor.clearColor()
-        creditLabel.textColor = UIColor.whiteColor()
-        creditLabel.text = "Credit: @anonymous"
-        creditLabel.font = UIFont.systemFontOfSize(18)
-        creditLabel.sizeToFit()
-        self.addSubview(creditLabel)
+        mCreditLabel!.backgroundColor = UIColor.clearColor()
+        mCreditLabel!.textColor = UIColor.whiteColor()
+        mCreditLabel!.text = "Credit: " + source
+        mCreditLabel!.font = UIFont.systemFontOfSize(18)
+        mCreditLabel!.adjustsFontSizeToFitWidth = true
+        mCreditLabel!.sizeToFit()
+        self.addSubview(mCreditLabel!)
         
         // Image View for down arrow
         let imageDimensions = CGFloat(64)
@@ -161,7 +166,7 @@ class VideoPlayerView : UIView {
     }
     
     // MARK: Video Navigation
-    func doChangeToFile(fileName: String, fileExtension: String) {
+    internal func doChangeToFile(fileName: String, fileExtension: String) {
         avPlayer!.pause()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: avPlayer!.currentItem)
         
@@ -172,5 +177,14 @@ class VideoPlayerView : UIView {
         
         avPlayer!.play()
         cmTime = kCMTimeZero
+    }
+    
+    func changeRestaurant(name: String, source: String, fileName: String, fileExtension: String) {
+        doChangeToFile(fileName, fileExtension: fileExtension)
+        
+        mNameLabel?.text = name
+        mCreditLabel?.frame = CGRectMake(mCreditLabel!.frame.origin.x, mCreditLabel!.frame.origin.y, (self.frame.width - 2 * mCreditLabel!.frame.origin.x), (self.frame.height - mCreditLabel!.frame.origin.y))
+        mCreditLabel?.text = "Credit: " + source
+        mCreditLabel?.sizeToFit()
     }
 }

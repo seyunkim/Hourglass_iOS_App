@@ -11,10 +11,15 @@ import UIKit
 
 class RestaurantPromoView : UIView {
     // MARK: Private Variables
-    var mRestaurantLogo : UIImage?
+    var mRestaurantLogo = "SampleRestaurantLogo"
     var mRestaurantName = "Restaurant Name"
-    var mHiRezBackground : UIImage?
+    var mHiRezBackground = "SampleHiRez"
     var mRestaurantInformation = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet dignissim sapien, et malesuada tortor. Fusce congue lorem eu tortor elementum, eget rhoncus quam pellentesque. Donec quis viverra augue. Cras sem urna, fringilla iaculis facilisis id, molestie vel est. Duis euismod suscipit ex quis hendrerit. Donec vitae magna magna. Nullam iaculis ultricies tincidunt. Nullam tincidunt hendrerit commodo."
+    
+    var mRestaurantLogoView : UIImageView?
+    var mHiRezBackgroundView : UIImageView?
+    var mNameLabel : UILabel?
+    var mInfoLabel : UILabel?
     
     // MARK: Initialization Methods
     required init?(coder aDecoder: NSCoder) {
@@ -27,16 +32,25 @@ class RestaurantPromoView : UIView {
         initializationImplementation()
     }
     
+    required init(frame: CGRect, name: String, information: String, background: String, logo: String) {
+        super.init(frame: frame)
+        mRestaurantName = name
+        mRestaurantInformation = information
+        mHiRezBackground = background
+        mRestaurantLogo = logo
+        initializationImplementation()
+    }
+    
     func initializationImplementation() {
         // First load in the High Resolution Background
-        mHiRezBackground = UIImage(named: "SampleHiRez")
+        let mHiRezBackgroundImage = UIImage(named: mHiRezBackground)
         var hiRezFrame = self.frame
         hiRezFrame.origin.y = 0
         hiRezFrame.origin.x = 0
-        let hiRezView = UIImageView(frame: hiRezFrame)
-        hiRezView.image = mHiRezBackground
-        self.addSubview(hiRezView)
-        let darkenView = UIView(frame: hiRezView.frame)
+        mHiRezBackgroundView = UIImageView(frame: hiRezFrame)
+        mHiRezBackgroundView!.image = mHiRezBackgroundImage
+        self.addSubview(mHiRezBackgroundView!)
+        let darkenView = UIView(frame: mHiRezBackgroundView!.frame)
         darkenView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         self.addSubview(darkenView)
         
@@ -46,37 +60,53 @@ class RestaurantPromoView : UIView {
         
         // Then Load in the Restaurant Logo
         let logoWidth = CGFloat(64)
-        mRestaurantLogo = UIImage(named: "SampleRestaurantLogo")
-        let logoView = UIImageView(frame: CGRectMake(
+        let restaurantLogo = UIImage(named: mRestaurantLogo)
+        mRestaurantLogoView = UIImageView(frame: CGRectMake(
             (self.frame.width * percentForLogo - logoWidth) / 2,
             verticalOffset,
             logoWidth,
             logoWidth))
-        logoView.image = mRestaurantLogo
-        self.addSubview(logoView)
+        mRestaurantLogoView!.image = restaurantLogo
+        self.addSubview(mRestaurantLogoView!)
         
         // Add the Restaurant Name and Description Labels
-        let nameLabel = UILabel(frame: CGRectMake(
+        mNameLabel = UILabel(frame: CGRectMake(
             (self.frame.width * percentForLogo),
             verticalOffset,
             self.frame.width * (CGFloat(1) - percentForLogo),
             logoWidth))
-        nameLabel.backgroundColor = UIColor.clearColor()
-        nameLabel.textColor = UIColor.whiteColor()
-        nameLabel.font = UIFont.systemFontOfSize(36)
-        nameLabel.text = mRestaurantName
-        self.addSubview(nameLabel)
+        mNameLabel!.backgroundColor = UIColor.clearColor()
+        mNameLabel!.textColor = UIColor.whiteColor()
+        mNameLabel!.font = UIFont.systemFontOfSize(36)
+        mNameLabel!.text = mRestaurantName
+        mNameLabel!.adjustsFontSizeToFitWidth = true
+        self.addSubview(mNameLabel!)
         
-        let descriptionLabel = UILabel(frame: CGRectMake(
+        mInfoLabel = UILabel(frame: CGRectMake(
             (self.frame.width * percentForLogo / 1.5),
-            verticalOffset + nameLabel.frame.height,
+            verticalOffset + mNameLabel!.frame.height,
             self.frame.width - (self.frame.width * percentForLogo / 1.5) - CGFloat(18),
-            self.frame.height - (verticalOffset + nameLabel.frame.height)))
-        descriptionLabel.backgroundColor = UIColor.clearColor()
-        descriptionLabel.textColor = UIColor.whiteColor()
-        descriptionLabel.font = UIFont.italicSystemFontOfSize(24)
-        descriptionLabel.text = mRestaurantInformation
-        descriptionLabel.numberOfLines = 0
-        self.addSubview(descriptionLabel)
+            self.frame.height - (verticalOffset + mNameLabel!.frame.height)))
+        mInfoLabel!.backgroundColor = UIColor.clearColor()
+        mInfoLabel!.textColor = UIColor.whiteColor()
+        mInfoLabel!.font = UIFont.italicSystemFontOfSize(24)
+        mInfoLabel!.text = mRestaurantInformation
+        mInfoLabel!.numberOfLines = 0
+        self.addSubview(mInfoLabel!)
+    }
+    
+    func changeRestaurant(name: String, information: String, background: String, logo: String) {
+        mRestaurantName = name
+        mRestaurantInformation = information
+        mHiRezBackground = background
+        mRestaurantLogo = logo
+        
+        
+        mNameLabel?.text = mRestaurantName
+        mInfoLabel?.text = mRestaurantInformation
+        let restaurantLogo = UIImage(named: mRestaurantLogo)
+        mRestaurantLogoView?.image = restaurantLogo
+        let mHiRezBackgroundImage = UIImage(named: mHiRezBackground)
+        mHiRezBackgroundView!.image = mHiRezBackgroundImage
     }
 }
