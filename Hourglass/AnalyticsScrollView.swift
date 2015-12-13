@@ -27,6 +27,11 @@ class AnalyticsScrollView : UIScrollView, UIScrollViewDelegate {
         self.delegate = self
     }
     
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.delegate = self
+    }
+    
     // Internal function used to set our analytics delegate - can be called externally if the user wishes to send the scrolling to a view controller that is not on top
     func setAnalyticsDelegate(del : AnalyticsScrollViewDelegate) {
         mAnalyticsDelegate = del
@@ -46,5 +51,10 @@ class AnalyticsScrollView : UIScrollView, UIScrollViewDelegate {
             mAnalyticsDelegate.didDragYBy(Int(scrollView.contentOffset.y) - mAnalyticsLastContentOffsetY)
             mAnalyticsLastContentOffsetY = Int(scrollView.contentOffset.y)
         }
+    }
+    
+    // Function to allow gesture recognizers to work simultaneously with scrolling
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

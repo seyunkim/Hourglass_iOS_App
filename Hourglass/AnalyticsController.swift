@@ -70,9 +70,13 @@ class AnalyticsController {
         request.HTTPMethod = "POST"
         var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
         request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
             // Done
-            println(error)
+            if let err = error as NSError! {
+                println(err)
+            } else {
+                println(response)
+            }
         })
     }
     
@@ -94,9 +98,13 @@ class AnalyticsController {
         request.HTTPMethod = "POST"
         var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
         request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
             // Done
-            println(error)
+            if let err = error as NSError! {
+                println(err)
+            } else {
+                println(response)
+            }
         })
     }
     
@@ -118,9 +126,13 @@ class AnalyticsController {
         request.HTTPMethod = "POST"
         var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
         request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
             // Done
-            println(error)
+            if let err = error as NSError! {
+                println(err)
+            } else {
+                println(response)
+            }
         })
     }
     
@@ -142,9 +154,13 @@ class AnalyticsController {
         request.HTTPMethod = "POST"
         var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
         request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
             // Done
-            println(error)
+            if let err = error as NSError! {
+                println(err)
+            } else {
+                println(response)
+            }
         })
     }
     
