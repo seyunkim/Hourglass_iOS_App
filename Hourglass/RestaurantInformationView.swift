@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class RestaurantInformationView : UIView {
     // MARK: Private Variables
     var mRestaurantName = "Restaurant Name"
-    var mRestaurantPriceRating = 2.5
+    var mRestaurantPriceRating = "$$"
     var mRestaurantPhoneNumber = "972-867-5309"
     var mRestaurantAddress = "1 Market St.\nSan Francisco, CA"
     var mRestaurantCategory = "Steakhouse"
@@ -21,6 +22,7 @@ class RestaurantInformationView : UIView {
     var mPhoneLabel : UILabel?
     var mAddressLabel : UILabel?
     var mCategoryLabel : UILabel?
+    var mMapView : MKMapView?
     
     var mRatingLabel : UILabel?
     
@@ -38,7 +40,7 @@ class RestaurantInformationView : UIView {
         initializationImplementation()
     }
     
-    required init(frame: CGRect, name: String, price: Double, phone: String, address: String, category: String) {
+    required init(frame: CGRect, name: String, price: String, phone: String, address: String, category: String) {
         super.init(frame: frame)
         mRestaurantName = name
         mRestaurantPriceRating = price
@@ -68,16 +70,16 @@ class RestaurantInformationView : UIView {
         
         // Category
         mCategoryLabel = UILabel(frame: CGRectMake(
-            self.frame.width / 5.0,
+            16,
             mNameLabel!.frame.origin.y + mNameLabel!.frame.height,
-            self.frame.width * CGFloat(3) / 5.0,
+            self.frame.width - 32,
             CGFloat(32)))
         mCategoryLabel!.backgroundColor = UIColor.clearColor()
         mCategoryLabel!.textColor = UIColor.darkGrayColor()
-        mCategoryLabel!.font = UIFont.systemFontOfSize(24)
+        //mCategoryLabel!.font = UIFont.systemFontOfSize(24)
         mCategoryLabel!.text = mRestaurantCategory
+        mCategoryLabel!.textAlignment = .Center
         mCategoryLabel!.adjustsFontSizeToFitWidth = true
-        mCategoryLabel!.sizeToFit()
         self.addSubview(mCategoryLabel!)
         
         // Rating
@@ -108,20 +110,40 @@ class RestaurantInformationView : UIView {
         self.addSubview(mPhoneLabel!)
         
         // Map -- PLACEHOLDER
-        let sampleMapView = UIImageView(frame: CGRectMake(
+        mMapView = MKMapView(frame: CGRectMake(
             horizontalOffset!,
             self.frame.height / 2.0,
             self.frame.width - (2 * horizontalOffset!),
             self.frame.height / 4.0))
-        sampleMapView.image = UIImage(named: "SampleHiRez")
-        self.addSubview(sampleMapView)
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(mRestaurantAddress) { (placemarks, error) -> Void in
+            if let pmarks = placemarks as [CLPlacemark]! {
+                if pmarks.count > 0 {
+                    let topResult = pmarks[0]
+                    let placemark = MKPlacemark(placemark: topResult)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 4000, 4000)
+                    self.mMapView?.setRegion(region, animated: true)
+                    self.mMapView?.addAnnotation(placemark)
+                }
+            }
+        }
+        self.addSubview(mMapView!)
+        
+//        let sampleMapView = UIImageView(frame: CGRectMake(
+//            horizontalOffset!,
+//            self.frame.height / 2.0,
+//            self.frame.width - (2 * horizontalOffset!),
+//            self.frame.height / 4.0))
+//        sampleMapView.image = UIImage(named: "SampleHiRez")
+//        self.addSubview(sampleMapView)
         
         // Address
         mAddressLabel = UILabel(frame: CGRectMake(
             horizontalOffset!,
-            sampleMapView.frame.origin.y + sampleMapView.frame.height + verticalPadding,
+            mMapView!.frame.origin.y + mMapView!.frame.height + verticalPadding,
             self.frame.width - (2 * horizontalOffset!),
-            self.frame.height - (sampleMapView.frame.origin.y + sampleMapView.frame.height) - verticalPadding))
+            self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height) - verticalPadding))
         mAddressLabel!.backgroundColor = UIColor.clearColor()
         mAddressLabel!.textColor = UIColor.blackColor()
         mAddressLabel!.font = UIFont.systemFontOfSize(18)
@@ -131,7 +153,7 @@ class RestaurantInformationView : UIView {
         self.addSubview(mAddressLabel!)
     }
     
-    func changeRestaurant(name: String, price: Double, phone: String, address: String, category: String) {
+    func changeRestaurant(name: String, price: String, phone: String, address: String, category: String) {
         mRestaurantName = name
         mRestaurantPriceRating = price
         mRestaurantPhoneNumber = phone
@@ -140,13 +162,7 @@ class RestaurantInformationView : UIView {
         
         mNameLabel?.text = mRestaurantName
         
-        mCategoryLabel?.frame = CGRectMake(
-            self.frame.width / 5.0,
-            mNameLabel!.frame.origin.y + mNameLabel!.frame.height,
-            self.frame.width * CGFloat(3) / 5.0,
-            CGFloat(32))
         mCategoryLabel?.text = mRestaurantCategory
-        mCategoryLabel?.sizeToFit()
         
         mRatingLabel?.frame = CGRectMake(
             horizontalOffset!,
@@ -157,7 +173,23 @@ class RestaurantInformationView : UIView {
         mRatingLabel?.sizeToFit()
         
         mPhoneLabel?.text = mRestaurantPhoneNumber
+        
         mAddressLabel?.text = mRestaurantAddress
+        
+        mMapView?.removeAnnotations(mMapView!.annotations)
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(mRestaurantAddress) { (placemarks, error) -> Void in
+            if let pmarks = placemarks as [CLPlacemark]! {
+                if pmarks.count > 0 {
+                    let topResult = pmarks[0]
+                    let placemark = MKPlacemark(placemark: topResult)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 4000, 4000)
+                    self.mMapView?.setRegion(region, animated: true)
+                    self.mMapView?.addAnnotation(placemark)
+                }
+            }
+        }
         
     }
 }

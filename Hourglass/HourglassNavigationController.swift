@@ -86,7 +86,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             statusBarHeight + (navViewHeight - buttonHeight) / 2,
             self.view.frame.width / 5.0,
             buttonHeight))
-        leftButton!.setTitle("< Profile", forState: UIControlState.Normal)
+        leftButton!.setTitle("Profile", forState: UIControlState.Normal)
         leftButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         leftButton!.backgroundColor = UIColor.clearColor()
         navView.addSubview(leftButton!)
@@ -97,7 +97,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             statusBarHeight + (navViewHeight - buttonHeight) / 2,
             self.view.frame.width / 5.0,
             buttonHeight))
-        rightButton!.setTitle("Categories >", forState: UIControlState.Normal)
+        rightButton!.setTitle("Browse", forState: UIControlState.Normal)
         rightButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         rightButton!.backgroundColor = UIColor.clearColor()
         navView.addSubview(rightButton!)
@@ -164,7 +164,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
                     self.leftButton!.setTitle("", forState: .Normal)
-                    self.rightButton!.setTitle("Feed >", forState: .Normal)
+                    self.rightButton!.setTitle("Feed", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mActiveController = 0
@@ -181,8 +181,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
-                self.leftButton!.setTitle("< Profile", forState: .Normal)
-                self.rightButton!.setTitle("Categories >", forState: .Normal)
+                self.leftButton!.setTitle("Profile", forState: .Normal)
+                self.rightButton!.setTitle("Browse", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mActiveController = 1
@@ -204,8 +204,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
-                self.leftButton!.setTitle("< Profile", forState: .Normal)
-                self.rightButton!.setTitle("Categories >", forState: .Normal)
+                self.leftButton!.setTitle("Profile", forState: .Normal)
+                self.rightButton!.setTitle("Browse", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mActiveController = 1
@@ -225,7 +225,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = middleOffscreenFrame
                 self.mCategoriesController!.view.frame = self.subFrame!
                 
-                self.leftButton!.setTitle("< Feed", forState: .Normal)
+                self.leftButton!.setTitle("Feed", forState: .Normal)
                 self.rightButton!.setTitle("", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
@@ -243,22 +243,32 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     // MARK: Search Functions
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         // For now, just cancel
+        AnalyticsController.logSpecial("SearchCompleted", details: searchBar.text!)
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        mVideoController?.ignoreTap(true)
         mVideoController?.pauseVideo()
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        mVideoController?.resumeVideo()
+        let alert = UIAlertController(title: "Coming Soon!", message: "Thanks for using Hourglass! Our search feature is coming in a new release soon!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Can't Wait!", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            self.mVideoController?.ignoreTap(false)
+            self.mVideoController?.resumeVideo()
+        }))
+        self.presentViewController(alert, animated: true) { () -> Void in
+            
+        }
     }
     
     func tappedScreen(tgr : UITapGestureRecognizer){
         let touchPoint : CGPoint = tgr.locationInView(self.view)
         if touchPoint.y > navViewHeight + UIApplication.sharedApplication().statusBarFrame.size.height {
             if searchBar!.isFirstResponder() {
+                AnalyticsController.logSpecial("SearchCancelled", details: "")
                 searchBar?.text = ""
                 searchBar?.resignFirstResponder()
             }

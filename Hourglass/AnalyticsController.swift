@@ -19,6 +19,7 @@ import Foundation
  ** 2. Tap Event
  ** 3. Button Press Event
  ** 4. Enter Background Event
+ ** 5. Special Event
  *
  * Additional Notes
  ** Crash reporting is handled via the primary Parse database, so these events are not logged
@@ -149,7 +150,7 @@ class AnalyticsController {
     static func logEnterBackground() {
         // First lets get the time that we can use to calculate time spent on each page
         let time = NSDate()
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = NSDateFormatterStyle.LongStyle
         timeFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -160,6 +161,37 @@ class AnalyticsController {
         
         do {
             let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName]
+            request.HTTPMethod = "POST"
+            let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
+            request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                // Done
+                if let err = error as NSError! {
+                    print(err)
+                } else {
+                    print(response)
+                }
+            })
+        } catch {
+            
+        }
+    }
+    
+    // Log any time the app enters the background
+    static func logSpecial(name: String, details: String) {
+        // First lets get the time that we can use to calculate time spent on each page
+        let time = NSDate()
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+        timeFormatter.timeStyle = NSDateFormatterStyle.LongStyle
+        
+        // Send the data to Parse to be recompiled into a logged event
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/functions/logSpecialEvent")!)
+        request.setValue("4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        do {
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName, "eventName":name, "details":details]
             request.HTTPMethod = "POST"
             let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
             request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)

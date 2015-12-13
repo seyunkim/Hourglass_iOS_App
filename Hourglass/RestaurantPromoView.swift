@@ -49,24 +49,29 @@ class RestaurantPromoView : UIView {
         hiRezFrame.origin.x = 0
         mHiRezBackgroundView = UIImageView(frame: hiRezFrame)
         mHiRezBackgroundView!.image = mHiRezBackgroundImage
+        mHiRezBackgroundView!.contentMode = .ScaleAspectFill
         self.addSubview(mHiRezBackgroundView!)
         let darkenView = UIView(frame: mHiRezBackgroundView!.frame)
         darkenView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         self.addSubview(darkenView)
         
         // Set up ratio constants
-        let percentForLogo = CGFloat(1.0/4)
+        let percentForLogo = CGFloat(1.0/3)
         let verticalOffset = CGFloat(64)
         
         // Then Load in the Restaurant Logo
-        let logoWidth = CGFloat(64)
-        let restaurantLogo = UIImage(named: mRestaurantLogo)
+        let logoWidth = CGFloat(86)
         mRestaurantLogoView = UIImageView(frame: CGRectMake(
             (self.frame.width * percentForLogo - logoWidth) / 2,
             verticalOffset,
             logoWidth,
             logoWidth))
-        mRestaurantLogoView!.image = restaurantLogo
+        if mRestaurantLogo == "blank" {
+            mRestaurantLogoView?.image = UIImage()
+        } else {
+            let restaurantLogo = UIImage(named: mRestaurantLogo)
+            mRestaurantLogoView!.image = restaurantLogo
+        }
         self.addSubview(mRestaurantLogoView!)
         
         // Add the Restaurant Name and Description Labels
@@ -89,7 +94,7 @@ class RestaurantPromoView : UIView {
             self.frame.height - (verticalOffset + mNameLabel!.frame.height)))
         mInfoLabel!.backgroundColor = UIColor.clearColor()
         mInfoLabel!.textColor = UIColor.whiteColor()
-        mInfoLabel!.font = UIFont.italicSystemFontOfSize(24)
+        mInfoLabel!.font = UIFont.italicSystemFontOfSize(20)
         mInfoLabel!.text = mRestaurantInformation
         mInfoLabel!.numberOfLines = 0
         self.addSubview(mInfoLabel!)
@@ -104,8 +109,12 @@ class RestaurantPromoView : UIView {
         
         mNameLabel?.text = mRestaurantName
         mInfoLabel?.text = mRestaurantInformation
-        let restaurantLogo = UIImage(named: mRestaurantLogo)
-        mRestaurantLogoView?.image = restaurantLogo
+        if mRestaurantLogo == "blank" {
+            mRestaurantLogoView?.image = UIImage()
+        } else {
+            let restaurantLogo = UIImage(named: mRestaurantLogo)
+            mRestaurantLogoView?.image = restaurantLogo
+        }
         let mHiRezBackgroundImage = UIImage(named: mHiRezBackground)
         mHiRezBackgroundView!.image = mHiRezBackgroundImage
     }

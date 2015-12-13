@@ -51,4 +51,8 @@ class VideoPlayerController : AnalyticsViewController {
     func resumeVideo() {
         mScrollView!.resumeVideo()
     }
+    
+    func ignoreTap(value : Bool) {
+        mScrollView!.ignoreTap = value
+    }
 }

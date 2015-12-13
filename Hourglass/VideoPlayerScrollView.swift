@@ -18,20 +18,21 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     var topView = "videoView"
     var canChangeVideo = true
     
-    var videoNames : [String] = ["churchstate", "beer"]
-    var videoExtensions : [String] = [".mp4", ".mov"]
-    var restaurantNames : [String] = ["Church State", "Bradshaw Brewhaus"]
-    var restaurantCredits : [String] = ["@seyunkim", "@pbradshawusc"]
-    var restaurantDescriptions : [String] = ["The Church State is a modern day meeting place for all - religious or not. This Church-side cafe is the perfect place to meet a friend for coffee and a sandwich or to meet someone new entirely! The social atmosphere is augmented by the local congregation that is very open to new people.", "Bradshaw Brewhaus is a local gastropub serving an ecclectic mix of Southern-style dishes and homebrew ales. Known for their italian-twist garlic quesadillas, this is a must-try!"]
-    var restaurantImageNames : [String] = ["SampleHiRez", "SampleHiRez"]
-    var restaurantLogoNames : [String] = ["SampleRestaurantLogo", "SampleRestaurantLogo"]
-    var restaurantCategories : [String] = ["Cafe", "Gastropub, Southern"]
-    var restaurantRatings = [1.5, 2]
-    var restaurantPhones = ["555-555-5555", "972-867-5309"]
-    var restaurantAddresses = ["835 W 30th St\nLos Angeles, CA", "947 W 30th St\nLos Angeles, CA"]
+    var videoNames : [String] = ["churchstate", "beer", "beer"]
+    var videoExtensions : [String] = [".mp4", ".mov", ".mov"]
+    var restaurantNames : [String] = ["Love and Salt", "Il Cielo", "Takami"]
+    var restaurantCredits : [String] = ["@pbradshawusc", "@sarahbas", "@seyunkm"]
+    var restaurantDescriptions : [String] = ["Love and Salt is an Italian style restaurant with a California soul. Located in the heart of Manhattan Beach, Love & Salt is the go to spot for brunch, an upscale dinner, and everything in between. Be sure to try their homemade English muffins with rosemary herb butter.", "Since 1986, il Cielo has brought \"the sky\" to Beverly Hills. Often called, \"The most romantic restaurant in Los Angeles\", il Cielo is more than just an Italian restaurant; it is a landmark. With fine dining for lunch and dinner, private rooms and tranquil gardens, il Cielo is the perfect location for almost any occasion, day or night. il Cielo has established itself as a place to impress; \"A country restaurant in the city.\"", "21 floors above Downtown LA's Financial District floats one of the most unique restaurant concepts Southern California has ever experienced.  Takami Sushi & Robata Restaurant® serves high quality Sushi, Robata, and Japanese-influenced entrees, all while boasting unparalleled views of the LA area with outdoor patio dining."]
+    var restaurantImageNames : [String] = ["LoveAndSaltHiRez", "IlCieloHiRez", "TakamiHiRez"]
+    var restaurantLogoNames : [String] = ["LoveAndSaltLogo", "blank", "TakamiLogo"]
+    var restaurantCategories : [String] = ["Ambiance, Italian, Californian, Brunch", "Romantic, Ambiance, Italian, Fine Dining", "Sushi, Ambiance"]
+    var restaurantRatings = ["$$$", "$$$", "$$$"]
+    var restaurantPhones = ["310-545-5252", "310-276-9990", "213-236-9600"]
+    var restaurantAddresses = ["317 Manhattan Beach Boulevard \nManhattan Beach, CA 90266", "9018 Butron Way \nBeverly Hills, CA 90211", "811 Wilshire Blvd. Ste 2100 \nLos Angeles, CA 90017"]
     var videoIndex = 0
     
     let tapGesture = UITapGestureRecognizer()
+    var ignoreTap = false
     
     // MARK: Setup
     required init?(coder aDecoder: NSCoder) {
@@ -99,21 +100,23 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     
     func resumeVideo() {
         if let vidV = videoView as VideoPlayerView! {
-            canChangeVideo = true
-            vidV.doResumeVideo()
+            if (!ignoreTap) {
+                canChangeVideo = true
+                vidV.doResumeVideo()
+            }
         }
     }
     
     func playerItemDidReachEnd(notification : NSNotification) {
-        if let p = notification.object as? AVPlayerItem {
+//        if let p = notification.object as? AVPlayerItem {
             //p.seekToTime(kCMTimeZero)
             moveToNextVideo()
-        }
+//        }
     }
     
     // MARK: User Interaction Methods
     func moveToNextVideo() {
-        if(canChangeVideo) {
+        if(canChangeVideo && !ignoreTap) {
             // First update the index
             videoIndex++
             if (videoIndex >= videoNames.count) {
@@ -125,6 +128,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
                 source: restaurantCredits[videoIndex],
                 fileName: videoNames[videoIndex],
                 fileExtension: videoExtensions[videoIndex])
+            AnalyticsController.logSpecial("ViewNewRestaurant", details: restaurantNames[videoIndex] + ": " + videoNames[videoIndex] + videoExtensions[videoIndex])
 //            if let vidV = videoView as VideoPlayerView! {
 //                vidV.doChangeToFile(videoNames[videoIndex], fileExtension: videoExtensions[videoIndex])
 //            }
@@ -139,6 +143,8 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
                 phone: restaurantPhones[videoIndex],
                 address: restaurantAddresses[videoIndex],
                 category: restaurantCategories[videoIndex])
+        } else if(canChangeVideo) {
+            ignoreTap = false
         }
     }
     
