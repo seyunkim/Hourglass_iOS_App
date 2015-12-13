@@ -31,7 +31,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
         initializationImplementation()
     }
     
-    func initializationImplementation() {
+    internal func initializationImplementation() {
         // Set up our video view and content size
         self.contentSize = CGSizeMake(self.frame.size.width, self.frame.size.height * 3)
         videoView = VideoPlayerView(frame: self.frame)
