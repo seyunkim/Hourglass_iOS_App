@@ -19,6 +19,8 @@
 		24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */; };
 		5E08AD211C1989A7009F9959 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08AD201C1989A7009F9959 /* MediaPlayer.framework */; };
 		5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5E08AD221C198B0E009F9959 /* churchstate.mp4 */; };
+		5E1B7C0B1C1D1F1E006BA359 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */; };
+		5E1B7C101C1D23CB006BA359 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */; };
 		5ED613541B9681DE00D2E8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED613531B9681DE00D2E8FC /* AppDelegate.swift */; };
 		5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED613551B9681DE00D2E8FC /* ViewController.swift */; };
 		5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED613571B9681DE00D2E8FC /* Main.storyboard */; };
@@ -51,6 +53,8 @@
 		5E08AD201C1989A7009F9959 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5E08AD221C198B0E009F9959 /* churchstate.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = churchstate.mp4; sourceTree = "<group>"; };
 		5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hourglass-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5ED6134E1B9681DE00D2E8FC /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED613521B9681DE00D2E8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ED613531B9681DE00D2E8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				248265051C1A432400CAC95B /* Analytics */,
 				5E08AD221C198B0E009F9959 /* churchstate.mp4 */,
 				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
+				5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */,
+				5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */,
 				5ED613551B9681DE00D2E8FC /* ViewController.swift */,
 				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
 				5ED6135A1B9681DE00D2E8FC /* Images.xcassets */,
@@ -286,7 +292,9 @@
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
 				2467493D1C1CFD3900B26064 /* YelpInformationViewController.swift in Sources */,
 				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,
+				5E1B7C0B1C1D1F1E006BA359 /* CategoriesViewController.swift in Sources */,
 				24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */,
+				5E1B7C101C1D23CB006BA359 /* ProfileViewController.swift in Sources */,
 				5ED613541B9681DE00D2E8FC /* AppDelegate.swift in Sources */,
 				2467493A1C1CE67600B26064 /* VideoPlayerView.swift in Sources */,
 			);
