@@ -12,17 +12,15 @@ import UIKit
 class AnalyticsUIButton : UIButton {
     var mAnalyticsButtonIdentifier : String = "Unknown"
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
-            if let touchEvent = touch as? UITouch {
-                var touchLocation = touchEvent.locationInView(self)
-                var myFrame = self.frame
-                myFrame.origin.x = 0
-                myFrame.origin.y = 0
-                if CGRectContainsPoint(myFrame, touchLocation) {
-                    // We ended our touch in the frame, so we should log the event
-                    AnalyticsController.logButtonPress(mAnalyticsButtonIdentifier)
-                }
+            let touchLocation = touch.locationInView(self)
+            var myFrame = self.frame
+            myFrame.origin.x = 0
+            myFrame.origin.y = 0
+            if CGRectContainsPoint(myFrame, touchLocation) {
+                // We ended our touch in the frame, so we should log the event
+                AnalyticsController.logButtonPress(mAnalyticsButtonIdentifier)
             }
         }
         

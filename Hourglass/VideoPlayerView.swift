@@ -25,7 +25,7 @@ class VideoPlayerView : UIView {
     var viewDelegate : VideoPlayerViewDelegate?
     
     // MARK: Setup
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initializationImplementation("churchstate", startingVideoExtension: ".mp4")
     }
@@ -42,24 +42,28 @@ class VideoPlayerView : UIView {
     
     func initializationImplementation(startingVideoName : String, startingVideoExtension : String) {
         // Initialize AVPlayer
-        var value = NSNumber(integer: UIInterfaceOrientation.Portrait.rawValue)
+        let value = NSNumber(integer: UIInterfaceOrientation.Portrait.rawValue)
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
         
-        var resource = NSBundle.mainBundle().pathForResource(startingVideoName, ofType: startingVideoExtension)
+        let resource = NSBundle.mainBundle().pathForResource(startingVideoName, ofType: startingVideoExtension)
         
-        var urlPathOfVideo = NSURL(fileURLWithPath: resource!)
+        let urlPathOfVideo = NSURL(fileURLWithPath: resource!)
         avPlayer = AVPlayer(URL: urlPathOfVideo)
         avPlayer!.actionAtItemEnd = AVPlayerActionAtItemEnd.None
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer!)
         avPlayerLayer!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         
-        self.layer.addSublayer(avPlayerLayer)
+        self.layer.addSublayer(avPlayerLayer!)
         
         avPlayer!.play()
         cmTime = kCMTimeZero
         
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+        } catch {
+            
+        }
         
         // AVPlayer Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: avPlayer!.currentItem)
@@ -102,9 +106,9 @@ class VideoPlayerView : UIView {
         avPlayer!.pause()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: avPlayer!.currentItem)
         
-        var resource = NSBundle.mainBundle().pathForResource(fileName, ofType: fileExtension)
-        var urlPathOfVideo = NSURL(fileURLWithPath: resource!)
-        avPlayer!.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: urlPathOfVideo!))
+        let resource = NSBundle.mainBundle().pathForResource(fileName, ofType: fileExtension)
+        let urlPathOfVideo = NSURL(fileURLWithPath: resource!)
+        avPlayer!.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: urlPathOfVideo))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: avPlayer!.currentItem)
         
         avPlayer!.play()

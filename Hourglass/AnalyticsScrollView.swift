@@ -22,7 +22,7 @@ class AnalyticsScrollView : UIScrollView, UIScrollViewDelegate {
     
     // Unfortunately, we have to set ourselves as our own delegate in order to get the scrolling and send to our internal delegate
     // This is something we may need to alter in the future
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.delegate = self
     }

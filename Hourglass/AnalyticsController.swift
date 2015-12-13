@@ -56,7 +56,7 @@ class AnalyticsController {
     static func logScreenLoad(screen : String) {
         // First lets get the time that we can use to calculate time spent on each page
         let time = NSDate()
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = NSDateFormatterStyle.LongStyle
         timeFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -65,26 +65,29 @@ class AnalyticsController {
         request.setValue("4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2", forHTTPHeaderField: "X-Parse-Application-Id")
         request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
-        let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen]
-        var error: NSError?
-        request.HTTPMethod = "POST"
-        var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
-        request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
-            // Done
-            if let err = error as NSError! {
-                println(err)
-            } else {
-                println(response)
-            }
-        })
+        do {
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen]
+            request.HTTPMethod = "POST"
+            let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
+            request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                // Done
+                if let err = error as NSError! {
+                    print(err)
+                } else {
+                    print(response)
+                }
+            })
+        } catch {
+            
+        }
     }
     
     // Log any screen tap that does not have outside implications
     static func logTapEvent(screen : String, xPos : Int, yPos : Int) {
         // First lets get the time that we can use to calculate time spent on each page
         let time = NSDate()
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = NSDateFormatterStyle.LongStyle
         timeFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -93,26 +96,29 @@ class AnalyticsController {
         request.setValue("4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2", forHTTPHeaderField: "X-Parse-Application-Id")
         request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
-        let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen, "xPos":xPos, "yPos":yPos]
-        var error: NSError?
-        request.HTTPMethod = "POST"
-        var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
-        request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
-            // Done
-            if let err = error as NSError! {
-                println(err)
-            } else {
-                println(response)
-            }
-        })
+        do {
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen, "xPos":xPos, "yPos":yPos]
+            request.HTTPMethod = "POST"
+            let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
+            request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                // Done
+                if let err = error as NSError! {
+                    print(err)
+                } else {
+                    print(response)
+                }
+            })
+        } catch {
+            
+        }
     }
     
     // Log any button that is pressed
     static func logButtonPress(buttonIdentifier : String) {
         // First lets get the time that we can use to calculate time spent on each page
         let time = NSDate()
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = NSDateFormatterStyle.LongStyle
         timeFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -121,19 +127,22 @@ class AnalyticsController {
         request.setValue("4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2", forHTTPHeaderField: "X-Parse-Application-Id")
         request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
-        let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName, "buttonIdentifier":buttonIdentifier]
-        var error: NSError?
-        request.HTTPMethod = "POST"
-        var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
-        request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
-            // Done
-            if let err = error as NSError! {
-                println(err)
-            } else {
-                println(response)
-            }
-        })
+        do {
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName, "buttonIdentifier":buttonIdentifier]
+            request.HTTPMethod = "POST"
+            let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
+            request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                // Done
+                if let err = error as NSError! {
+                    print(err)
+                } else {
+                    print(response)
+                }
+            })
+        } catch {
+            
+        }
     }
     
     // Log any time the app enters the background
@@ -149,19 +158,22 @@ class AnalyticsController {
         request.setValue("4EwiEl7KOjoDVG8YFiLZxiy4EunB5lrsJQc63yz2", forHTTPHeaderField: "X-Parse-Application-Id")
         request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
-        let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName]
-        var error: NSError?
-        request.HTTPMethod = "POST"
-        var dataSTR = NSString(data: NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: &error)!, encoding: NSUTF8StringEncoding)
-        request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in
-            // Done
-            if let err = error as NSError! {
-                println(err)
-            } else {
-                println(response)
-            }
-        })
+        do {
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":AnalyticsController.sharedController.topViewController!.screenName]
+            request.HTTPMethod = "POST"
+            let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
+            request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                // Done
+                if let err = error as NSError! {
+                    print(err)
+                } else {
+                    print(response)
+                }
+            })
+        } catch {
+            
+        }
     }
     
 }
