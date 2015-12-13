@@ -52,7 +52,7 @@ class VideoPlayerView : UIView {
         avPlayer!.actionAtItemEnd = AVPlayerActionAtItemEnd.None
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer!)
-        avPlayerLayer!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 2)
+        avPlayerLayer!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         
         self.layer.addSublayer(avPlayerLayer)
         
