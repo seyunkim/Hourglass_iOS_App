@@ -69,6 +69,65 @@ class VideoPlayerView : UIView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: avPlayer!.currentItem)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pauseVideo", name: "PauseBgVideo", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "resumeVideo", name: "ResumeBgVideo", object: nil)
+        
+        // Translucent bottom bar
+        let translucentView = UIView(frame: CGRectMake(self.frame.origin.x, self.frame.origin.y+(self.frame.height * 4 / 5.0), self.frame.width, (self.frame.height / 5.0)))
+        translucentView.backgroundColor = UIColor.clearColor()
+        let gradientLayer = CAGradientLayer()
+        var gradientFrame = translucentView.frame
+        gradientFrame.origin.x = 0
+        gradientFrame.origin.y = 0
+        gradientLayer.frame = gradientFrame
+        
+        let blackColor = UIColor.blackColor()
+        var colorArray = NSArray(objects: blackColor.CGColor,
+            blackColor.colorWithAlphaComponent(0.9).CGColor,
+            blackColor.colorWithAlphaComponent(0.8).CGColor,
+            blackColor.colorWithAlphaComponent(0.7).CGColor,
+            blackColor.colorWithAlphaComponent(0.6).CGColor,
+            blackColor.colorWithAlphaComponent(0.3).CGColor,
+            UIColor.clearColor().CGColor)
+        colorArray = colorArray.reverseObjectEnumerator().allObjects
+        
+        gradientLayer.colors = colorArray as [AnyObject]
+        translucentView.layer.insertSublayer(gradientLayer, atIndex: 0)
+        self.addSubview(translucentView)
+        
+        // Labels for restaurant name and credit
+        let horizontalOffset = CGFloat(96)
+        let restaurantLabel = UILabel(frame: CGRectMake(
+            translucentView.frame.origin.x + horizontalOffset,
+            translucentView.frame.origin.y,
+            translucentView.frame.width - horizontalOffset,
+            translucentView.frame.height / 2))
+        restaurantLabel.backgroundColor = UIColor.clearColor()
+        restaurantLabel.textColor = UIColor.whiteColor()
+        restaurantLabel.text = "Restaurant Name"
+        restaurantLabel.font = UIFont.systemFontOfSize(36)
+        self.addSubview(restaurantLabel)
+        
+        let creditLabel = UILabel(frame: CGRectMake(
+            translucentView.frame.origin.x + horizontalOffset,
+            translucentView.frame.origin.y + translucentView.frame.height / 2,
+            translucentView.frame.width - horizontalOffset,
+            translucentView.frame.height / 2))
+        creditLabel.backgroundColor = UIColor.clearColor()
+        creditLabel.textColor = UIColor.whiteColor()
+        creditLabel.text = "Credit: @anonymous"
+        creditLabel.font = UIFont.systemFontOfSize(18)
+        creditLabel.sizeToFit()
+        self.addSubview(creditLabel)
+        
+        // Image View for down arrow
+        let imageDimensions = CGFloat(64)
+        let downImage = UIImageView(frame: CGRectMake(
+            translucentView.frame.origin.x + (horizontalOffset - imageDimensions) / 2,
+            translucentView.frame.origin.y + (translucentView.frame.height - imageDimensions) / 3,
+            imageDimensions,
+            imageDimensions))
+        downImage.backgroundColor = UIColor.clearColor()
+        downImage.image = UIImage(named: "DownArrow")
+        self.addSubview(downImage)
     }
     
     // MARK: Delegate Methods
