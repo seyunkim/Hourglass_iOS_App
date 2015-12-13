@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HourglassNavigationController : UIViewController {
+class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     // MARK: Private variables
     var mVideoController : VideoPlayerController?
     var mProfileController : ProfileViewController?
@@ -19,6 +19,10 @@ class HourglassNavigationController : UIViewController {
     
     var leftButton : UIButton?
     var rightButton : UIButton?
+    var searchBar : UISearchBar?
+    
+    let navViewHeight = CGFloat(64)
+    let buttonHeight = CGFloat(56)
     
     // MARK: Initialization methods
     required init?(coder aDecoder: NSCoder) {
@@ -55,9 +59,11 @@ class HourglassNavigationController : UIViewController {
         rightSwipe.direction = .Right
         self.view.addGestureRecognizer(rightSwipe)
         
+        let cancelSearchRec = UITapGestureRecognizer()
+        cancelSearchRec.addTarget(self, action: "tappedScreen:")
+        self.view.addGestureRecognizer(cancelSearchRec)
+        
         // Build our nav view
-        let navViewHeight = CGFloat(64)
-        let buttonHeight = CGFloat(56)
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
         let navView = UIView(frame: CGRectMake(
             0,
@@ -96,6 +102,18 @@ class HourglassNavigationController : UIViewController {
         rightButton!.backgroundColor = UIColor.clearColor()
         navView.addSubview(rightButton!)
         rightButton!.addTarget(self, action: "cycleRight", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        searchBar = UISearchBar(frame: CGRectMake(
+            self.view.frame.width / 5.0 + 10,
+            statusBarHeight + (navViewHeight - buttonHeight) / 2,
+            self.view.frame.width * 3 / 5.0 - 20,
+            buttonHeight))
+        searchBar?.searchBarStyle = UISearchBarStyle.Default
+        searchBar?.barTintColor = UIColor.clearColor()
+        searchBar?.backgroundImage = UIImage()
+        searchBar?.returnKeyType = UIReturnKeyType.Search
+        searchBar?.delegate = self
+        navView.addSubview(searchBar!)
         
         // Add our content views
         subFrame = self.view.frame
@@ -220,5 +238,30 @@ class HourglassNavigationController : UIViewController {
     
     override func prefersStatusBarHidden() -> Bool {
         return false
+    }
+    
+    // MARK: Search Functions
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        // For now, just cancel
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        mVideoController?.pauseVideo()
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        mVideoController?.resumeVideo()
+    }
+    
+    func tappedScreen(tgr : UITapGestureRecognizer){
+        let touchPoint : CGPoint = tgr.locationInView(self.view)
+        if touchPoint.y > navViewHeight + UIApplication.sharedApplication().statusBarFrame.size.height {
+            if searchBar!.isFirstResponder() {
+                searchBar?.text = ""
+                searchBar?.resignFirstResponder()
+            }
+        }
     }
 }

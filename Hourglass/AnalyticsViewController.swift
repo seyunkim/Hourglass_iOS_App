@@ -29,7 +29,7 @@ class AnalyticsViewController : UIViewController, AnalyticsScrollViewDelegate {
     
     // Handle Taps
     func tappedView(tgr : UITapGestureRecognizer){
-        var touchPoint : CGPoint = tgr.locationInView(self.view)
+        let touchPoint : CGPoint = tgr.locationInView(self.view)
         AnalyticsController.logTapEvent(screenName, xPos: Int(touchPoint.x), yPos: yDrag + Int(touchPoint.y))
     }
     
