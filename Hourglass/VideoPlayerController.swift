@@ -55,4 +55,8 @@ class VideoPlayerController : AnalyticsViewController {
     func ignoreTap(value : Bool) {
         mScrollView!.ignoreTap = value
     }
+    
+    func setActive(value : Bool) {
+        mScrollView!.activeView = value
+    }
 }

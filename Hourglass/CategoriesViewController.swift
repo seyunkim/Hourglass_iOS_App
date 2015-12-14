@@ -12,6 +12,7 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
     let imageArray = [UIImage(named:"Ambiance"), UIImage(named: "Breakfast"), UIImage(named: "Trending"),UIImage(named: "FoodTruck"),UIImage(named: "Critic"), UIImage(named: "Romantic")]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView?.delegate = self
         let flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout, animated: true)
     
@@ -31,17 +32,24 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
         for view in cell.subviews {
             if let imageView = view as? UIImageView {
                 imageView.image = imageArray[index]
+                imageView.tag = index
                 set = true
                 break
             }
         }
         if !set {
             let imageView = UIImageView(image: imageArray[index])
+            imageView.tag = index
             var newFrame = cell.frame
             newFrame.origin.x = 0
             newFrame.origin.y = 0
             imageView.frame = newFrame
+            imageView.userInteractionEnabled = true
             cell.addSubview(imageView)
+            
+            let imageTap = UITapGestureRecognizer()
+            imageTap.addTarget(self, action: "imageTapped:")
+            imageView.addGestureRecognizer(imageTap)
         }
         return cell
         
@@ -57,11 +65,9 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
     }
     
      //have to hardcode the action each cell does because I havent figured out how to manipulate these actions dynamically
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        print("touched cell \(cell) at index path \(indexPath)")
-
+    func imageTapped(sender: UITapGestureRecognizer) {
+        // respond to tap for the index (sender.view.tag)
+        print("Tapped cell \(sender.view!.tag)")
     }
     
-   
    }

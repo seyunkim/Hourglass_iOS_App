@@ -17,6 +17,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     var informationView : RestaurantInformationView?
     var topView = "videoView"
     var canChangeVideo = true
+    var activeView = true
     
     var videoNames : [String] = ["churchstate", "beer", "takami","sprinkles", "wurstkuche", "nickel","yangi"]
     var videoExtensions : [String] = [".mp4", ".mov", ".mp4", ".mov", ".mov", ".mov",".mov"]
@@ -99,10 +100,12 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     }
     
     func resumeVideo() {
-        if let vidV = videoView as VideoPlayerView! {
-            if (!ignoreTap) {
-                canChangeVideo = true
-                vidV.doResumeVideo()
+        if activeView {
+            if let vidV = videoView as VideoPlayerView! {
+                if (!ignoreTap) {
+                    canChangeVideo = true
+                    vidV.doResumeVideo()
+                }
             }
         }
     }
@@ -116,7 +119,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     
     // MARK: User Interaction Methods
     func moveToNextVideo() {
-        if(canChangeVideo && !ignoreTap) {
+        if(canChangeVideo && !ignoreTap && activeView) {
             // First update the index
             videoIndex++
             if (videoIndex >= videoNames.count) {

@@ -152,6 +152,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         } else if mActiveController == 1 {
             // We are on the center screen
             mVideoController!.pauseVideo()
+            mVideoController!.setActive(false)
             
             var middleOffscreenFrame = subFrame!
             middleOffscreenFrame.origin.x += subFrame!.width
@@ -186,6 +187,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mActiveController = 1
+                    self.mVideoController!.setActive(true)
                     self.mVideoController!.resumeVideo()
             })
         }
@@ -209,11 +211,13 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mActiveController = 1
+                    self.mVideoController!.setActive(true)
                     self.mVideoController!.resumeVideo()
             })
         } else if mActiveController == 1 {
             // We are on the center screen
             mVideoController!.pauseVideo()
+            mVideoController!.setActive(false)
             
             var middleOffscreenFrame = subFrame!
             middleOffscreenFrame.origin.x -= subFrame!.width
