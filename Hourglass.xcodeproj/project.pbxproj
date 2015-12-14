@@ -10,6 +10,7 @@
 		242B1CA81C1D23BF004D3E13 /* RestaurantPromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */; };
 		242B1CAA1C1D2E68004D3E13 /* RestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */; };
 		242B1CAE1C1D5672004D3E13 /* HourglassNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */; };
+		242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CAF1C1E40E7004D3E13 /* takami.mp4 */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
@@ -45,6 +46,7 @@
 		242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantPromoView.swift; sourceTree = "<group>"; };
 		242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
 		242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassNavigationController.swift; sourceTree = "<group>"; };
+		242B1CAF1C1E40E7004D3E13 /* takami.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = takami.mp4; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				5ED6135A1B9681DE00D2E8FC /* Images.xcassets */,
 				5ED6135C1B9681DE00D2E8FC /* LaunchScreen.xib */,
 				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
+				242B1CAF1C1E40E7004D3E13 /* takami.mp4 */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			files = (
 				5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */,
 				5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */,
+				242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */,
 				5ED6135E1B9681DE00D2E8FC /* LaunchScreen.xib in Resources */,
 				5ED6135B1B9681DE00D2E8FC /* Images.xcassets in Resources */,
 				246749361C1BC91600B26064 /* beer.mov in Resources */,

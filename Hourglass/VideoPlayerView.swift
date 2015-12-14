@@ -56,6 +56,7 @@ class VideoPlayerView : UIView {
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer!)
         avPlayerLayer!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        avPlayerLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
         
         self.layer.addSublayer(avPlayerLayer!)
         
@@ -150,7 +151,11 @@ class VideoPlayerView : UIView {
     
     func playerItemDidReachEnd(notification : NSNotification) {
         if let del = viewDelegate as VideoPlayerViewDelegate! {
-            del.playerItemDidReachEnd(notification)
+            if let item = notification.object as! AVPlayerItem! {
+                if item == avPlayer!.currentItem! {
+                    del.playerItemDidReachEnd(notification)
+                }
+            }
         }
     }
     

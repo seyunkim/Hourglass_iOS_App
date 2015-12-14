@@ -18,8 +18,8 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     var topView = "videoView"
     var canChangeVideo = true
     
-    var videoNames : [String] = ["churchstate", "beer", "beer"]
-    var videoExtensions : [String] = [".mp4", ".mov", ".mov"]
+    var videoNames : [String] = ["churchstate", "beer", "takami"]
+    var videoExtensions : [String] = [".mp4", ".mov", ".mp4"]
     var restaurantNames : [String] = ["Love and Salt", "Il Cielo", "Takami"]
     var restaurantCredits : [String] = ["@pbradshawusc", "@sarahbas", "@seyunkm"]
     var restaurantDescriptions : [String] = ["Love and Salt is an Italian style restaurant with a California soul. Located in the heart of Manhattan Beach, Love & Salt is the go to spot for brunch, an upscale dinner, and everything in between. Be sure to try their homemade English muffins with rosemary herb butter.", "Since 1986, il Cielo has brought \"the sky\" to Beverly Hills. Often called, \"The most romantic restaurant in Los Angeles\", il Cielo is more than just an Italian restaurant; it is a landmark. With fine dining for lunch and dinner, private rooms and tranquil gardens, il Cielo is the perfect location for almost any occasion, day or night. il Cielo has established itself as a place to impress; \"A country restaurant in the city.\"", "21 floors above Downtown LA's Financial District floats one of the most unique restaurant concepts Southern California has ever experienced.  Takami Sushi & Robata Restaurant® serves high quality Sushi, Robata, and Japanese-influenced entrees, all while boasting unparalleled views of the LA area with outdoor patio dining."]
