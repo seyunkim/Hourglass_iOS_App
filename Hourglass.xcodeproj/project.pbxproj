@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242B1CA81C1D23BF004D3E13 /* RestaurantPromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */; };
+		242B1CAA1C1D2E68004D3E13 /* RestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */; };
+		242B1CAE1C1D5672004D3E13 /* HourglassNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */; };
+		242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CAF1C1E40E7004D3E13 /* takami.mp4 */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
 		246749361C1BC91600B26064 /* beer.mov in Resources */ = {isa = PBXBuildFile; fileRef = 246749351C1BC91600B26064 /* beer.mov */; };
 		246749381C1CE17A00B26064 /* VideoPlayerScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749371C1CE17A00B26064 /* VideoPlayerScrollView.swift */; };
 		2467493A1C1CE67600B26064 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749391C1CE67600B26064 /* VideoPlayerView.swift */; };
-		2467493D1C1CFD3900B26064 /* YelpInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467493C1C1CFD3900B26064 /* YelpInformationViewController.swift */; };
 		248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248265061C1A434200CAC95B /* AnalyticsController.swift */; };
 		24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */; };
 		24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */; };
@@ -40,13 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantPromoView.swift; sourceTree = "<group>"; };
+		242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
+		242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassNavigationController.swift; sourceTree = "<group>"; };
+		242B1CAF1C1E40E7004D3E13 /* takami.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = takami.mp4; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		246749351C1BC91600B26064 /* beer.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = beer.mov; sourceTree = "<group>"; };
 		246749371C1CE17A00B26064 /* VideoPlayerScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerScrollView.swift; sourceTree = "<group>"; };
 		246749391C1CE67600B26064 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		2467493C1C1CFD3900B26064 /* YelpInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpInformationViewController.swift; sourceTree = "<group>"; };
 		248265061C1A434200CAC95B /* AnalyticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScrollView.swift; sourceTree = "<group>"; };
@@ -86,6 +92,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242B1CAB1C1D55B0004D3E13 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
+				242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		242B1CAC1C1D55C0004D3E13 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */,
+				5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */,
+			);
+			name = Miscellaneous;
+			sourceTree = "<group>";
+		};
 		246749321C1BBE0000B26064 /* VideoControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +123,8 @@
 		2467493B1C1CFD1300B26064 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
-				2467493C1C1CFD3900B26064 /* YelpInformationViewController.swift */,
+				242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */,
+				242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */,
 			);
 			name = Restaurants;
 			sourceTree = "<group>";
@@ -107,11 +132,11 @@
 		248265051C1A432400CAC95B /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */,
 				248265061C1A434200CAC95B /* AnalyticsController.swift */,
-				24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */,
 				24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */,
 				2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */,
-				246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */,
+				24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
@@ -138,20 +163,20 @@
 		5ED613501B9681DE00D2E8FC /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
-				2467493B1C1CFD1300B26064 /* Restaurants */,
-				246749351C1BC91600B26064 /* beer.mov */,
-				246749321C1BBE0000B26064 /* VideoControls */,
 				248265051C1A432400CAC95B /* Analytics */,
+				242B1CAB1C1D55B0004D3E13 /* Navigation */,
+				2467493B1C1CFD1300B26064 /* Restaurants */,
+				5ED613511B9681DE00D2E8FC /* Supporting Files */,
+				246749321C1BBE0000B26064 /* VideoControls */,
+				242B1CAC1C1D55C0004D3E13 /* Miscellaneous */,
+				246749351C1BC91600B26064 /* beer.mov */,
 				5E08AD221C198B0E009F9959 /* churchstate.mp4 */,
-				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
-				5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */,
-				5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */,
 				5ED613551B9681DE00D2E8FC /* ViewController.swift */,
-				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
+				5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */,
 				5ED6135A1B9681DE00D2E8FC /* Images.xcassets */,
 				5ED6135C1B9681DE00D2E8FC /* LaunchScreen.xib */,
-				5ED613511B9681DE00D2E8FC /* Supporting Files */,
-				5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */,
+				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
+				242B1CAF1C1E40E7004D3E13 /* takami.mp4 */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -231,6 +256,7 @@
 				TargetAttributes = {
 					5ED6134D1B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7NUPNZKJRB;
 					};
 					5ED613621B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
@@ -264,6 +290,7 @@
 			files = (
 				5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */,
 				5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */,
+				242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */,
 				5ED6135E1B9681DE00D2E8FC /* LaunchScreen.xib in Resources */,
 				5ED6135B1B9681DE00D2E8FC /* Images.xcassets in Resources */,
 				246749361C1BC91600B26064 /* beer.mov in Resources */,
@@ -284,15 +311,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242B1CAA1C1D2E68004D3E13 /* RestaurantInformationView.swift in Sources */,
 				248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */,
+				242B1CA81C1D23BF004D3E13 /* RestaurantPromoView.swift in Sources */,
 				246749381C1CE17A00B26064 /* VideoPlayerScrollView.swift in Sources */,
 				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
 				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
 				246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */,
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
-				2467493D1C1CFD3900B26064 /* YelpInformationViewController.swift in Sources */,
 				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,
 				5E1B7C0B1C1D1F1E006BA359 /* CategoriesViewController.swift in Sources */,
+				242B1CAE1C1D5672004D3E13 /* HourglassNavigationController.swift in Sources */,
 				24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */,
 				5E1B7C101C1D23CB006BA359 /* ProfileViewController.swift in Sources */,
 				5ED613541B9681DE00D2E8FC /* AppDelegate.swift in Sources */,
@@ -426,9 +455,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -439,9 +471,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
 			};
 			name = Release;

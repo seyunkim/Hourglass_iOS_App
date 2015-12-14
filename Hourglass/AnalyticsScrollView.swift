@@ -24,11 +24,15 @@ class AnalyticsScrollView : UIScrollView, UIScrollViewDelegate {
     // This is something we may need to alter in the future
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.delegate = self
+        initializationImplementation()
     }
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
+        initializationImplementation()
+    }
+    
+    internal func initializationImplementation() {
         self.delegate = self
     }
     

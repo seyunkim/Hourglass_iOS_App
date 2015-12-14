@@ -88,3 +88,28 @@ Parse.Cloud.define("logEnterBackgroundEvent", function(request, response) {
       }
   });
 });
+
+// Log a special event
+// Required
+//// (String) time = The recorded time of the special event occuring on the local device
+//// (String) userName = The username of the user who initiated this event
+//// (String) screenName = The identifier for the currently displayed screen
+//// (String) eventName = The identifier for the special event
+//// (String) details = Any additional details about the event
+Parse.Cloud.define("logSpecialEvent", function(request, response) {
+  var SpecialEventClass = Parse.Object.extend("SpecialEvent");
+  var specialEvent = new SpecialEventClass();
+  specialEvent.set("occurrenceTime", request.params.time);
+  specialEvent.set("userName", request.params.userName);
+  specialEvent.set("screenName", request.params.screenName);
+  specialEvent.set("eventName", request.params.eventName);
+  specialEvent.set("details", request.params.details);
+  specialEvent.save(null, {
+      success: function(savedSpecial) {
+        response.success();
+      },
+      error: function (savingError) {
+        response.error(error);
+      }
+  });
+});

@@ -19,7 +19,13 @@ class VideoPlayerController : AnalyticsViewController {
         
         screenName = "VideoPlayerController"
         
-        mScrollView = VideoPlayerScrollView(frame: self.view.frame)
+        var frame = self.view.frame
+        if (frame.origin.y == 0) {
+            frame.size.height -= (64 + UIApplication.sharedApplication().statusBarFrame.size.height)
+        } else {
+            frame.origin.y = 0
+        }
+        mScrollView = VideoPlayerScrollView(frame: frame)
         self.view.addSubview(mScrollView!)
         tapRec.delegate = mScrollView
     }
@@ -36,5 +42,17 @@ class VideoPlayerController : AnalyticsViewController {
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Portrait
+    }
+    
+    func pauseVideo() {
+        mScrollView!.pauseVideo()
+    }
+    
+    func resumeVideo() {
+        mScrollView!.resumeVideo()
+    }
+    
+    func ignoreTap(value : Bool) {
+        mScrollView!.ignoreTap = value
     }
 }
