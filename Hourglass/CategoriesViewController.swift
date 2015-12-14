@@ -9,9 +9,7 @@
 import UIKit
 
 class CategoriesViewController : UICollectionViewController , UICollectionViewDelegateFlowLayout {
-    
-    @IBOutlet var categoriesView: UICollectionView!
-    let imageArray = [UIImage(named:"Ambiance"), UIImage(named: "Breakfast"), UIImage(named: "Trending"),UIImage(named: "FoodTruck"),UIImage(named: "Critic")]
+    let imageArray = [UIImage(named:"Ambiance"), UIImage(named: "Breakfast"), UIImage(named: "Trending"),UIImage(named: "FoodTruck"),UIImage(named: "Critic"), UIImage(named: "Romantic")]
     override func viewDidLoad() {
         super.viewDidLoad()
         let flowLayout = UICollectionViewFlowLayout()
@@ -25,7 +23,7 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
         
-        var set = false
+               var set = false
         var index = indexPath.row
         while index > imageArray.count - 1 {
             index -= imageArray.count
@@ -57,5 +55,13 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: (self.view.frame.width/2), height: (self.view.frame.width/2))
     }
+    
+     //have to hardcode the action each cell does because I havent figured out how to manipulate these actions dynamically
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        print("touched cell \(cell) at index path \(indexPath)")
 
-} 
+    }
+    
+   
+   }
