@@ -68,6 +68,7 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
      //have to hardcode the action each cell does because I havent figured out how to manipulate these actions dynamically
     func imageTapped(sender: UITapGestureRecognizer) {
         // respond to tap for the index (sender.view.tag)
+        AnalyticsController.logButtonPress("Category: " + categoryArray[sender.view!.tag])
         if (categoryArray[sender.view!.tag].containsString("Soon")) {
             let alert = UIAlertController(title: "Coming Soon!", message: "Thanks for using Hourglass! Additional Categories coming in a new release soon!", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Can't Wait!", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in

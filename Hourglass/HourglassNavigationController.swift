@@ -172,6 +172,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.rightButton!.setTitle("Feed", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    self.mVideoController!.screenName = "ProfileViewController"
                     self.mActiveController = 0
             })
         } else if mActiveController == 2 {
@@ -190,6 +191,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.rightButton!.setTitle("Browse", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    self.mVideoController!.screenName = "VideoPlayerController"
                     self.mActiveController = 1
                     self.mVideoController!.setActive(true)
                     self.mVideoController!.resumeVideo()
@@ -214,6 +216,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.rightButton!.setTitle("Browse", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    self.mVideoController!.screenName = "VideoPlayerController"
                     self.mActiveController = 1
                     self.mVideoController!.setActive(true)
                     self.mVideoController!.resumeVideo()
@@ -237,6 +240,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.rightButton!.setTitle("", forState: .Normal)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    self.mVideoController!.screenName = "CategoriesViewrController"
                     self.mActiveController = 2
             })
         } else if mActiveController == 2 {
