@@ -18,15 +18,17 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     var topView = "videoView"
     var canChangeVideo = true
     var activeView = true
+    var activeCategory = "Trending"
     
-    var videoNames : [String] = ["churchstate", "beer", "takami","sprinkles", "wurstkuche", "nickel","yangi"]
-    var videoExtensions : [String] = [".mp4", ".mov", ".mp4", ".mov", ".mov", ".mov",".mov"]
+    var videoNames : [String] = ["LoveAndSalt", "IlCielo", "takami","sprinkles", "wurstkuche", "nickel","yangi"]
+    var videoExtensions : [String] = [".mp4", ".mp4", ".mp4", ".mov", ".mov", ".mov",".mov"]
     var restaurantNames : [String] = ["Love and Salt", "Il Cielo", "Takami", "Sprinkles Cupcakes", "Wurstkuche","Nickel Diner", "Yangi Gamjatang"]
     var restaurantCredits : [String] = ["@pbradshawusc", "@sarahbas", "@seyunkm", "@rossregen", "@asoni","@seyunkm","@pbradshawusc"]
     var restaurantDescriptions : [String] = ["Love and Salt is an Italian style restaurant with a California soul. Located in the heart of Manhattan Beach, Love & Salt is the go to spot for brunch, an upscale dinner, and everything in between. Be sure to try their homemade English muffins with rosemary herb butter.", "Since 1986, il Cielo has brought \"the sky\" to Beverly Hills. Often called, \"The most romantic restaurant in Los Angeles\", il Cielo is more than just an Italian restaurant; it is a landmark. With fine dining for lunch and dinner, private rooms and tranquil gardens, il Cielo is the perfect location for almost any occasion, day or night. il Cielo has established itself as a place to impress; \"A country restaurant in the city.\"", "21 floors above Downtown LA's Financial District floats one of the most unique restaurant concepts Southern California has ever experienced.  Takami Sushi & Robata Restaurant® serves high quality Sushi, Robata, and Japanese-influenced entrees, all while boasting unparalleled views of the LA area with outdoor patio dining.", "Sprinkles Cupcakes are handcrafted from the finest ingredients, including sweet cream butter, bittersweet Belgian chocolate. Sprinkles cupcakes are a deliciously sophisticated update on an American classic.", "An exotic sausage grill, serving sausage sandwiches , Belgian fries with homemade dipping sauces, 24 imported biers on tap, and a gourmet collection of sodas.", "Cozy vintage-style diner serves updated versions of old-school comfort fare, plus creative desserts. Known for their famous maple flavored bacon donuts.", "Gamjatang, which is the Korean term for pork neck. The clay potted simmered Gamjatang here is delicious! It was cooked to perfection where the meat was very tender. When served, my Gamjatang looks appetizing as the chili soup base is still simmering."]
     var restaurantImageNames : [String] = ["LoveAndSaltHiRez", "IlCieloHiRez", "TakamiHiRez", "sprinklesphoto", "wurstkuche", "nickel", "yangi"]
     var restaurantLogoNames : [String] = ["LoveAndSaltLogo", "blank", "TakamiLogo", "sprinkleslogo", "blank","nickeld", "blank" ]
     var restaurantCategories : [String] = ["Ambiance, Italian, Californian, Brunch", "Romantic, Ambiance, Italian, Fine Dining", "Sushi, Ambiance", "Trendy, Desert", "Exotic, Hotdog", "Diner, American, Modern", "Korean, Long-Cooked Stews, Gamjatang"]
+    var internalCategories : [String] = ["Ambiance", "Ambiance", "Ambiance", "Trending", "Trending", "Trending", "Trending"]
     var restaurantRatings = ["$$$", "$$$", "$$$", "$", "$$", "$$", "$"]
     var restaurantPhones = ["310-545-5252", "310-276-9990", "213-236-9600", "213-228-2100", "213-687-4444", "213-623-8301", "(213) 388-1105"]
     var restaurantAddresses = ["317 Manhattan Beach Boulevard \nManhattan Beach, CA 90266", "9018 Butron Way \nBeverly Hills, CA 90211", "811 Wilshire Blvd. Ste 2100 \nLos Angeles, CA 90017" ,"735 S Figueroa St #210\nLos Angeles, CA 90017","800 E 3rd St, Los Angeles, CA 90013", "524 S Main St, Los Angeles, CA 90013","3470 W 6th St, Los Angeles, CA 90020"]
@@ -46,11 +48,18 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
         initializationImplementation()
     }
     
-    internal override func initializationImplementation() {
-        super.initializationImplementation()
+    internal func initializationImplementation() {
+        //super.initializationImplementation()
         self.backgroundColor = UIColor.blackColor()
         
         // Set up our video view and content size
+        while (!internalCategories[videoIndex].containsString(activeCategory)) {
+            videoIndex++;
+            if (videoIndex >= videoNames.count) {
+                videoIndex = 0
+                break
+            }
+        }
         videoView = VideoPlayerView(frame: self.frame,
             name: restaurantNames[videoIndex],
             credit: restaurantCredits[videoIndex],
@@ -121,9 +130,16 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     func moveToNextVideo() {
         if(canChangeVideo && !ignoreTap && activeView) {
             // First update the index
-            videoIndex++
+            videoIndex++;
             if (videoIndex >= videoNames.count) {
                 videoIndex = 0
+            }
+            while (!internalCategories[videoIndex].containsString(activeCategory)) {
+                videoIndex++;
+                if (videoIndex >= videoNames.count) {
+                    videoIndex = 0
+                    break
+                }
             }
             
             // Now start the new video
@@ -149,6 +165,40 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
         } else if(canChangeVideo) {
             ignoreTap = false
         }
+    }
+    
+    func reset() {
+        // First update the index
+        videoIndex = 0
+        while (!internalCategories[videoIndex].containsString(activeCategory)) {
+            videoIndex++;
+            if (videoIndex >= videoNames.count) {
+                videoIndex = 0
+                break
+            }
+        }
+        
+        // Now start the new video
+        videoView?.changeRestaurant(restaurantNames[videoIndex],
+            source: restaurantCredits[videoIndex],
+            fileName: videoNames[videoIndex],
+            fileExtension: videoExtensions[videoIndex])
+        videoView?.pauseVideo()
+        AnalyticsController.logSpecial("ViewNewRestaurant", details: restaurantNames[videoIndex] + ": " + videoNames[videoIndex] + videoExtensions[videoIndex])
+        //            if let vidV = videoView as VideoPlayerView! {
+        //                vidV.doChangeToFile(videoNames[videoIndex], fileExtension: videoExtensions[videoIndex])
+        //            }
+        
+        // Update the other screens
+        restaurantView?.changeRestaurant(restaurantNames[videoIndex],
+            information: restaurantDescriptions[videoIndex],
+            background: restaurantImageNames[videoIndex],
+            logo: restaurantLogoNames[videoIndex])
+        informationView?.changeRestaurant(restaurantNames[videoIndex],
+            price: restaurantRatings[videoIndex],
+            phone: restaurantPhones[videoIndex],
+            address: restaurantAddresses[videoIndex],
+            category: restaurantCategories[videoIndex])
     }
     
     override func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {

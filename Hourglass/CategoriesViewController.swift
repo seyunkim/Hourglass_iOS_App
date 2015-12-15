@@ -10,6 +10,7 @@ import UIKit
 
 class CategoriesViewController : UICollectionViewController , UICollectionViewDelegateFlowLayout {
     let imageArray = [UIImage(named:"Ambiance"), UIImage(named: "Breakfast"), UIImage(named: "Trending"),UIImage(named: "FoodTruck"),UIImage(named: "Critic"), UIImage(named: "Romantic")]
+    let categoryArray = ["Ambiance", "Soon", "Trending", "Soon", "Soon", "Soon", "Soon"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView?.delegate = self
@@ -67,7 +68,19 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
      //have to hardcode the action each cell does because I havent figured out how to manipulate these actions dynamically
     func imageTapped(sender: UITapGestureRecognizer) {
         // respond to tap for the index (sender.view.tag)
-        print("Tapped cell \(sender.view!.tag)")
+        if (categoryArray[sender.view!.tag].containsString("Soon")) {
+            let alert = UIAlertController(title: "Coming Soon!", message: "Thanks for using Hourglass! Additional Categories coming in a new release soon!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Can't Wait!", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+                
+            }))
+            self.presentViewController(alert, animated: true) { () -> Void in
+                
+            }
+        } else {
+            HourglassNavigationController.sharedInstance?.updateCategory(categoryArray[sender.view!.tag])
+            HourglassNavigationController.sharedInstance?.cycleLeft()
+            HourglassNavigationController.sharedInstance?.reloadVideos()
+        }
     }
     
    }

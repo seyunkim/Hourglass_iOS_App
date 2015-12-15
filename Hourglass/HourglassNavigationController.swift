@@ -11,6 +11,8 @@ import UIKit
 
 class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     // MARK: Private variables
+    static var sharedInstance : HourglassNavigationController?
+    
     var mVideoController : VideoPlayerController?
     var mProfileController : ProfileViewController?
     var mCategoriesController : CategoriesViewController?
@@ -36,6 +38,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     }
     
     func initializationImplementation() {
+        HourglassNavigationController.sharedInstance = self
+        
         mVideoController = VideoPlayerController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -240,6 +244,15 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         }
     }
     
+    func updateCategory(category: String) {
+        mVideoController?.updateCategory(category)
+        searchBar?.placeholder = category
+    }
+    
+    func reloadVideos() {
+        mVideoController?.reset()
+    }
+    
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
@@ -247,9 +260,17 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     // MARK: Search Functions
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         // For now, just cancel
-        AnalyticsController.logSpecial("SearchCompleted", details: searchBar.text!)
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        AnalyticsController.logSpecial("SearchCompleted", details: searchBar.text!)
+        let alert = UIAlertController(title: "Coming Soon!", message: "Thanks for using Hourglass! Our search feature is coming in a new release soon!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Can't Wait!", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            
+        }))
+        self.presentViewController(alert, animated: true) { () -> Void in
+            
+        }
+        
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -258,14 +279,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        let alert = UIAlertController(title: "Coming Soon!", message: "Thanks for using Hourglass! Our search feature is coming in a new release soon!", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Can't Wait!", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
-            self.mVideoController?.ignoreTap(false)
-            self.mVideoController?.resumeVideo()
-        }))
-        self.presentViewController(alert, animated: true) { () -> Void in
-            
-        }
+        self.mVideoController?.ignoreTap(false)
+        self.mVideoController?.resumeVideo()
     }
     
     func tappedScreen(tgr : UITapGestureRecognizer){

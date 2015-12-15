@@ -26,6 +26,7 @@ class VideoPlayerController : AnalyticsViewController {
             frame.origin.y = 0
         }
         mScrollView = VideoPlayerScrollView(frame: frame)
+        HourglassNavigationController.sharedInstance?.updateCategory((mScrollView?.activeCategory)!)
         self.view.addSubview(mScrollView!)
         tapRec.delegate = mScrollView
     }
@@ -58,5 +59,17 @@ class VideoPlayerController : AnalyticsViewController {
     
     func setActive(value : Bool) {
         mScrollView!.activeView = value
+    }
+    
+    func updateCategory(category: String) {
+        mScrollView!.activeCategory = category
+    }
+    
+    func getCategory() -> String? {
+        return mScrollView?.activeCategory
+    }
+    
+    func reset() {
+        mScrollView!.reset()
     }
 }

@@ -11,17 +11,17 @@
 		242B1CAA1C1D2E68004D3E13 /* RestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */; };
 		242B1CAE1C1D5672004D3E13 /* HourglassNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */; };
 		242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CAF1C1E40E7004D3E13 /* takami.mp4 */; };
+		242B1CB21C1FEB35004D3E13 /* LoveAndSalt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */; };
+		242B1CB41C1FEC35004D3E13 /* IlCielo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
-		246749361C1BC91600B26064 /* beer.mov in Resources */ = {isa = PBXBuildFile; fileRef = 246749351C1BC91600B26064 /* beer.mov */; };
 		246749381C1CE17A00B26064 /* VideoPlayerScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749371C1CE17A00B26064 /* VideoPlayerScrollView.swift */; };
 		2467493A1C1CE67600B26064 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749391C1CE67600B26064 /* VideoPlayerView.swift */; };
 		248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248265061C1A434200CAC95B /* AnalyticsController.swift */; };
 		24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */; };
 		24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */; };
 		5E08AD211C1989A7009F9959 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08AD201C1989A7009F9959 /* MediaPlayer.framework */; };
-		5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5E08AD221C198B0E009F9959 /* churchstate.mp4 */; };
 		5E1B7C0B1C1D1F1E006BA359 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */; };
 		5E1B7C101C1D23CB006BA359 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */; };
 		5E5EE8451C1EC1F5002FB253 /* sprinkles.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5E5EE8441C1EC1F5002FB253 /* sprinkles.mov */; };
@@ -51,17 +51,17 @@
 		242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
 		242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassNavigationController.swift; sourceTree = "<group>"; };
 		242B1CAF1C1E40E7004D3E13 /* takami.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = takami.mp4; sourceTree = "<group>"; };
+		242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveAndSalt.mp4; sourceTree = "<group>"; };
+		242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IlCielo.mp4; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
-		246749351C1BC91600B26064 /* beer.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = beer.mov; sourceTree = "<group>"; };
 		246749371C1CE17A00B26064 /* VideoPlayerScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerScrollView.swift; sourceTree = "<group>"; };
 		246749391C1CE67600B26064 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		248265061C1A434200CAC95B /* AnalyticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		24C610521C1AA3350019F4DF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		24C610541C1B3CA10019F4DF /* AnalyticsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScrollView.swift; sourceTree = "<group>"; };
 		5E08AD201C1989A7009F9959 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5E08AD221C198B0E009F9959 /* churchstate.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = churchstate.mp4; sourceTree = "<group>"; };
 		5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hourglass-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -177,9 +177,7 @@
 				5ED613511B9681DE00D2E8FC /* Supporting Files */,
 				246749321C1BBE0000B26064 /* VideoControls */,
 				242B1CAC1C1D55C0004D3E13 /* Miscellaneous */,
-				246749351C1BC91600B26064 /* beer.mov */,
 				5E5EE8461C1EEC56002FB253 /* wurstkuche.mov */,
-				5E08AD221C198B0E009F9959 /* churchstate.mp4 */,
 				5E5EE84E1C1EF4AA002FB253 /* nickel.mov */,
 				5E5EE84F1C1EF4AA002FB253 /* yangi.mov */,
 				5E5EE8441C1EC1F5002FB253 /* sprinkles.mov */,
@@ -189,6 +187,8 @@
 				5ED6135C1B9681DE00D2E8FC /* LaunchScreen.xib */,
 				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
 				242B1CAF1C1E40E7004D3E13 /* takami.mp4 */,
+				242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */,
+				242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -300,8 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E08AD271C199C88009F9959 /* churchstate.mp4 in Resources */,
 				5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */,
+				242B1CB21C1FEB35004D3E13 /* LoveAndSalt.mp4 in Resources */,
 				5E5EE8501C1EF4AA002FB253 /* nickel.mov in Resources */,
 				242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */,
 				5E5EE8471C1EEC56002FB253 /* wurstkuche.mov in Resources */,
@@ -309,7 +309,7 @@
 				5ED6135E1B9681DE00D2E8FC /* LaunchScreen.xib in Resources */,
 				5E5EE8451C1EC1F5002FB253 /* sprinkles.mov in Resources */,
 				5ED6135B1B9681DE00D2E8FC /* Images.xcassets in Resources */,
-				246749361C1BC91600B26064 /* beer.mov in Resources */,
+				242B1CB41C1FEC35004D3E13 /* IlCielo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
