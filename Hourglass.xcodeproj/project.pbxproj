@@ -13,6 +13,9 @@
 		242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CAF1C1E40E7004D3E13 /* takami.mp4 */; };
 		242B1CB21C1FEB35004D3E13 /* LoveAndSalt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */; };
 		242B1CB41C1FEC35004D3E13 /* IlCielo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */; };
+		2462D1FE1C246948007D4408 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462D1FB1C246948007D4408 /* LLSimpleCamera.m */; };
+		2462D1FF1C246948007D4408 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */; };
+		2462D2021C2469D7007D4408 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2011C2469D7007D4408 /* CameraController.swift */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
@@ -53,6 +56,11 @@
 		242B1CAF1C1E40E7004D3E13 /* takami.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = takami.mp4; sourceTree = "<group>"; };
 		242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveAndSalt.mp4; sourceTree = "<group>"; };
 		242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IlCielo.mp4; sourceTree = "<group>"; };
+		2462D1FA1C246948007D4408 /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
+		2462D1FB1C246948007D4408 /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCamera.m; sourceTree = "<group>"; };
+		2462D1FC1C246948007D4408 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		2462D2011C2469D7007D4408 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
@@ -118,6 +126,25 @@
 			name = Miscellaneous;
 			sourceTree = "<group>";
 		};
+		2462D1F91C246929007D4408 /* LLSimpleCamera */ = {
+			isa = PBXGroup;
+			children = (
+				2462D1FA1C246948007D4408 /* LLSimpleCamera.h */,
+				2462D1FB1C246948007D4408 /* LLSimpleCamera.m */,
+				2462D1FC1C246948007D4408 /* UIImage+FixOrientation.h */,
+				2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */,
+			);
+			name = LLSimpleCamera;
+			sourceTree = "<group>";
+		};
+		2462D2001C2469C2007D4408 /* ContentCreation */ = {
+			isa = PBXGroup;
+			children = (
+				2462D2011C2469D7007D4408 /* CameraController.swift */,
+			);
+			name = ContentCreation;
+			sourceTree = "<group>";
+		};
 		246749321C1BBE0000B26064 /* VideoControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +198,8 @@
 		5ED613501B9681DE00D2E8FC /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
+				2462D2001C2469C2007D4408 /* ContentCreation */,
+				2462D1F91C246929007D4408 /* LLSimpleCamera */,
 				248265051C1A432400CAC95B /* Analytics */,
 				242B1CAB1C1D55B0004D3E13 /* Navigation */,
 				2467493B1C1CFD1300B26064 /* Restaurants */,
@@ -327,16 +356,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2462D2021C2469D7007D4408 /* CameraController.swift in Sources */,
 				242B1CAA1C1D2E68004D3E13 /* RestaurantInformationView.swift in Sources */,
 				248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */,
 				242B1CA81C1D23BF004D3E13 /* RestaurantPromoView.swift in Sources */,
 				246749381C1CE17A00B26064 /* VideoPlayerScrollView.swift in Sources */,
 				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
 				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
+				2462D1FE1C246948007D4408 /* LLSimpleCamera.m in Sources */,
 				246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */,
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
 				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,
 				5E1B7C0B1C1D1F1E006BA359 /* CategoriesViewController.swift in Sources */,
+				2462D1FF1C246948007D4408 /* UIImage+FixOrientation.m in Sources */,
 				242B1CAE1C1D5672004D3E13 /* HourglassNavigationController.swift in Sources */,
 				24C610531C1AA3350019F4DF /* AnalyticsViewController.swift in Sources */,
 				5E1B7C101C1D23CB006BA359 /* ProfileViewController.swift in Sources */,

@@ -14,6 +14,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     static var sharedInstance : HourglassNavigationController?
     
     var mVideoController : VideoPlayerController?
+    var mCameraController : CameraController?
     var mProfileController : ProfileViewController?
     var mCategoriesController : CategoriesViewController?
     var mActiveController = 1
@@ -41,6 +42,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         HourglassNavigationController.sharedInstance = self
         
         mVideoController = VideoPlayerController()
+        mCameraController = CameraController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -137,9 +139,9 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         mProfileController!.view.frame = leftOffscreenFrame
         self.view.addSubview(mProfileController!.view)
         
-        self.addChildViewController(mCategoriesController!)
-        mCategoriesController!.view.frame = rightOffscreenFrame
-        self.view.addSubview(mCategoriesController!.view)
+        self.addChildViewController(mCameraController!)
+        mCameraController!.view.frame = rightOffscreenFrame
+        self.view.addSubview(mCameraController!.view)
     }
     
     func handleSwipes(sender:UISwipeGestureRecognizer) {
@@ -164,7 +166,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             rightOffscreenFrame.origin.x += subFrame!.width * 2
             
             UIView.animateWithDuration(0.25, animations: { () -> Void in
-                    self.mProfileController!.view.frame = self.subFrame!
+                    self.mCameraController!.startCamera()
+                    self.mCameraController!.view.frame = self.subFrame!
                     self.mVideoController!.view.frame = middleOffscreenFrame
                     self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
@@ -183,7 +186,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             rightOffscreenFrame.origin.x += subFrame!.width
             
             UIView.animateWithDuration(0.25, animations: { () -> Void in
-                self.mProfileController!.view.frame = leftOffscreenFrame
+                self.mCameraController!.view.frame = leftOffscreenFrame
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
@@ -208,7 +211,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             rightOffscreenFrame.origin.x += subFrame!.width
             
             UIView.animateWithDuration(0.25, animations: { () -> Void in
-                self.mProfileController!.view.frame = leftOffscreenFrame
+                self.mCameraController!.view.frame = leftOffscreenFrame
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
@@ -220,6 +223,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.mActiveController = 1
                     self.mVideoController!.setActive(true)
                     self.mVideoController!.resumeVideo()
+                    self.mCameraController!.stopCamera()
             })
         } else if mActiveController == 1 {
             // We are on the center screen
@@ -232,7 +236,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             leftOffscreenFrame.origin.x -= subFrame!.width * 2
             
             UIView.animateWithDuration(0.25, animations: { () -> Void in
-                self.mProfileController!.view.frame = leftOffscreenFrame
+                self.mCameraController!.view.frame = leftOffscreenFrame
                 self.mVideoController!.view.frame = middleOffscreenFrame
                 self.mCategoriesController!.view.frame = self.subFrame!
                 
