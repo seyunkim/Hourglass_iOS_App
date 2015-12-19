@@ -22,10 +22,16 @@ class CameraController : AnalyticsViewController {
     
     var mAVPlayer : AVPlayer?
     var mAVPlayerLayer : AVPlayerLayer?
+    var mURL : NSURL?
     var mTime : CMTime?
     var mCancelButton : UIButton?
+    var mDownloadButton : UIButton?
+    
+    var mSpinnerView : RTSpinKitView?
     
     override func viewDidLoad() {
+        showSpinner()
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         mVideoNumber = defaults.integerForKey("hourglassVideoNumber")
         
@@ -50,6 +56,7 @@ class CameraController : AnalyticsViewController {
         mSnapButton!.addTarget(self, action: "snapButtonReleased:", forControlEvents: UIControlEvents.TouchUpInside)
         mSnapButton!.addTarget(self, action: "snapButtonReleased:", forControlEvents: UIControlEvents.TouchUpOutside)
         self.view.addSubview(mSnapButton!)
+        self.view.bringSubviewToFront(mSpinnerView!)
         
         mFlashButton = UIButton(type: UIButtonType.System)
         mFlashButton!.frame = CGRectMake(self.view.frame.width / 2.0 - 18.0, 5.0, 36.0, 44.0)
@@ -58,6 +65,7 @@ class CameraController : AnalyticsViewController {
         mFlashButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
         mFlashButton!.addTarget(self, action: "flashButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(mFlashButton!)
+        self.view.bringSubviewToFront(mSpinnerView!)
         
         if LLSimpleCamera.isFrontCameraAvailable() && LLSimpleCamera.isRearCameraAvailable() {
             mSwitchButton = UIButton(type: UIButtonType.System)
@@ -67,6 +75,7 @@ class CameraController : AnalyticsViewController {
             mSwitchButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
             mSwitchButton!.addTarget(self, action: "switchButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(mSwitchButton!)
+            self.view.bringSubviewToFront(mSpinnerView!)
         }
         
         // AVPlayer for video playback
@@ -78,6 +87,7 @@ class CameraController : AnalyticsViewController {
         mAVPlayerLayer!.hidden = true
         mTime = kCMTimeZero
         self.view.layer.addSublayer(mAVPlayerLayer!)
+        self.view.bringSubviewToFront(mSpinnerView!)
         
         mCancelButton = UIButton(type: UIButtonType.System)
         mCancelButton!.frame = CGRectMake(self.view.frame.width - 54.0, 5.0, 49.0, 49.0)
@@ -88,7 +98,20 @@ class CameraController : AnalyticsViewController {
         mCancelButton!.hidden = true
         mCancelButton!.enabled = false
         self.view.addSubview(mCancelButton!)
+        self.view.bringSubviewToFront(mSpinnerView!)
         
+        mDownloadButton = UIButton(type: UIButtonType.System)
+        mDownloadButton!.frame = CGRectMake(self.view.frame.width - 54.0, self.view.frame.height - 54.0, 49.0, 49.0)
+        mDownloadButton!.tintColor = UIColor.whiteColor()
+        mDownloadButton!.setImage(UIImage(named:"Download"), forState: UIControlState.Normal)
+        mDownloadButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        mDownloadButton!.addTarget(self, action: "downloadButtonPressed:", forControlEvents:  UIControlEvents.TouchUpInside)
+        mDownloadButton!.hidden = true
+        mDownloadButton!.enabled = false
+        self.view.addSubview(mDownloadButton!)
+        self.view.bringSubviewToFront(mSpinnerView!)
+        
+        hideSpinner()
     }
     
     func startCamera() {
@@ -134,6 +157,7 @@ class CameraController : AnalyticsViewController {
                         } else {
                             self.removeCircle()
                             // Prepare playback layer
+                            self.mURL = url
                             self.mAVPlayer!.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: url))
                             NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.mAVPlayer!.currentItem)
                             
@@ -147,6 +171,7 @@ class CameraController : AnalyticsViewController {
                                 self.mFlashButton!.hidden = true
                                 self.mSwitchButton?.hidden = true
                                 self.mCancelButton!.hidden = false
+                                self.mDownloadButton!.hidden = false
                                 self.mSnapButton!.frame = CGRectMake((self.view.frame.width - 70.0) / 2.0, self.view.frame.height - 75.0, 70.0, 70.0)
                                 self.mSnapButton!.layer.cornerRadius = self.mSnapButton!.frame.width / 2.0
                                 }, completion: { (completed) -> Void in
@@ -154,18 +179,9 @@ class CameraController : AnalyticsViewController {
                                     self.mFlashButton!.enabled = false
                                     self.mSwitchButton?.enabled = false
                                     self.mCancelButton!.enabled = true
-                                    
+                                    self.mDownloadButton!.enabled = true
                                     
                             })
-                            
-//                            ALAssetsLibrary().writeVideoAtPathToSavedPhotosAlbum(url, completionBlock: {
-//                                (assetURL:NSURL!, internalError:NSError!) in
-//                                if internalError != nil {
-//                                    print(internalError)
-//                                } else {
-//                                    //self.resetButtons()
-//                                }
-//                            })
                         }
                     })
                 }
@@ -199,6 +215,7 @@ class CameraController : AnalyticsViewController {
             self.mSnapButton?.hidden = false
             self.mFlashButton?.hidden = false
             self.mSwitchButton?.hidden = false
+            self.mDownloadButton?.hidden = true
             
             self.mAVPlayerLayer!.hidden = true
             }) { (finished) -> Void in
@@ -206,12 +223,30 @@ class CameraController : AnalyticsViewController {
                 self.mSnapButton?.enabled = true
                 self.mFlashButton?.enabled = true
                 self.mSwitchButton?.enabled = true
+                self.mDownloadButton?.enabled = false
                 
                 self.mAVPlayer!.pause()
                 self.camera!.start()
         }
     }
     
+    func downloadButtonPressed(button : UIButton) {
+        showSpinner()
+        
+        ALAssetsLibrary().writeVideoAtPathToSavedPhotosAlbum(self.mURL!, completionBlock: {
+            (assetURL:NSURL!, internalError:NSError!) in
+            if internalError != nil {
+                print(internalError)
+            } else {
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.mDownloadButton?.hidden = true
+                    }, completion: { (finished) -> Void in
+                        self.mDownloadButton?.enabled = false
+                        self.hideSpinner()
+                })
+            }
+        })
+    }
     
     // MARK:Animation Helper Methods
     func drawCircle() {
@@ -270,6 +305,20 @@ class CameraController : AnalyticsViewController {
     
     func removeCircle() {
         mCircle!.removeFromSuperlayer()
+    }
+    
+    func showSpinner() {
+        mSpinnerView = RTSpinKitView(style: RTSpinKitViewStyle.StyleWave)
+        mSpinnerView!.spinnerSize = 70.0
+        mSpinnerView!.color = UIColor(red: 208.0 / 255.0, green: 76.0 / 255.0, blue: 41.0 / 255.0, alpha: 0.8)
+        mSpinnerView!.frame = self.view.frame
+        mSpinnerView!.sizeToFit()
+        mSpinnerView!.center = CGPointMake(self.view.frame.width / 2.0, self.view.frame.height * 2.0 / 5.0)
+        view.addSubview(mSpinnerView!)
+    }
+    
+    func hideSpinner() {
+        mSpinnerView!.removeFromSuperview()
     }
     
     // MARK: Video Callback
