@@ -18,6 +18,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     var topView = "videoView"
     var canChangeVideo = true
     var activeView = true
+    var videoAtTop = true
     var activeCategory = "Trending"
     
     var videoNames : [String] = ["LoveAndSalt", "IlCielo", "takami","sprinkles", "wurstkuche", "nickel","yangi"]
@@ -109,7 +110,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     }
     
     func resumeVideo() {
-        if activeView {
+        if videoAtTop && activeView && HourglassNavigationController.sharedInstance!.mActiveController == 1 {
             if let vidV = videoView as VideoPlayerView! {
                 if (!ignoreTap) {
                     canChangeVideo = true
@@ -206,6 +207,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.videoAtTop = false
         pauseVideo()
     }
     
@@ -219,7 +221,8 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.contentOffset.y = self.videoView!.frame.origin.y
             }, completion: { (completed) -> Void in
-                    self.resumeVideo()
+                self.videoAtTop = true
+                self.resumeVideo()
             })
         } else if contentOffset.y <= (restaurantView!.frame.origin.y + restaurantView!.frame.height / 2.0) {
             // Snap to restaurant view
@@ -243,6 +246,7 @@ class VideoPlayerScrollView : AnalyticsScrollView, UIGestureRecognizerDelegate, 
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.contentOffset.y = self.videoView!.frame.origin.y
                 }, completion: { (completed) -> Void in
+                    self.videoAtTop = true
                     self.resumeVideo()
             })
         } else if contentOffset.y <= (restaurantView!.frame.origin.y + restaurantView!.frame.height / 2.0) {

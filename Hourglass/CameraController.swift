@@ -36,7 +36,7 @@ class CameraController : AnalyticsViewController {
         mVideoNumber = defaults.integerForKey("hourglassVideoNumber")
         
         var frame = self.view.frame
-        frame.size.height -= (64 + UIApplication.sharedApplication().statusBarFrame.size.height)
+        frame.size.height -= (HourglassConstants.navBarHeight + UIApplication.sharedApplication().statusBarFrame.size.height)
 
         camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         camera?.attachToViewController(self, withFrame: frame)
@@ -310,7 +310,7 @@ class CameraController : AnalyticsViewController {
     func showSpinner() {
         mSpinnerView = RTSpinKitView(style: RTSpinKitViewStyle.StyleWave)
         mSpinnerView!.spinnerSize = 70.0
-        mSpinnerView!.color = UIColor(red: 208.0 / 255.0, green: 76.0 / 255.0, blue: 41.0 / 255.0, alpha: 0.8)
+        mSpinnerView!.color = HourglassConstants.logoColor.colorWithAlphaComponent(0.8)
         mSpinnerView!.frame = self.view.frame
         mSpinnerView!.sizeToFit()
         mSpinnerView!.center = CGPointMake(self.view.frame.width / 2.0, self.view.frame.height * 2.0 / 5.0)

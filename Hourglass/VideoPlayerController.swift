@@ -21,7 +21,7 @@ class VideoPlayerController : AnalyticsViewController {
         
         var frame = self.view.frame
         if (frame.origin.y == 0) {
-            frame.size.height -= (64 + UIApplication.sharedApplication().statusBarFrame.size.height)
+            frame.size.height -= (HourglassConstants.navBarHeight + UIApplication.sharedApplication().statusBarFrame.size.height)
         } else {
             frame.origin.y = 0
         }

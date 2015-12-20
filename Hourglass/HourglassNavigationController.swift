@@ -18,14 +18,19 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     var mProfileController : ProfileViewController?
     var mCategoriesController : CategoriesViewController?
     var mActiveController = 1
+    var mPreviousController = 1
+    var mActiveCategory = "Trending"
     var subFrame : CGRect?
     
-    var leftButton : UIButton?
-    var rightButton : UIButton?
+    var mSearchButton : AnalyticsUIButton?
     var searchBar : UISearchBar?
+    var mAppIcon : AnalyticsUIButton?
+    var mProfileButton : AnalyticsUIButton?
     
-    let navViewHeight = CGFloat(64)
-    let buttonHeight = CGFloat(56)
+    var mVideoLabel : UILabel?
+    var mCameraLabel : UILabel?
+    var mCategoriesLabel: UILabel?
+    
     
     // MARK: Initialization methods
     required init?(coder aDecoder: NSCoder) {
@@ -75,8 +80,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             0,
             0,
             self.view.frame.width,
-            navViewHeight + statusBarHeight))
-        navView.backgroundColor = UIColor.darkGrayColor()
+            HourglassConstants.navBarHeight + statusBarHeight))
+        navView.backgroundColor = HourglassConstants.logoColor
         self.view.addSubview(navView)
         
         let statusView = UIView(frame: CGRectMake(
@@ -87,39 +92,49 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         statusView.backgroundColor = UIColor.lightGrayColor()
         navView.addSubview(statusView)
         
-        leftButton = UIButton(frame: CGRectMake(
-            10,
-            statusBarHeight + (navViewHeight - buttonHeight) / 2,
-            self.view.frame.width / 5.0,
-            buttonHeight))
-        leftButton!.setTitle("Profile", forState: UIControlState.Normal)
-        leftButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        leftButton!.backgroundColor = UIColor.clearColor()
-        navView.addSubview(leftButton!)
-        leftButton!.addTarget(self, action: "cycleLeft", forControlEvents: UIControlEvents.TouchUpInside)
+        mSearchButton = AnalyticsUIButton(type: .System)
+        mSearchButton?.mAnalyticsButtonIdentifier = "Search"
+        mSearchButton?.backgroundColor = UIColor.clearColor()
+        mSearchButton?.frame = CGRectMake(view.frame.width - (HourglassConstants.navBarHeight - 8.0) - 5.0, statusBarHeight + 4.0, HourglassConstants.navBarHeight - 8.0, HourglassConstants.navBarHeight - 8.0)
+        mSearchButton?.setImage(UIImage(named: "Search"), forState: UIControlState.Normal)
+        mSearchButton?.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        mSearchButton?.tintColor = UIColor.whiteColor()
+        mSearchButton?.addTarget(self, action: "openSearch", forControlEvents: .TouchUpInside)
+        navView.addSubview(mSearchButton!)
         
-        rightButton = UIButton(frame: CGRectMake(
-            self.view.frame.width - 10 - self.view.frame.width / 5.0,
-            statusBarHeight + (navViewHeight - buttonHeight) / 2,
-            self.view.frame.width / 5.0,
-            buttonHeight))
-        rightButton!.setTitle("Browse", forState: UIControlState.Normal)
-        rightButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        rightButton!.backgroundColor = UIColor.clearColor()
-        navView.addSubview(rightButton!)
-        rightButton!.addTarget(self, action: "cycleRight", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        searchBar = UISearchBar(frame: CGRectMake(
-            self.view.frame.width / 5.0 + 10,
-            statusBarHeight + (navViewHeight - buttonHeight) / 2,
-            self.view.frame.width * 3 / 5.0 - 20,
-            buttonHeight))
+        searchBar = UISearchBar(frame: mSearchButton!.frame)
+        searchBar?.frame = CGRectMake(5.0, self.mSearchButton!.frame.origin.y, self.view.frame.width - 10.0, self.mSearchButton!.frame.height)
+        let originY = searchBar!.frame.origin.y
+        let originX = searchBar!.frame.origin.x
         searchBar?.searchBarStyle = UISearchBarStyle.Default
         searchBar?.barTintColor = UIColor.clearColor()
         searchBar?.backgroundImage = UIImage()
         searchBar?.returnKeyType = UIReturnKeyType.Search
         searchBar?.delegate = self
+        searchBar?.hidden = true
+        searchBar?.placeholder = "Search"
+        searchBar?.layer.anchorPoint = CGPointMake(CGFloat(1.0), CGFloat(0.0))
+        searchBar?.layer.position = CGPointMake(originX + searchBar!.frame.size.width, originY)
+        searchBar?.transform = CGAffineTransformMakeScale(0, 1)
         navView.addSubview(searchBar!)
+        
+        mAppIcon = AnalyticsUIButton(type: .Custom)
+        mAppIcon?.mAnalyticsButtonIdentifier = "App Icon"
+        mAppIcon?.backgroundColor = UIColor.clearColor()
+        mAppIcon?.frame = CGRectMake(view.frame.width / 2.0 - (HourglassConstants.navBarHeight - 8.0) / 2.0, statusBarHeight + 4.0, HourglassConstants.navBarHeight - 8.0, HourglassConstants.navBarHeight - 8.0)
+        // We need a new transparent version of the icon for here
+        mAppIcon?.setImage(UIImage(named: "icon"), forState: .Normal)
+        navView.addSubview(mAppIcon!)
+        
+        mProfileButton = AnalyticsUIButton(type: .System)
+        mProfileButton?.mAnalyticsButtonIdentifier = "Profile"
+        mProfileButton?.backgroundColor = UIColor.clearColor()
+        mProfileButton?.frame = CGRectMake(5.0, statusBarHeight + 4.0, HourglassConstants.navBarHeight - 8.0, HourglassConstants.navBarHeight - 8.0)
+        mProfileButton?.setImage(UIImage(named: "Profile"), forState: .Normal)
+        mProfileButton?.imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+        mProfileButton?.tintColor = UIColor.whiteColor()
+        mProfileButton?.addTarget(self, action: "toggleProfile", forControlEvents: .TouchUpInside)
+        navView.addSubview(mProfileButton!)
         
         // Add our content views
         subFrame = self.view.frame
@@ -134,16 +149,54 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         leftOffscreenFrame.origin.x -= subFrame!.width
         var rightOffscreenFrame = subFrame!
         rightOffscreenFrame.origin.x += subFrame!.width
+        var topOffsetFrame = subFrame!
+        topOffsetFrame.origin.y -= subFrame!.height
         
-        self.addChildViewController(mProfileController!)
-        mProfileController!.view.frame = leftOffscreenFrame
-        self.view.addSubview(mProfileController!.view)
+        self.addChildViewController(mCategoriesController!)
+        mCategoriesController!.view.frame = rightOffscreenFrame
+        self.view.addSubview(mCategoriesController!.view)
         
         self.addChildViewController(mCameraController!)
-        mCameraController!.view.frame = rightOffscreenFrame
+        mCameraController!.view.frame = leftOffscreenFrame
         self.view.addSubview(mCameraController!.view)
+        
+        self.addChildViewController(mProfileController!)
+        mProfileController!.view.frame = topOffsetFrame
+        self.view.addSubview(mProfileController!.view)
+        
+        // Add our page titles
+        let pageTitleView = UIView(frame: CGRectMake(0, navView.frame.origin.y + navView.frame.height, view.frame.width, 24))
+        pageTitleView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
+        view.addSubview(pageTitleView)
+        
+        mCameraLabel = UILabel(frame: CGRectMake(5.0, 2.0, (self.view.frame.width - 20.0) / 3.0, 20.0))
+        mCameraLabel?.textColor = UIColor.whiteColor()
+        mCameraLabel?.backgroundColor = UIColor.clearColor()
+        mCameraLabel?.text = "Camera"
+        mCameraLabel?.adjustsFontSizeToFitWidth = true
+        mCameraLabel?.textAlignment = .Center
+        pageTitleView.addSubview(mCameraLabel!)
+        
+        mVideoLabel = UILabel(frame: CGRectMake(self.view.frame.width / 2.0 - ((self.view.frame.width - 20.0) / 3.0) / 2.0, 2.0, (self.view.frame.width - 20.0) / 3.0, 20.0))
+        mVideoLabel?.textColor = UIColor.whiteColor()
+        mVideoLabel?.backgroundColor = UIColor.clearColor()
+        mVideoLabel?.text = "Trending"
+        mVideoLabel?.adjustsFontSizeToFitWidth = true
+        mVideoLabel?.textAlignment = .Center
+        pageTitleView.addSubview(mVideoLabel!)
+        
+        mCategoriesLabel = UILabel(frame: CGRectMake(self.view.frame.width - ((self.view.frame.width - 20.0) / 3.0) - 5.0, 2.0, (self.view.frame.width - 20.0) / 3.0, 20.0))
+        mCategoriesLabel?.textColor = UIColor.whiteColor()
+        mCategoriesLabel?.backgroundColor = UIColor.clearColor()
+        mCategoriesLabel?.text = "Browse"
+        mCategoriesLabel?.adjustsFontSizeToFitWidth = true
+        mCategoriesLabel?.textAlignment = .Center
+        pageTitleView.addSubview(mCategoriesLabel!)
+        
+        view.bringSubviewToFront(navView)
     }
     
+    // MARK: Navigation Methods
     func handleSwipes(sender:UISwipeGestureRecognizer) {
         if (sender.direction == .Left) {
             cycleRight()
@@ -171,8 +224,9 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.mVideoController!.view.frame = middleOffscreenFrame
                     self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
-                    self.leftButton!.setTitle("", forState: .Normal)
-                    self.rightButton!.setTitle("Feed", forState: .Normal)
+                    self.mCategoriesLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
+                    self.mVideoLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
+                    self.mCameraLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mVideoController!.screenName = "ProfileViewController"
@@ -190,8 +244,9 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
-                self.leftButton!.setTitle("Profile", forState: .Normal)
-                self.rightButton!.setTitle("Browse", forState: .Normal)
+                self.mCategoriesLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mVideoLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mCameraLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mVideoController!.screenName = "VideoPlayerController"
@@ -215,8 +270,9 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = self.subFrame!
                 self.mCategoriesController!.view.frame = rightOffscreenFrame
                 
-                self.leftButton!.setTitle("Profile", forState: .Normal)
-                self.rightButton!.setTitle("Browse", forState: .Normal)
+                self.mCategoriesLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mVideoLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mCameraLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mVideoController!.screenName = "VideoPlayerController"
@@ -240,8 +296,9 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mVideoController!.view.frame = middleOffscreenFrame
                 self.mCategoriesController!.view.frame = self.subFrame!
                 
-                self.leftButton!.setTitle("Feed", forState: .Normal)
-                self.rightButton!.setTitle("", forState: .Normal)
+                self.mCategoriesLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mVideoLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
+                self.mCameraLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
                     self.mVideoController!.screenName = "CategoriesViewrController"
@@ -252,9 +309,90 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         }
     }
     
+    func cycleUp() {
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            self.mCameraController!.view.frame.origin.y -= self.subFrame!.height
+            self.mVideoController!.view.frame.origin.y -= self.subFrame!.height
+            self.mCategoriesController!.view.frame.origin.y -= self.subFrame!.height
+            
+            self.mProfileController!.view.frame.origin.y -= self.subFrame!.height
+            
+            self.mProfileButton?.alpha = 0.0
+            
+            self.mCategoriesLabel?.alpha = 0.0
+            self.mVideoLabel?.alpha = 0.0
+            self.mCameraLabel?.alpha = 0.0
+            
+            }) { (finished) -> Void in
+                self.mActiveController = self.mPreviousController
+                if self.mActiveController == 0 {
+                    self.mCameraLabel?.text = "Camera"
+                } else if self.mActiveController == 1 {
+                    self.mVideoController?.resumeVideo()
+                    self.mVideoLabel?.text = self.mActiveCategory
+                } else if self.mActiveController == 2 {
+                    self.mCategoriesLabel?.text = "Browse"
+                }
+                self.mProfileButton?.setImage(UIImage(named: "Profile"), forState: .Normal)
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.mProfileButton?.alpha = 1.0
+                    
+                    self.mCameraLabel?.alpha = 1.0
+                    self.mVideoLabel?.alpha = 1.0
+                    self.mCategoriesLabel?.alpha = 1.0
+                    }, completion: { (done) -> Void in
+                        // Code
+                })
+        }
+    }
+    
+    func cycleDown() {
+        mPreviousController = mActiveController
+        mVideoController?.pauseVideo()
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            self.mCameraController!.view.frame.origin.y += self.subFrame!.height
+            self.mVideoController!.view.frame.origin.y += self.subFrame!.height
+            self.mCategoriesController!.view.frame.origin.y += self.subFrame!.height
+            
+            self.mProfileController!.view.frame.origin.y += self.subFrame!.height
+            
+            self.mProfileButton?.alpha = 0.0
+            
+            self.mCameraLabel?.alpha = 0.0
+            self.mVideoLabel?.alpha = 0.0
+            self.mCategoriesLabel?.alpha = 0.0
+            
+            }) { (finished) -> Void in
+                if self.mActiveController == 0 {
+                    self.mCameraLabel?.text = "Profile"
+                } else if self.mActiveController == 1 {
+                    self.mVideoLabel?.text = "Profile"
+                } else if self.mActiveController == 2 {
+                    self.mCategoriesLabel?.text = "Profile"
+                }
+                
+                self.mActiveController = 3
+                self.mProfileButton?.setImage(UIImage(named: "cancel"), forState: .Normal)
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.mProfileButton?.alpha = 1.0
+                    
+                    if self.mPreviousController == 0 {
+                        self.mCameraLabel?.alpha = 1.0
+                    } else if self.mPreviousController == 1 {
+                        self.mVideoLabel?.alpha = 1.0
+                    } else if self.mPreviousController == 2 {
+                        self.mCategoriesLabel?.alpha = 1.0
+                    }
+                    }, completion: { (done) -> Void in
+                        // Code
+                })
+        }
+    }
+    
     func updateCategory(category: String) {
         mVideoController?.updateCategory(category)
-        searchBar?.placeholder = category
+        mVideoLabel?.text = category
+        mActiveCategory = category
     }
     
     func reloadVideos() {
@@ -263,6 +401,14 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     
     override func prefersStatusBarHidden() -> Bool {
         return false
+    }
+    
+    func toggleProfile() {
+        if mActiveController != 3 {
+            cycleDown()
+        } else {
+            cycleUp()
+        }
     }
     
     // MARK: Search Functions
@@ -289,16 +435,67 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         self.mVideoController?.ignoreTap(false)
         self.mVideoController?.resumeVideo()
+        
+        closeSearch()
     }
     
     func tappedScreen(tgr : UITapGestureRecognizer){
         let touchPoint : CGPoint = tgr.locationInView(self.view)
-        if touchPoint.y > navViewHeight + UIApplication.sharedApplication().statusBarFrame.size.height {
+        if touchPoint.y > HourglassConstants.navBarHeight + UIApplication.sharedApplication().statusBarFrame.size.height {
             if searchBar!.isFirstResponder() {
                 AnalyticsController.logSpecial("SearchCancelled", details: "")
                 searchBar?.text = ""
                 searchBar?.resignFirstResponder()
             }
+        }
+    }
+    
+    func openSearch() {
+        self.searchBar?.alpha = 0.0
+        self.searchBar?.hidden = false
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.mSearchButton?.alpha = 0.0
+            self.mAppIcon?.alpha = 0.0
+            self.mProfileButton?.alpha = 0.0
+            
+            self.searchBar?.alpha = 1.0
+            }) { (finished) -> Void in
+                self.mSearchButton?.enabled = false
+                self.mSearchButton?.hidden = true
+                self.mAppIcon?.enabled = false
+                self.mAppIcon?.hidden = true
+                self.mProfileButton?.enabled = false
+                self.mProfileButton?.hidden = true
+                
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.searchBar?.transform = CGAffineTransformIdentity
+                    }, completion: { (done) -> Void in
+                        // Finished
+                        self.searchBar?.becomeFirstResponder()
+                })
+        }
+    }
+    
+    func closeSearch() {
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            self.searchBar?.transform = CGAffineTransformMakeScale(0, 1)
+            }) { (finished) -> Void in
+                self.mSearchButton?.hidden = false
+                self.mAppIcon?.hidden = false
+                self.mProfileButton?.hidden = false
+                
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.searchBar?.alpha = 0.0
+                    self.mSearchButton?.alpha = 1.0
+                    self.mAppIcon?.alpha = 1.0
+                    self.mProfileButton?.alpha = 1.0
+                    }, completion: { (done) -> Void in
+                        // Finished
+                        self.mSearchButton?.enabled = true
+                        self.mAppIcon?.enabled = true
+                        self.mProfileButton?.enabled = true
+                        self.searchBar?.hidden = true
+                })
         }
     }
 }

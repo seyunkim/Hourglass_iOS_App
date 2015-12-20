@@ -16,6 +16,7 @@
 		2462D1FE1C246948007D4408 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462D1FB1C246948007D4408 /* LLSimpleCamera.m */; };
 		2462D1FF1C246948007D4408 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */; };
 		2462D2021C2469D7007D4408 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2011C2469D7007D4408 /* CameraController.swift */; };
+		2462D2041C24E73D007D4408 /* HourglassConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2031C24E73D007D4408 /* HourglassConstants.swift */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
@@ -56,7 +57,7 @@
 		161D21336B58F9D75618E7D4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		242B1CA71C1D23BF004D3E13 /* RestaurantPromoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantPromoView.swift; sourceTree = "<group>"; };
 		242B1CA91C1D2E68004D3E13 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
-		242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassNavigationController.swift; sourceTree = "<group>"; };
+		242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassNavigationController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		242B1CAF1C1E40E7004D3E13 /* takami.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = takami.mp4; sourceTree = "<group>"; };
 		242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveAndSalt.mp4; sourceTree = "<group>"; };
 		242B1CB31C1FEC35004D3E13 /* IlCielo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IlCielo.mp4; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		2462D1FC1C246948007D4408 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
 		2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		2462D2011C2469D7007D4408 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		2462D2031C24E73D007D4408 /* HourglassConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassConstants.swift; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				5ED613531B9681DE00D2E8FC /* AppDelegate.swift */,
 				242B1CAD1C1D5672004D3E13 /* HourglassNavigationController.swift */,
+				2462D2031C24E73D007D4408 /* HourglassConstants.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				248265071C1A434200CAC95B /* AnalyticsController.swift in Sources */,
 				242B1CA81C1D23BF004D3E13 /* RestaurantPromoView.swift in Sources */,
 				246749381C1CE17A00B26064 /* VideoPlayerScrollView.swift in Sources */,
+				2462D2041C24E73D007D4408 /* HourglassConstants.swift in Sources */,
 				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
 				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
 				2462D1FE1C246948007D4408 /* LLSimpleCamera.m in Sources */,
