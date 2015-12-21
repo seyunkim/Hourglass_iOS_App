@@ -16,7 +16,31 @@ class AppDelegate: AnalyticsAppDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        Parse.setApplicationId("0j36fiUUAH1Y0IFjuTA3fljjmUT3Wh3hU3srLX1k",
+            clientKey: "kaK4EbHU8hQTEthuY5nXdY6qHMTLudchiApfPHZN")
+        
+        if (PFUser.currentUser() == nil) {
+            PFAnonymousUtils.logInWithBlock { (user : PFUser?, error : NSError?) -> Void in
+                if let unwrappedUser = user as PFUser! {
+                    if let unwrappedObjectId = unwrappedUser.objectId as String! {
+                        AnalyticsController.sharedController.userName = unwrappedObjectId
+                        user!.setValue(false, forKey: "claimed")
+                        user!.setValue("Anonymous", forKey: "firstName")
+                        user!.setValue("User", forKey: "lastName")
+                        user!.saveInBackground()
+                        
+                        HourglassNavigationController.sharedInstance?.mProfileController?.reloadData()
+                    }
+                } else {
+                    print(error)
+                }
+            }
+            
+            return true
+        } else {
+            AnalyticsController.sharedController.userName = PFUser.currentUser()!.objectId!
+            return true
+        }
     }
 
     override func applicationWillResignActive(application: UIApplication) {

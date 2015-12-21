@@ -4,3 +4,4 @@
 
 #import "LLSimpleCamera.h"
 #import <SpinKit/RTSpinKitView.h>
+#import <Parse/Parse.h>

@@ -17,6 +17,8 @@
 		2462D1FF1C246948007D4408 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */; };
 		2462D2021C2469D7007D4408 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2011C2469D7007D4408 /* CameraController.swift */; };
 		2462D2041C24E73D007D4408 /* HourglassConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2031C24E73D007D4408 /* HourglassConstants.swift */; };
+		2462D2061C286BA3007D4408 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2051C286BA3007D4408 /* ProfileCell.swift */; };
+		2462D2091C287F79007D4408 /* AccountCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462D2081C287F79007D4408 /* AccountCreationView.swift */; };
 		2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */; };
 		246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */; };
 		246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246749331C1BBE1700B26064 /* VideoPlayerController.swift */; };
@@ -67,6 +69,8 @@
 		2462D1FD1C246948007D4408 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		2462D2011C2469D7007D4408 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		2462D2031C24E73D007D4408 /* HourglassConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourglassConstants.swift; sourceTree = "<group>"; };
+		2462D2051C286BA3007D4408 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		2462D2081C287F79007D4408 /* AccountCreationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationView.swift; sourceTree = "<group>"; };
 		2467492E1C1B953400B26064 /* AnalyticsUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUIButton.swift; sourceTree = "<group>"; };
 		246749301C1B9C1F00B26064 /* AnalyticsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsAppDelegate.swift; sourceTree = "<group>"; };
 		246749331C1BBE1700B26064 /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
@@ -129,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				5E1B7C0A1C1D1F1E006BA359 /* CategoriesViewController.swift */,
-				5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
@@ -151,6 +154,16 @@
 				2462D2011C2469D7007D4408 /* CameraController.swift */,
 			);
 			name = ContentCreation;
+			sourceTree = "<group>";
+		};
+		2462D2071C287D35007D4408 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B7C0F1C1D23CB006BA359 /* ProfileViewController.swift */,
+				2462D2051C286BA3007D4408 /* ProfileCell.swift */,
+				2462D2081C287F79007D4408 /* AccountCreationView.swift */,
+			);
+			name = Account;
 			sourceTree = "<group>";
 		};
 		246749321C1BBE0000B26064 /* VideoControls */ = {
@@ -216,6 +229,7 @@
 		5ED613501B9681DE00D2E8FC /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
+				2462D2071C287D35007D4408 /* Account */,
 				2462D2001C2469C2007D4408 /* ContentCreation */,
 				2462D1F91C246929007D4408 /* LLSimpleCamera */,
 				248265051C1A432400CAC95B /* Analytics */,
@@ -427,6 +441,8 @@
 				246749311C1B9C1F00B26064 /* AnalyticsAppDelegate.swift in Sources */,
 				2467492F1C1B953400B26064 /* AnalyticsUIButton.swift in Sources */,
 				2462D1FE1C246948007D4408 /* LLSimpleCamera.m in Sources */,
+				2462D2061C286BA3007D4408 /* ProfileCell.swift in Sources */,
+				2462D2091C287F79007D4408 /* AccountCreationView.swift in Sources */,
 				246749341C1BBE1700B26064 /* VideoPlayerController.swift in Sources */,
 				5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */,
 				24C610551C1B3CA10019F4DF /* AnalyticsScrollView.swift in Sources */,

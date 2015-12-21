@@ -51,7 +51,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        mProfileController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
+        mProfileController = ProfileViewController()
         mCategoriesController = storyboard.instantiateViewControllerWithIdentifier("CategoriesViewController") as? CategoriesViewController
     }
     
@@ -116,6 +116,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         searchBar?.layer.anchorPoint = CGPointMake(CGFloat(1.0), CGFloat(0.0))
         searchBar?.layer.position = CGPointMake(originX + searchBar!.frame.size.width, originY)
         searchBar?.transform = CGAffineTransformMakeScale(0, 1)
+        searchBar?.setShowsCancelButton(true, animated: true)
         navView.addSubview(searchBar!)
         
         mAppIcon = AnalyticsUIButton(type: .Custom)
@@ -162,6 +163,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         
         self.addChildViewController(mProfileController!)
         mProfileController!.view.frame = topOffsetFrame
+        mProfileController!.load()
         self.view.addSubview(mProfileController!.view)
         
         // Add our page titles
@@ -425,6 +427,12 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
             
         }
         
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        AnalyticsController.logSpecial("SearchCancelled", details: "")
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
