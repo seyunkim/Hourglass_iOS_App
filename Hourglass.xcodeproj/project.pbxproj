@@ -35,6 +35,11 @@
 		5E5EE8471C1EEC56002FB253 /* wurstkuche.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5E5EE8461C1EEC56002FB253 /* wurstkuche.mov */; };
 		5E5EE8501C1EF4AA002FB253 /* nickel.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5E5EE84E1C1EF4AA002FB253 /* nickel.mov */; };
 		5E5EE8511C1EF4AA002FB253 /* yangi.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5E5EE84F1C1EF4AA002FB253 /* yangi.mov */; };
+		5EAFA91B1C29F7D200AE5FC4 /* Titillium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAFA9181C29F7D200AE5FC4 /* Titillium-Bold.otf */; };
+		5EAFA91C1C29F7D200AE5FC4 /* Titillium-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAFA9191C29F7D200AE5FC4 /* Titillium-Regular.otf */; };
+		5EAFA91D1C29F7D200AE5FC4 /* Titillium-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAFA91A1C29F7D200AE5FC4 /* Titillium-RegularItalic.otf */; };
+		5EAFA9201C29FE6E00AE5FC4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAFA91E1C29FE6E00AE5FC4 /* Montserrat-Bold.otf */; };
+		5EAFA9211C29FE6E00AE5FC4 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAFA91F1C29FE6E00AE5FC4 /* Montserrat-Regular.otf */; };
 		5ED613541B9681DE00D2E8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED613531B9681DE00D2E8FC /* AppDelegate.swift */; };
 		5ED613561B9681DE00D2E8FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED613551B9681DE00D2E8FC /* ViewController.swift */; };
 		5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED613571B9681DE00D2E8FC /* Main.storyboard */; };
@@ -87,6 +92,11 @@
 		5E5EE8461C1EEC56002FB253 /* wurstkuche.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = wurstkuche.mov; sourceTree = "<group>"; };
 		5E5EE84E1C1EF4AA002FB253 /* nickel.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = nickel.mov; sourceTree = "<group>"; };
 		5E5EE84F1C1EF4AA002FB253 /* yangi.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = yangi.mov; sourceTree = "<group>"; };
+		5EAFA9181C29F7D200AE5FC4 /* Titillium-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Bold.otf"; sourceTree = "<group>"; };
+		5EAFA9191C29F7D200AE5FC4 /* Titillium-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Regular.otf"; sourceTree = "<group>"; };
+		5EAFA91A1C29F7D200AE5FC4 /* Titillium-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-RegularItalic.otf"; sourceTree = "<group>"; };
+		5EAFA91E1C29FE6E00AE5FC4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		5EAFA91F1C29FE6E00AE5FC4 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		5ED6134E1B9681DE00D2E8FC /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED613521B9681DE00D2E8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ED613531B9681DE00D2E8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +256,11 @@
 				5E08AD231C199A73009F9959 /* Hourglass-Bridging-Header.h */,
 				5ED6135A1B9681DE00D2E8FC /* Images.xcassets */,
 				5ED6135C1B9681DE00D2E8FC /* LaunchScreen.xib */,
+				5EAFA91E1C29FE6E00AE5FC4 /* Montserrat-Bold.otf */,
+				5EAFA91F1C29FE6E00AE5FC4 /* Montserrat-Regular.otf */,
+				5EAFA9181C29F7D200AE5FC4 /* Titillium-Bold.otf */,
+				5EAFA9191C29F7D200AE5FC4 /* Titillium-Regular.otf */,
+				5EAFA91A1C29F7D200AE5FC4 /* Titillium-RegularItalic.otf */,
 				5ED613571B9681DE00D2E8FC /* Main.storyboard */,
 				242B1CAF1C1E40E7004D3E13 /* takami.mp4 */,
 				242B1CB11C1FEB00004D3E13 /* LoveAndSalt.mp4 */,
@@ -340,7 +355,7 @@
 				TargetAttributes = {
 					5ED6134D1B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 7NUPNZKJRB;
+						DevelopmentTeam = 2PZRPD9794;
 					};
 					5ED613621B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
@@ -373,13 +388,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAFA91C1C29F7D200AE5FC4 /* Titillium-Regular.otf in Resources */,
+				5EAFA91B1C29F7D200AE5FC4 /* Titillium-Bold.otf in Resources */,
 				5ED613591B9681DE00D2E8FC /* Main.storyboard in Resources */,
 				242B1CB21C1FEB35004D3E13 /* LoveAndSalt.mp4 in Resources */,
 				5E5EE8501C1EF4AA002FB253 /* nickel.mov in Resources */,
 				242B1CB01C1E41BD004D3E13 /* takami.mp4 in Resources */,
 				5E5EE8471C1EEC56002FB253 /* wurstkuche.mov in Resources */,
 				5E5EE8511C1EF4AA002FB253 /* yangi.mov in Resources */,
+				5EAFA9211C29FE6E00AE5FC4 /* Montserrat-Regular.otf in Resources */,
 				5ED6135E1B9681DE00D2E8FC /* LaunchScreen.xib in Resources */,
+				5EAFA9201C29FE6E00AE5FC4 /* Montserrat-Bold.otf in Resources */,
+				5EAFA91D1C29F7D200AE5FC4 /* Titillium-RegularItalic.otf in Resources */,
 				5E5EE8451C1EC1F5002FB253 /* sprinkles.mov in Resources */,
 				5ED6135B1B9681DE00D2E8FC /* Images.xcassets in Resources */,
 				242B1CB41C1FEC35004D3E13 /* IlCielo.mp4 in Resources */,
@@ -589,7 +609,7 @@
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
@@ -605,11 +625,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: seyunkm@gmail.com (E6W4ZH8W58)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";

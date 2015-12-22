@@ -176,6 +176,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         mCameraLabel?.textColor = UIColor.whiteColor()
         mCameraLabel?.backgroundColor = UIColor.clearColor()
         mCameraLabel?.text = "Camera"
+        mCameraLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         mCameraLabel?.adjustsFontSizeToFitWidth = true
         mCameraLabel?.textAlignment = .Center
         pageTitleView.addSubview(mCameraLabel!)
@@ -184,6 +185,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         mVideoLabel?.textColor = UIColor.whiteColor()
         mVideoLabel?.backgroundColor = UIColor.clearColor()
         mVideoLabel?.text = "Trending"
+        mVideoLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         mVideoLabel?.adjustsFontSizeToFitWidth = true
         mVideoLabel?.textAlignment = .Center
         pageTitleView.addSubview(mVideoLabel!)
@@ -192,6 +194,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         mCategoriesLabel?.textColor = UIColor.whiteColor()
         mCategoriesLabel?.backgroundColor = UIColor.clearColor()
         mCategoriesLabel?.text = "Browse"
+        mCategoriesLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         mCategoriesLabel?.adjustsFontSizeToFitWidth = true
         mCategoriesLabel?.textAlignment = .Center
         pageTitleView.addSubview(mCategoriesLabel!)

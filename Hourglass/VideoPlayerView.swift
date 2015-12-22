@@ -108,6 +108,7 @@ class VideoPlayerView : UIView {
         mNameLabel!.textColor = UIColor.whiteColor()
         mNameLabel!.text = name
         mNameLabel!.font = UIFont.systemFontOfSize(36)
+        mNameLabel!.font = UIFont(name: "Montserrat-Regular", size: 36.0)
         mNameLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mNameLabel!)
         
@@ -120,6 +121,7 @@ class VideoPlayerView : UIView {
         mCreditLabel!.textColor = UIColor.whiteColor()
         mCreditLabel!.text = "Credit: " + source
         mCreditLabel!.font = UIFont.systemFontOfSize(18)
+        mCreditLabel!.font = UIFont(name: "Montserrat-Regular", size: 18.0)
         mCreditLabel!.adjustsFontSizeToFitWidth = true
         mCreditLabel!.sizeToFit()
         self.addSubview(mCreditLabel!)

@@ -78,9 +78,11 @@ class RestaurantInformationView : UIView {
             CGFloat(64)))
         mNameLabel!.backgroundColor = UIColor.clearColor()
         mNameLabel!.textColor = UIColor.blackColor()
-        mNameLabel!.textAlignment = NSTextAlignment.Center
-        mNameLabel!.font = UIFont.systemFontOfSize(36)
         mNameLabel!.text = mRestaurantName
+        mNameLabel!.textAlignment = NSTextAlignment.Center
+      
+        mNameLabel!.font = UIFont(name: "Montserrat-Regular", size: 36.0)
+       
         mNameLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mNameLabel!)
         
@@ -95,7 +97,9 @@ class RestaurantInformationView : UIView {
         //mCategoryLabel!.font = UIFont.systemFontOfSize(24)
         mCategoryLabel!.text = mRestaurantCategory
         mCategoryLabel!.textAlignment = .Center
-        mCategoryLabel!.adjustsFontSizeToFitWidth = true
+       
+         mCategoryLabel!.font = UIFont(name: "Titillium-Regular", size: 20.0)
+         mCategoryLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mCategoryLabel!)
         
         //MenuButton
@@ -184,6 +188,7 @@ class RestaurantInformationView : UIView {
         mRecentLabel!.textColor = UIColor.blackColor()
         mRecentLabel!.font = UIFont.systemFontOfSize(20)
         mRecentLabel!.text = "Recently Visited: "
+        mRecentLabel!.font = UIFont(name: "Titillium-Regular", size: 20.0)
         mRecentLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mRecentLabel!)
 
@@ -198,6 +203,7 @@ class RestaurantInformationView : UIView {
         mHoursLabel!.textColor = UIColor.blackColor()
         mHoursLabel!.font = UIFont.systemFontOfSize(20)
         mHoursLabel!.text = "Hours Today: 8am - 11pm" //+ eventually add in hours
+        mHoursLabel!.font = UIFont(name: "Titillium-Regular", size: 20.0)
         mHoursLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mHoursLabel!)
         
@@ -210,6 +216,8 @@ class RestaurantInformationView : UIView {
         mRatingLabel!.textColor = UIColor.blackColor()
         mRatingLabel!.font = UIFont.systemFontOfSize(20)
         mRatingLabel!.text = "Price Rating: " + String(mRestaurantPriceRating)
+   
+        mRatingLabel!.font = UIFont(name: "Titillium-Regular", size: 20.0)
         mRatingLabel!.adjustsFontSizeToFitWidth = true
         mRatingLabel!.sizeToFit()
         self.addSubview(mRatingLabel!)
@@ -242,6 +250,8 @@ class RestaurantInformationView : UIView {
         navigateButton.setTitle("Navigate", forState: UIControlState.Normal)
         navigateButton.layer.cornerRadius = 10
         navigateButton.addTarget(self, action: "navigate", forControlEvents: .TouchUpInside)
+        navigateButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20.0)
+        navigateButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.addSubview(navigateButton)
         
         //suggested parking button
@@ -257,6 +267,8 @@ class RestaurantInformationView : UIView {
         suggestParkingButton.setTitle("Suggested Parking", forState: UIControlState.Normal)
         suggestParkingButton.layer.cornerRadius = 10
         suggestParkingButton.addTarget(self, action: "suggestParking", forControlEvents: .TouchUpInside)
+        suggestParkingButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20.0)
+        suggestParkingButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.addSubview(suggestParkingButton)
     }
     

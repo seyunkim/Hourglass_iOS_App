@@ -84,6 +84,7 @@ class RestaurantPromoView : UIView {
         mNameLabel!.textColor = UIColor.whiteColor()
         mNameLabel!.font = UIFont.systemFontOfSize(36)
         mNameLabel!.text = mRestaurantName
+        mNameLabel!.font = UIFont(name: "Montserrat-Regular", size: 36.0)
         mNameLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mNameLabel!)
         
@@ -92,11 +93,14 @@ class RestaurantPromoView : UIView {
             verticalOffset + mNameLabel!.frame.height,
             self.frame.width - (self.frame.width * percentForLogo / 1.5) - CGFloat(18),
             self.frame.height - (verticalOffset + mNameLabel!.frame.height)))
+       //mInfoLabel?.center = CGPoint(x:self.frame.width/2, y:self.frame.height - (verticalOffset + mNameLabel!.frame.height))
         mInfoLabel!.backgroundColor = UIColor.clearColor()
         mInfoLabel!.textColor = UIColor.whiteColor()
         mInfoLabel!.font = UIFont.italicSystemFontOfSize(20)
         mInfoLabel!.text = mRestaurantInformation
         mInfoLabel!.numberOfLines = 0
+        mInfoLabel!.font = UIFont(name: "Titillium-Regular", size: 20.0)
+        mInfoLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mInfoLabel!)
     }
     
