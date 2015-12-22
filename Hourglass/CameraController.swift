@@ -15,24 +15,26 @@ class CameraController : AnalyticsViewController {
     var camera : LLSimpleCamera?
     
     var mVideoNumber = 0
-    var mSnapButton : UIButton?
+    var mSnapButton : AnalyticsUIButton?
     var mCircle : CAShapeLayer?
-    var mFlashButton : UIButton?
-    var mSwitchButton : UIButton?
+    var mFlashButton : AnalyticsUIButton?
+    var mSwitchButton : AnalyticsUIButton?
     var mSnapButtonPressed = false
     
     var mAVPlayer : AVPlayer?
     var mAVPlayerLayer : AVPlayerLayer?
     var mURL : NSURL?
     var mTime : CMTime?
-    var mCancelButton : UIButton?
-    var mDownloadButton : UIButton?
-    var mUploadButton : UIButton?
+    var mCancelButton : AnalyticsUIButton?
+    var mDownloadButton : AnalyticsUIButton?
+    var mUploadButton : AnalyticsUIButton?
     
     var mSpinnerView : RTSpinKitView?
     
     override func viewDidLoad() {
         showSpinner()
+        
+        screenName = "CameraViewController"
         
         let defaults = NSUserDefaults.standardUserDefaults()
         mVideoNumber = defaults.integerForKey("hourglassVideoNumber")
@@ -45,7 +47,8 @@ class CameraController : AnalyticsViewController {
         // Play with this if we want videos to rotate at all
         camera?.fixOrientationAfterCapture = false
         
-        mSnapButton = UIButton(type: UIButtonType.Custom)
+        mSnapButton = AnalyticsUIButton(type: UIButtonType.Custom)
+        mSnapButton?.mAnalyticsButtonIdentifier = "CaptureVideo"
         mSnapButton!.frame = CGRectMake((self.view.frame.width - 70.0) / 2.0, self.view.frame.height - 75.0, 70.0, 70.0)
         mSnapButton!.clipsToBounds = true
         mSnapButton!.layer.cornerRadius = mSnapButton!.frame.width / 2.0
@@ -61,7 +64,8 @@ class CameraController : AnalyticsViewController {
         self.view.addSubview(mSnapButton!)
         self.view.bringSubviewToFront(mSpinnerView!)
         
-        mFlashButton = UIButton(type: UIButtonType.System)
+        mFlashButton = AnalyticsUIButton(type: UIButtonType.System)
+        mFlashButton?.mAnalyticsButtonIdentifier = "ToggleFlash"
         mFlashButton!.frame = CGRectMake(self.view.frame.width / 2.0 - 18.0, 29.0, 36.0, 44.0)
         mFlashButton!.tintColor = UIColor.whiteColor()
         mFlashButton!.setImage(UIImage(named:"camera-flash"), forState: UIControlState.Normal)
@@ -71,7 +75,8 @@ class CameraController : AnalyticsViewController {
         self.view.bringSubviewToFront(mSpinnerView!)
         
         if LLSimpleCamera.isFrontCameraAvailable() && LLSimpleCamera.isRearCameraAvailable() {
-            mSwitchButton = UIButton(type: UIButtonType.System)
+            mSwitchButton = AnalyticsUIButton(type: UIButtonType.System)
+            mSwitchButton?.mAnalyticsButtonIdentifier = "ToggleCamera"
             mSwitchButton!.frame = CGRectMake(self.view.frame.width - 64.0, 29.0, 49.0, 42.0)
             mSwitchButton!.tintColor = UIColor.whiteColor()
             mSwitchButton!.setImage(UIImage(named:"camera-switch"), forState: UIControlState.Normal)
@@ -92,7 +97,8 @@ class CameraController : AnalyticsViewController {
         self.view.layer.addSublayer(mAVPlayerLayer!)
         self.view.bringSubviewToFront(mSpinnerView!)
         
-        mCancelButton = UIButton(type: UIButtonType.System)
+        mCancelButton = AnalyticsUIButton(type: UIButtonType.System)
+        mCancelButton?.mAnalyticsButtonIdentifier = "CancelVideo"
         mCancelButton!.frame = CGRectMake(self.view.frame.width - 54.0, 29.0, 49.0, 49.0)
         mCancelButton!.tintColor = UIColor.whiteColor()
         mCancelButton!.setImage(UIImage(named:"cancel"), forState: UIControlState.Normal)
@@ -103,7 +109,8 @@ class CameraController : AnalyticsViewController {
         self.view.addSubview(mCancelButton!)
         self.view.bringSubviewToFront(mSpinnerView!)
         
-        mDownloadButton = UIButton(type: UIButtonType.System)
+        mDownloadButton = AnalyticsUIButton(type: UIButtonType.System)
+        mDownloadButton?.mAnalyticsButtonIdentifier = "DownloadVideo"
         mDownloadButton!.frame = CGRectMake(self.view.frame.width - 54.0, self.view.frame.height - 54.0, 49.0, 49.0)
         mDownloadButton!.tintColor = UIColor.whiteColor()
         mDownloadButton!.setImage(UIImage(named:"Download"), forState: UIControlState.Normal)
@@ -114,7 +121,8 @@ class CameraController : AnalyticsViewController {
         self.view.addSubview(mDownloadButton!)
         self.view.bringSubviewToFront(mSpinnerView!)
         
-        mUploadButton = UIButton(type: UIButtonType.System)
+        mUploadButton = AnalyticsUIButton(type: UIButtonType.System)
+        mUploadButton?.mAnalyticsButtonIdentifier = "UploadVideo"
         mUploadButton!.frame = CGRectMake(5.0, 29.0, 49.0, 49.0)
         mUploadButton!.tintColor = UIColor.whiteColor()
         mUploadButton!.setImage(UIImage(named:"Upload"), forState: UIControlState.Normal)
@@ -219,6 +227,7 @@ class CameraController : AnalyticsViewController {
     }
     
     func timeOut() {
+        AnalyticsController.logSpecial("VideoTimeout", details: "15 Second Limit")
         snapButtonReleased(mSnapButton!)
     }
     

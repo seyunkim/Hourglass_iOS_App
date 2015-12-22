@@ -154,6 +154,8 @@ class AccountCreationView : UIView, UITextFieldDelegate {
                         defaults.setValue(self.mPasswordField!.text!, forKey: "HGPassword")
                         defaults.synchronize()
                         
+                        AnalyticsController.logButtonPress("AccountCreated")
+                        
                         self.cleanupFirstStage()
                         self.setupSecondStage()
                     })
@@ -288,6 +290,7 @@ class AccountCreationView : UIView, UITextFieldDelegate {
                         print(error)
                         UIAlertView(title: "Failed To Save User", message: "The data you provided failed to save, please try again.", delegate: nil, cancelButtonTitle: "Ok").show()
                     } else {
+                        AnalyticsController.logButtonPress("AccountDetailsCreated")
                         self.mDelegate?.accountCreated()
                         self.removeFromSuperview()
                     }
@@ -314,8 +317,10 @@ class AccountCreationView : UIView, UITextFieldDelegate {
     
     func cancelAccountCreation() {
         if mUserNameField!.alpha == 1.0 {
+            AnalyticsController.logButtonPress("AccountCreationCancelled")
             removeFromSuperview()
         } else {
+            AnalyticsController.logButtonPress("AccountDetailsCancelled")
             mDelegate?.accountCreated()
             removeFromSuperview()
         }

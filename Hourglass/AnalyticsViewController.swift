@@ -42,7 +42,7 @@ class AnalyticsViewController : UIViewController, AnalyticsScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        AnalyticsController.logScreenLoad(screenName)
+        //AnalyticsController.logScreenLoad(screenName)
         AnalyticsController.registerTopViewController(self)
     }
 }

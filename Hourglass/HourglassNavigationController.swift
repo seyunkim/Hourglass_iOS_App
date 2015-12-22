@@ -232,7 +232,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.mCameraLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
-                    self.mVideoController!.screenName = "ProfileViewController"
+                    AnalyticsController.logScreenLoad("CameraViewController")
+                    self.mVideoController!.screenName = "CameraViewController"
                     self.mActiveController = 0
             })
         } else if mActiveController == 2 {
@@ -252,6 +253,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mCameraLabel?.frame.origin.x += (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    AnalyticsController.logScreenLoad("VideoPlayerController")
                     self.mVideoController!.screenName = "VideoPlayerController"
                     self.mActiveController = 1
                     self.mVideoController!.setActive(true)
@@ -278,6 +280,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mCameraLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
+                    AnalyticsController.logScreenLoad("VideoPlayerController")
                     self.mVideoController!.screenName = "VideoPlayerController"
                     self.mActiveController = 1
                     self.mVideoController!.setActive(true)
@@ -304,7 +307,8 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                 self.mCameraLabel?.frame.origin.x -= (self.mCategoriesLabel!.frame.width + 5.0)
                 }, completion: { (finished) -> Void in
                     // Finished Code
-                    self.mVideoController!.screenName = "CategoriesViewrController"
+                    AnalyticsController.logScreenLoad("CategoriesViewController")
+                    self.mVideoController!.screenName = "CategoriesViewController"
                     self.mActiveController = 2
             })
         } else if mActiveController == 2 {
@@ -345,6 +349,7 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     self.mCategoriesLabel?.alpha = 1.0
                     }, completion: { (done) -> Void in
                         // Code
+                        AnalyticsController.logScreenLoad("ProfileViewController")
                 })
         }
     }
@@ -381,10 +386,13 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
                     
                     if self.mPreviousController == 0 {
                         self.mCameraLabel?.alpha = 1.0
+                        AnalyticsController.logScreenLoad("CameraViewController")
                     } else if self.mPreviousController == 1 {
                         self.mVideoLabel?.alpha = 1.0
+                        AnalyticsController.logScreenLoad("VideoPlayerController")
                     } else if self.mPreviousController == 2 {
                         self.mCategoriesLabel?.alpha = 1.0
+                        AnalyticsController.logScreenLoad("CategoriesViewController")
                     }
                     }, completion: { (done) -> Void in
                         // Code

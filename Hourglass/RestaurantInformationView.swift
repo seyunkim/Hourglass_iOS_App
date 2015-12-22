@@ -30,9 +30,9 @@ class RestaurantInformationView : UIView {
     var mMapView : MKMapView?
     var mPlacemark : MKPlacemark?
     
-    var mMenuButton: UIButton?
-    var mCallButton: UIButton?
-    var mSubmitContentButton: UIButton?
+    var mMenuButton: AnalyticsUIButton?
+    var mCallButton: AnalyticsUIButton?
+    var mSubmitContentButton: AnalyticsUIButton?
     
     
     var mRatingLabel : UILabel?
@@ -99,11 +99,12 @@ class RestaurantInformationView : UIView {
         self.addSubview(mCategoryLabel!)
         
         //MenuButton
-        mMenuButton = UIButton(frame: CGRectMake(
+        mMenuButton = AnalyticsUIButton(frame: CGRectMake(
             15.0,
             mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
             self.frame.width/4,
             self.frame.width/4))
+        mMenuButton?.mAnalyticsButtonIdentifier = "OpenMenu"
         mMenuButton?.setImage(UIImage(named: "MenuButton"), forState: UIControlState.Normal)
         mMenuButton!.center = CGPoint(x: self.frame.width/2, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
         mMenuButton?.addTarget(self, action: "openMenu", forControlEvents: .TouchUpInside)
@@ -112,22 +113,24 @@ class RestaurantInformationView : UIView {
         
         //Call Button
         
-        mCallButton = UIButton(frame: CGRectMake(
+        mCallButton = AnalyticsUIButton(frame: CGRectMake(
             15.0,
             mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
             self.frame.width/4,
             self.frame.width/4))
+        mCallButton?.mAnalyticsButtonIdentifier = "CallRestaurant"
         mCallButton?.setImage(UIImage(named: "CallButton"), forState: UIControlState.Normal)
         mCallButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 0.40, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
         mCallButton!.addTarget(self, action: "call", forControlEvents: .TouchUpInside)
         self.addSubview(mCallButton!)
         
         //Submit Video/Photo Button
-        mSubmitContentButton = UIButton(frame: CGRectMake(
+        mSubmitContentButton = AnalyticsUIButton(frame: CGRectMake(
             15.0,
             mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
             self.frame.width/4,
             self.frame.width/4))
+        mSubmitContentButton?.mAnalyticsButtonIdentifier = "SubmitOrBrowseContent"
         mSubmitContentButton?.setImage(UIImage(named: "CameraButton"), forState: UIControlState.Normal)
         mSubmitContentButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 1.60, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
         mSubmitContentButton!.addTarget(self, action: "submitContent", forControlEvents: .TouchUpInside)
@@ -227,12 +230,13 @@ class RestaurantInformationView : UIView {
 //        self.addSubview(mAddressLabel!)
         
         //navigate Button
-        var navigateButton:UIButton
-        navigateButton = UIButton(frame: CGRectMake(
+        var navigateButton:AnalyticsUIButton
+        navigateButton = AnalyticsUIButton(frame: CGRectMake(
             15.0,
             mMapView!.frame.origin.y + mMapView!.frame.height * 0.5,
             self.frame.width/2,
             self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
+        navigateButton.mAnalyticsButtonIdentifier = "NavigateToRestaurant"
         navigateButton.center = CGPoint(x: self.frame.width/4, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
         navigateButton.backgroundColor = UIColor(red: 76.0/255.0, green: 218.0/255.0, blue: 101.0/255.0, alpha: 1)
         navigateButton.setTitle("Navigate", forState: UIControlState.Normal)
@@ -241,12 +245,13 @@ class RestaurantInformationView : UIView {
         self.addSubview(navigateButton)
         
         //suggested parking button
-        var suggestParkingButton:UIButton
-        suggestParkingButton = UIButton(frame: CGRectMake(
+        var suggestParkingButton:AnalyticsUIButton
+        suggestParkingButton = AnalyticsUIButton(frame: CGRectMake(
             15.0,
             mMapView!.frame.origin.y + mMapView!.frame.height * 0.5,
             self.frame.width/2,
             self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
+        suggestParkingButton.mAnalyticsButtonIdentifier = "SuggestParking"
         suggestParkingButton.center = CGPoint(x: self.frame.width * 0.75, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
         suggestParkingButton.backgroundColor = HourglassConstants.logoColor
         suggestParkingButton.setTitle("Suggested Parking", forState: UIControlState.Normal)

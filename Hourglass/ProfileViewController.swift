@@ -36,6 +36,9 @@ class ProfileViewController : AnalyticsViewController, UITableViewDelegate, UITa
         mProfilePicture!.layer.masksToBounds = true
         view.addSubview(mProfilePicture!)
         
+        let profileTapRec = UITapGestureRecognizer(target: self, action: "photoTapped")
+        mProfilePicture!.addGestureRecognizer(profileTapRec)
+        
         do {
             try PFUser.currentUser()?.fetch()
         } catch {
@@ -179,6 +182,11 @@ class ProfileViewController : AnalyticsViewController, UITableViewDelegate, UITa
         }
     }
     
+    func photoTapped() {
+        AnalyticsController.logButtonPress("ProfilePhoto")
+        UIAlertView(title: "Coming Soon", message: "Thanks for using Hourglass! Changing your profile photo is coming in an update soon!", delegate: nil, cancelButtonTitle: "Ok").show()
+    }
+    
     // MARK: Account Creation Methods
     func accountCreated() {
         reloadData()
@@ -222,6 +230,8 @@ class ProfileViewController : AnalyticsViewController, UITableViewDelegate, UITa
         mAccountCreationView!.alpha = 0.0
         mAccountCreationView!.mDelegate = self
         view.addSubview(mAccountCreationView!)
+        
+        AnalyticsController.logButtonPress("BeginCreateAccount")
         
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.mAccountCreationView!.alpha = 1.0
@@ -275,6 +285,14 @@ class ProfileViewController : AnalyticsViewController, UITableViewDelegate, UITa
         }
         
         return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            AnalyticsController.logButtonPress("Friends")
+        } else if indexPath.row == 1 {
+            AnalyticsController.logButtonPress("Posts")
+        }
     }
     
 }

@@ -13,6 +13,7 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
     let categoryArray = ["Ambiance", "Soon", "Trending", "Soon", "Soon", "Soon", "Soon"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.collectionView?.delegate = self
         let flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout, animated: true)
