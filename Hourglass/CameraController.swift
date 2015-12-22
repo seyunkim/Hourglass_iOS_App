@@ -19,6 +19,7 @@ class CameraController : AnalyticsViewController {
     var mCircle : CAShapeLayer?
     var mFlashButton : UIButton?
     var mSwitchButton : UIButton?
+    var mSnapButtonPressed = false
     
     var mAVPlayer : AVPlayer?
     var mAVPlayerLayer : AVPlayerLayer?
@@ -26,6 +27,7 @@ class CameraController : AnalyticsViewController {
     var mTime : CMTime?
     var mCancelButton : UIButton?
     var mDownloadButton : UIButton?
+    var mUploadButton : UIButton?
     
     var mSpinnerView : RTSpinKitView?
     
@@ -52,6 +54,7 @@ class CameraController : AnalyticsViewController {
         mSnapButton!.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         mSnapButton!.layer.rasterizationScale = UIScreen.mainScreen().scale
         mSnapButton!.layer.shouldRasterize = true
+        mSnapButton!.layer.anchorPoint = CGPointMake(CGFloat(0.5), CGFloat(0.5))
         mSnapButton!.addTarget(self, action: "snapButtonPressed:", forControlEvents: UIControlEvents.TouchDown)
         mSnapButton!.addTarget(self, action: "snapButtonReleased:", forControlEvents: UIControlEvents.TouchUpInside)
         mSnapButton!.addTarget(self, action: "snapButtonReleased:", forControlEvents: UIControlEvents.TouchUpOutside)
@@ -59,7 +62,7 @@ class CameraController : AnalyticsViewController {
         self.view.bringSubviewToFront(mSpinnerView!)
         
         mFlashButton = UIButton(type: UIButtonType.System)
-        mFlashButton!.frame = CGRectMake(self.view.frame.width / 2.0 - 18.0, 5.0, 36.0, 44.0)
+        mFlashButton!.frame = CGRectMake(self.view.frame.width / 2.0 - 18.0, 29.0, 36.0, 44.0)
         mFlashButton!.tintColor = UIColor.whiteColor()
         mFlashButton!.setImage(UIImage(named:"camera-flash"), forState: UIControlState.Normal)
         mFlashButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
@@ -69,7 +72,7 @@ class CameraController : AnalyticsViewController {
         
         if LLSimpleCamera.isFrontCameraAvailable() && LLSimpleCamera.isRearCameraAvailable() {
             mSwitchButton = UIButton(type: UIButtonType.System)
-            mSwitchButton!.frame = CGRectMake(self.view.frame.width - 64.0, 5.0, 49.0, 42.0)
+            mSwitchButton!.frame = CGRectMake(self.view.frame.width - 64.0, 29.0, 49.0, 42.0)
             mSwitchButton!.tintColor = UIColor.whiteColor()
             mSwitchButton!.setImage(UIImage(named:"camera-switch"), forState: UIControlState.Normal)
             mSwitchButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
@@ -90,7 +93,7 @@ class CameraController : AnalyticsViewController {
         self.view.bringSubviewToFront(mSpinnerView!)
         
         mCancelButton = UIButton(type: UIButtonType.System)
-        mCancelButton!.frame = CGRectMake(self.view.frame.width - 54.0, 5.0, 49.0, 49.0)
+        mCancelButton!.frame = CGRectMake(self.view.frame.width - 54.0, 29.0, 49.0, 49.0)
         mCancelButton!.tintColor = UIColor.whiteColor()
         mCancelButton!.setImage(UIImage(named:"cancel"), forState: UIControlState.Normal)
         mCancelButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
@@ -111,6 +114,17 @@ class CameraController : AnalyticsViewController {
         self.view.addSubview(mDownloadButton!)
         self.view.bringSubviewToFront(mSpinnerView!)
         
+        mUploadButton = UIButton(type: UIButtonType.System)
+        mUploadButton!.frame = CGRectMake(5.0, 29.0, 49.0, 49.0)
+        mUploadButton!.tintColor = UIColor.whiteColor()
+        mUploadButton!.setImage(UIImage(named:"Upload"), forState: UIControlState.Normal)
+        mUploadButton!.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        mUploadButton!.addTarget(self, action: "uploadButtonPressed", forControlEvents:  UIControlEvents.TouchUpInside)
+        mUploadButton!.hidden = true
+        mUploadButton!.enabled = false
+        self.view.addSubview(mUploadButton!)
+        self.view.bringSubviewToFront(mSpinnerView!)
+        
         hideSpinner()
     }
     
@@ -124,9 +138,12 @@ class CameraController : AnalyticsViewController {
     
     // MARK:Camera Controls
     func snapButtonPressed(button : UIButton) {
+        mSnapButtonPressed = true
+        NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: "timeOut", userInfo: nil, repeats: false)
+        
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.mSnapButton!.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
-            self.mSnapButton!.layer.borderColor = UIColor.clearColor().colorWithAlphaComponent(0.5).CGColor
+            self.mSnapButton!.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5).CGColor
             self.mSnapButton!.frame = CGRectMake((self.view.frame.width - 90.0) / 2.0, self.view.frame.height - 95.0, 90.0, 90.0)
             self.mSnapButton!.layer.cornerRadius = self.mSnapButton!.frame.width / 2.0
             }, completion: { (finished) -> Void in
@@ -144,49 +161,65 @@ class CameraController : AnalyticsViewController {
     }
     
     func snapButtonReleased(button : UIButton) {
-        self.stopCircle()
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.mSnapButton!.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
-            //self.mSnapButton!.layer.borderColor = UIColor.whiteColor().CGColor
-            }, completion: { (finished) -> Void in
-                // Finished Code
-                if self.camera!.recording {
-                    self.camera?.stopRecording({ (cam : LLSimpleCamera!, url : NSURL!, error : NSError!) -> Void in
-                        // Callback
-                        if error != nil {
-                            print(error)
-                        } else {
-                            self.removeCircle()
-                            // Prepare playback layer
-                            self.mURL = url
-                            self.mAVPlayer!.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: url))
-                            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.mAVPlayer!.currentItem)
-                            
-                            self.camera?.stop()
-                            self.mAVPlayer!.play()
-                            
-                            UIView.animateWithDuration(0.25, animations: { () -> Void in
-                                self.mAVPlayerLayer!.hidden = false
+        if mSnapButtonPressed {
+            mSnapButtonPressed = false
+            self.stopCircle()
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.mSnapButton!.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+                self.mSnapButton!.layer.borderColor = UIColor.whiteColor().CGColor
+                }, completion: { (finished) -> Void in
+                    // Finished Code
+                    if self.camera!.recording {
+                        self.camera?.stopRecording({ (cam : LLSimpleCamera!, url : NSURL!, error : NSError!) -> Void in
+                            // Callback
+                            if error != nil {
+                                print(error)
+                            } else {
+                                self.removeCircle()
+                                // Prepare playback layer
+                                self.mURL = url
+                                self.mAVPlayer!.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: url))
+                                NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.mAVPlayer!.currentItem)
                                 
-                                self.mSnapButton!.hidden = true
-                                self.mFlashButton!.hidden = true
-                                self.mSwitchButton?.hidden = true
+                                self.camera?.stop()
+                                self.mAVPlayer!.play()
+                                
+                                self.mCancelButton!.alpha = 0.0
                                 self.mCancelButton!.hidden = false
+                                self.mDownloadButton!.alpha = 0.0
                                 self.mDownloadButton!.hidden = false
-                                self.mSnapButton!.frame = CGRectMake((self.view.frame.width - 70.0) / 2.0, self.view.frame.height - 75.0, 70.0, 70.0)
-                                self.mSnapButton!.layer.cornerRadius = self.mSnapButton!.frame.width / 2.0
-                                }, completion: { (completed) -> Void in
-                                    self.mSnapButton!.enabled = false
-                                    self.mFlashButton!.enabled = false
-                                    self.mSwitchButton?.enabled = false
-                                    self.mCancelButton!.enabled = true
-                                    self.mDownloadButton!.enabled = true
+                                self.mUploadButton!.alpha = 0.0
+                                self.mUploadButton!.hidden = false
+                                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                                    self.mAVPlayerLayer!.hidden = false
                                     
-                            })
-                        }
-                    })
-                }
-        })
+                                    self.mSnapButton!.alpha = 0.0
+                                    self.mFlashButton!.alpha = 0.0
+                                    self.mSwitchButton?.alpha = 0.0
+                                    
+                                    self.mCancelButton!.alpha = 1.0
+                                    self.mDownloadButton!.alpha = 1.0
+                                    self.mUploadButton!.alpha = 1.0
+                                    self.mSnapButton!.frame = CGRectMake((self.view.frame.width - 70.0) / 2.0, self.view.frame.height - 75.0, 70.0, 70.0)
+                                    self.mSnapButton!.layer.cornerRadius = 70.0 / 2.0
+                                    }, completion: { (completed) -> Void in
+                                        self.mSnapButton!.enabled = false
+                                        self.mFlashButton!.enabled = false
+                                        self.mSwitchButton?.enabled = false
+                                        self.mCancelButton!.enabled = true
+                                        self.mDownloadButton!.enabled = true
+                                        self.mUploadButton!.enabled = true
+                                        
+                                })
+                            }
+                        })
+                    }
+            })
+        }
+    }
+    
+    func timeOut() {
+        snapButtonReleased(mSnapButton!)
     }
     
     func flashButtonPressed(button : UIButton) {
@@ -212,11 +245,12 @@ class CameraController : AnalyticsViewController {
     
     func cancelButtonPressed(button : UIButton) {
         UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.mCancelButton?.hidden = true
-            self.mSnapButton?.hidden = false
-            self.mFlashButton?.hidden = false
-            self.mSwitchButton?.hidden = false
-            self.mDownloadButton?.hidden = true
+            self.mCancelButton?.alpha = 0.0
+            self.mSnapButton?.alpha = 1.0
+            self.mFlashButton?.alpha = 1.0
+            self.mSwitchButton?.alpha = 1.0
+            self.mDownloadButton?.alpha = 0.0
+            self.mUploadButton?.alpha = 0.0
             
             self.mAVPlayerLayer!.hidden = true
             }) { (finished) -> Void in
@@ -225,6 +259,7 @@ class CameraController : AnalyticsViewController {
                 self.mFlashButton?.enabled = true
                 self.mSwitchButton?.enabled = true
                 self.mDownloadButton?.enabled = false
+                self.mUploadButton?.enabled = false
                 
                 self.mAVPlayer!.pause()
                 self.camera!.start()
@@ -247,6 +282,10 @@ class CameraController : AnalyticsViewController {
                 })
             }
         })
+    }
+    
+    func uploadButtonPressed() {
+        UIAlertView(title: "Coming Soon", message: "Thanks for using Hourglass! The upload feature is coming soon for your videos to be featured! Try downloading your video to your device using the download arrow below for now.", delegate: nil, cancelButtonTitle: "Ok").show()
     }
     
     // MARK:Animation Helper Methods
@@ -290,7 +329,7 @@ class CameraController : AnalyticsViewController {
         drawAnimation.fromValue = NSNumber(double: 0.0)
         drawAnimation.toValue = NSNumber(double: fractionOfCircle)
         
-        drawAnimation.duration = 7.0
+        drawAnimation.duration = 15.0
         
         drawAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
