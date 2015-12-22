@@ -18,11 +18,21 @@ class RestaurantInformationView : UIView {
     var mRestaurantAddress = "1 Market St.\nSan Francisco, CA"
     var mRestaurantCategory = "Steakhouse"
     
+   
+    
+    var mBackgroundImage: UIImageView?
+    var mrecentImage1: UIImageView?
     var mNameLabel : UILabel?
-    var mPhoneLabel : UILabel?
+    var mRecentLabel: UILabel?
+    var mHoursLabel : UILabel?
     var mAddressLabel : UILabel?
     var mCategoryLabel : UILabel?
     var mMapView : MKMapView?
+    
+    var mMenuButton: UIButton?
+    var mCallButton: UIButton?
+    var mSubmitContentButton: UIButton?
+    
     
     var mRatingLabel : UILabel?
     
@@ -52,8 +62,13 @@ class RestaurantInformationView : UIView {
     
     func initializationImplementation() {
         self.backgroundColor = UIColor(red: CGFloat(245/255.0), green: CGFloat(245/255.0), blue: CGFloat(220/255.0), alpha: CGFloat(1.0))
-        horizontalOffset = self.frame.width / 6.0
+        horizontalOffset = self.frame.width / 12.0
         
+        //background 
+        mBackgroundImage = UIImageView(frame: CGRectMake(0, 0, self.frame.width, self.frame.height))
+        mBackgroundImage?.image = UIImage(named: "InformationBackground")
+        self.addSubview(mBackgroundImage!)
+            
         // Name Label
         mNameLabel = UILabel(frame: CGRectMake(
             CGFloat(0),
@@ -71,7 +86,7 @@ class RestaurantInformationView : UIView {
         // Category
         mCategoryLabel = UILabel(frame: CGRectMake(
             16,
-            mNameLabel!.frame.origin.y + mNameLabel!.frame.height,
+            mNameLabel!.frame.origin.y + mNameLabel!.frame.height * 0.7,
             self.frame.width - 32,
             CGFloat(32)))
         mCategoryLabel!.backgroundColor = UIColor.clearColor()
@@ -82,39 +97,47 @@ class RestaurantInformationView : UIView {
         mCategoryLabel!.adjustsFontSizeToFitWidth = true
         self.addSubview(mCategoryLabel!)
         
-        // Rating
-        mRatingLabel = UILabel(frame: CGRectMake(
-            horizontalOffset!,
-            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height + verticalPadding,
-            self.frame.width - (2 * horizontalOffset!),
-            self.frame.height * 3 / 4.0))
-        mRatingLabel!.backgroundColor = UIColor.clearColor()
-        mRatingLabel!.textColor = UIColor.blackColor()
-        mRatingLabel!.font = UIFont.systemFontOfSize(20)
-        mRatingLabel!.text = "Price Rating: " + String(mRestaurantPriceRating)
-        mRatingLabel!.adjustsFontSizeToFitWidth = true
-        mRatingLabel!.sizeToFit()
-        self.addSubview(mRatingLabel!)
+        //MenuButton
+        mMenuButton = UIButton(frame: CGRectMake(
+            15.0,
+            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
+            self.frame.width/4,
+            self.frame.width/4))
+        mMenuButton?.setImage(UIImage(named: "MenuButton"), forState: UIControlState.Normal)
+        mMenuButton!.center = CGPoint(x: self.frame.width/2, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        self.addSubview(mMenuButton!)
         
-        // Phone
-        mPhoneLabel = UILabel(frame: CGRectMake(
-            horizontalOffset!,
-            mRatingLabel!.frame.origin.y + mRatingLabel!.frame.height + verticalPadding,
-            self.frame.width - (2 * horizontalOffset!),
-            mRatingLabel!.frame.height))
-        mPhoneLabel!.backgroundColor = UIColor.clearColor()
-        mPhoneLabel!.textColor = UIColor.blackColor()
-        mPhoneLabel!.font = UIFont.systemFontOfSize(20)
-        mPhoneLabel!.text = mRestaurantPhoneNumber
-        mPhoneLabel!.adjustsFontSizeToFitWidth = true
-        self.addSubview(mPhoneLabel!)
+        
+        //Call Button
+        
+        mCallButton = UIButton(frame: CGRectMake(
+            15.0,
+            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
+            self.frame.width/4,
+            self.frame.width/4))
+        mCallButton?.setImage(UIImage(named: "CallButton"), forState: UIControlState.Normal)
+        mCallButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 0.40, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        self.addSubview(mCallButton!)
+        
+        //Submit Video/Photo Button
+        mSubmitContentButton = UIButton(frame: CGRectMake(
+            15.0,
+            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height * 0.5,
+            self.frame.width/4,
+            self.frame.width/4))
+        mSubmitContentButton?.setImage(UIImage(named: "CameraButton"), forState: UIControlState.Normal)
+        mSubmitContentButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 1.60, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        self.addSubview(mSubmitContentButton!)
+        
+        
         
         // Map -- PLACEHOLDER
         mMapView = MKMapView(frame: CGRectMake(
             horizontalOffset!,
-            self.frame.height / 2.0,
-            self.frame.width - (2 * horizontalOffset!),
+            self.frame.height * 0.7,
+            self.frame.width,
             self.frame.height / 4.0))
+        mMapView?.center = CGPoint( x:self.frame.size.width/2, y:self.frame.size.height * 0.80)
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(mRestaurantAddress) { (placemarks, error) -> Void in
             if let pmarks = placemarks as [CLPlacemark]! {
@@ -130,27 +153,97 @@ class RestaurantInformationView : UIView {
         }
         self.addSubview(mMapView!)
         
-//        let sampleMapView = UIImageView(frame: CGRectMake(
-//            horizontalOffset!,
-//            self.frame.height / 2.0,
-//            self.frame.width - (2 * horizontalOffset!),
-//            self.frame.height / 4.0))
-//        sampleMapView.image = UIImage(named: "SampleHiRez")
-//        self.addSubview(sampleMapView)
-        
-        // Address
-        mAddressLabel = UILabel(frame: CGRectMake(
+        // recently visited picture
+            mrecentImage1 = UIImageView(frame: CGRectMake(
             horizontalOffset!,
-            mMapView!.frame.origin.y + mMapView!.frame.height + verticalPadding,
+            mMapView!.frame.origin.y - (mMapView?.frame.height)!/3,
+            40,
+            40))
+            mrecentImage1?.image = UIImage(named: "Sample Headshot")
+            mrecentImage1!.layer.cornerRadius = mrecentImage1!.frame.size.height/2
+            mrecentImage1!.layer.masksToBounds = true
+            self.addSubview(mrecentImage1!)
+
+        // recently visted label
+        mRecentLabel = UILabel(frame: CGRectMake(
+            horizontalOffset!,
+            mrecentImage1!.frame.origin.y - mrecentImage1!.frame.height,
             self.frame.width - (2 * horizontalOffset!),
-            self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height) - verticalPadding))
-        mAddressLabel!.backgroundColor = UIColor.clearColor()
-        mAddressLabel!.textColor = UIColor.blackColor()
-        mAddressLabel!.font = UIFont.systemFontOfSize(18)
-        mAddressLabel!.text = mRestaurantAddress
-        mAddressLabel!.numberOfLines = 0
-        mAddressLabel!.sizeToFit()
-        self.addSubview(mAddressLabel!)
+            mrecentImage1!.frame.height))
+        mRecentLabel!.backgroundColor = UIColor.clearColor()
+        mRecentLabel!.textColor = UIColor.blackColor()
+        mRecentLabel!.font = UIFont.systemFontOfSize(20)
+        mRecentLabel!.text = "Recently Visited: "
+        mRecentLabel!.adjustsFontSizeToFitWidth = true
+        self.addSubview(mRecentLabel!)
+
+        
+        // hours
+        mHoursLabel = UILabel(frame: CGRectMake(
+            horizontalOffset!,
+            mRecentLabel!.frame.origin.y - mRecentLabel!.frame.height + verticalPadding/3,
+            self.frame.width - (2 * horizontalOffset!),
+            mRecentLabel!.frame.height))
+        mHoursLabel!.backgroundColor = UIColor.clearColor()
+        mHoursLabel!.textColor = UIColor.blackColor()
+        mHoursLabel!.font = UIFont.systemFontOfSize(20)
+        mHoursLabel!.text = "Hours Today: 8am - 11pm" //+ eventually add in hours
+        mHoursLabel!.adjustsFontSizeToFitWidth = true
+        self.addSubview(mHoursLabel!)
+        
+        // Rating
+        mRatingLabel = UILabel(frame: CGRectMake(
+            horizontalOffset!, mHoursLabel!.frame.origin.y - mHoursLabel!.frame.height/2,
+            self.frame.width - (2 * horizontalOffset!),
+            self.frame.height * 3 / 4.0))
+        mRatingLabel!.backgroundColor = UIColor.clearColor()
+        mRatingLabel!.textColor = UIColor.blackColor()
+        mRatingLabel!.font = UIFont.systemFontOfSize(20)
+        mRatingLabel!.text = "Price Rating: " + String(mRestaurantPriceRating)
+        mRatingLabel!.adjustsFontSizeToFitWidth = true
+        mRatingLabel!.sizeToFit()
+        self.addSubview(mRatingLabel!)
+        
+        
+//        // Address
+//        mAddressLabel = UILabel(frame: CGRectMake(
+//            horizontalOffset!,
+//            mMapView!.frame.origin.y - mMapView!.frame.height - verticalPadding,
+//            self.frame.width - (2 * horizontalOffset!),
+//            self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height) - verticalPadding))
+//        mAddressLabel!.backgroundColor = UIColor.clearColor()
+//        mAddressLabel!.textColor = UIColor.blackColor()
+//        mAddressLabel!.font = UIFont.systemFontOfSize(18)
+//        mAddressLabel!.text = mRestaurantAddress
+//        mAddressLabel!.numberOfLines = 0
+//        mAddressLabel!.sizeToFit()
+//        self.addSubview(mAddressLabel!)
+        
+        //navigate Button
+        var navigateButton:UIButton
+        navigateButton = UIButton(frame: CGRectMake(
+            15.0,
+            mMapView!.frame.origin.y + mMapView!.frame.height * 0.5,
+            self.frame.width/2,
+            self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
+            navigateButton.center = CGPoint(x: self.frame.width/4, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
+            navigateButton.backgroundColor = UIColor(red: 0.42, green: 0.66, blue: 0.31, alpha: 1)
+            navigateButton.setTitle("Navigate", forState: UIControlState.Normal)
+            navigateButton.layer.cornerRadius = 10
+            self.addSubview(navigateButton)
+        
+        //suggested parking button
+        var suggestParkingButton:UIButton
+        suggestParkingButton = UIButton(frame: CGRectMake(
+            15.0,
+            mMapView!.frame.origin.y + mMapView!.frame.height * 0.5,
+            self.frame.width/2,
+            self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
+        suggestParkingButton.center = CGPoint(x: self.frame.width * 0.75, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
+        suggestParkingButton.backgroundColor = UIColor(red: 0.0, green: 0, blue: 1, alpha: 1)
+        suggestParkingButton.setTitle("Suggested Parking", forState: UIControlState.Normal)
+        suggestParkingButton.layer.cornerRadius = 10
+        self.addSubview(suggestParkingButton)
     }
     
     func changeRestaurant(name: String, price: String, phone: String, address: String, category: String) {
@@ -172,7 +265,7 @@ class RestaurantInformationView : UIView {
         mRatingLabel?.text = "Price Rating: " + String(mRestaurantPriceRating)
         mRatingLabel?.sizeToFit()
         
-        mPhoneLabel?.text = mRestaurantPhoneNumber
+        //mPhoneLabel?.text = mRestaurantPhoneNumber
         
         mAddressLabel?.text = mRestaurantAddress
         

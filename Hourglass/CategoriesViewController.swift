@@ -65,7 +65,6 @@ class CategoriesViewController : UICollectionViewController , UICollectionViewDe
         return CGSize(width: (self.view.frame.width/2), height: (self.view.frame.width/2))
     }
     
-     //have to hardcode the action each cell does because I havent figured out how to manipulate these actions dynamically
     func imageTapped(sender: UITapGestureRecognizer) {
         // respond to tap for the index (sender.view.tag)
         AnalyticsController.logButtonPress("Category: " + categoryArray[sender.view!.tag])

@@ -122,9 +122,10 @@ class HourglassNavigationController : UIViewController, UISearchBarDelegate {
         mAppIcon = AnalyticsUIButton(type: .Custom)
         mAppIcon?.mAnalyticsButtonIdentifier = "App Icon"
         mAppIcon?.backgroundColor = UIColor.clearColor()
-        mAppIcon?.frame = CGRectMake(view.frame.width / 2.0 - (HourglassConstants.navBarHeight - 8.0) / 2.0, statusBarHeight + 4.0, HourglassConstants.navBarHeight - 8.0, HourglassConstants.navBarHeight - 8.0)
+        mAppIcon?.frame = CGRectMake((view.frame.width / 2.0 - (HourglassConstants.navBarHeight + 25.0) / 2.0) , statusBarHeight + 4.0, HourglassConstants.navBarHeight + 80.0, HourglassConstants.navBarHeight - 8.0)
+        mAppIcon?.center = CGPointMake(navView.frame.size.width/2, navView.frame.size.height * 0.70)
         // We need a new transparent version of the icon for here
-        mAppIcon?.setImage(UIImage(named: "icon"), forState: .Normal)
+        mAppIcon?.setImage(UIImage(named: "HourglassLogo"), forState: .Normal)
         navView.addSubview(mAppIcon!)
         
         mProfileButton = AnalyticsUIButton(type: .System)
