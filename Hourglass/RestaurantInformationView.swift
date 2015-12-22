@@ -28,6 +28,7 @@ class RestaurantInformationView : UIView {
     var mAddressLabel : UILabel?
     var mCategoryLabel : UILabel?
     var mMapView : MKMapView?
+    var mPlacemark : MKPlacemark?
     
     var mMenuButton: UIButton?
     var mCallButton: UIButton?
@@ -105,6 +106,7 @@ class RestaurantInformationView : UIView {
             self.frame.width/4))
         mMenuButton?.setImage(UIImage(named: "MenuButton"), forState: UIControlState.Normal)
         mMenuButton!.center = CGPoint(x: self.frame.width/2, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        mMenuButton?.addTarget(self, action: "openMenu", forControlEvents: .TouchUpInside)
         self.addSubview(mMenuButton!)
         
         
@@ -117,6 +119,7 @@ class RestaurantInformationView : UIView {
             self.frame.width/4))
         mCallButton?.setImage(UIImage(named: "CallButton"), forState: UIControlState.Normal)
         mCallButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 0.40, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        mCallButton!.addTarget(self, action: "call", forControlEvents: .TouchUpInside)
         self.addSubview(mCallButton!)
         
         //Submit Video/Photo Button
@@ -127,6 +130,7 @@ class RestaurantInformationView : UIView {
             self.frame.width/4))
         mSubmitContentButton?.setImage(UIImage(named: "CameraButton"), forState: UIControlState.Normal)
         mSubmitContentButton!.center = CGPoint(x: (mMenuButton?.center.x)! * 1.60, y: mCategoryLabel!.frame.origin.y + mMenuButton!.frame.height)
+        mSubmitContentButton!.addTarget(self, action: "submitContent", forControlEvents: .TouchUpInside)
         self.addSubview(mSubmitContentButton!)
         
         
@@ -144,10 +148,13 @@ class RestaurantInformationView : UIView {
                 if pmarks.count > 0 {
                     let topResult = pmarks[0]
                     let placemark = MKPlacemark(placemark: topResult)
+                    self.mPlacemark = placemark
+                    let newCenter = CLLocationCoordinate2DMake(placemark.coordinate.latitude + 0.01, placemark.coordinate.longitude)
                     
-                    let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 4000, 4000)
+                    let region = MKCoordinateRegionMakeWithDistance(newCenter, 4000, 4000)
                     self.mMapView?.setRegion(region, animated: true)
                     self.mMapView?.addAnnotation(placemark)
+                    self.mMapView?.selectAnnotation(self.mMapView!.annotations[0], animated: true)
                 }
             }
         }
@@ -226,11 +233,12 @@ class RestaurantInformationView : UIView {
             mMapView!.frame.origin.y + mMapView!.frame.height * 0.5,
             self.frame.width/2,
             self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
-            navigateButton.center = CGPoint(x: self.frame.width/4, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
-            navigateButton.backgroundColor = UIColor(red: 0.42, green: 0.66, blue: 0.31, alpha: 1)
-            navigateButton.setTitle("Navigate", forState: UIControlState.Normal)
-            navigateButton.layer.cornerRadius = 10
-            self.addSubview(navigateButton)
+        navigateButton.center = CGPoint(x: self.frame.width/4, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
+        navigateButton.backgroundColor = UIColor(red: 76.0/255.0, green: 218.0/255.0, blue: 101.0/255.0, alpha: 1)
+        navigateButton.setTitle("Navigate", forState: UIControlState.Normal)
+        navigateButton.layer.cornerRadius = 10
+        navigateButton.addTarget(self, action: "navigate", forControlEvents: .TouchUpInside)
+        self.addSubview(navigateButton)
         
         //suggested parking button
         var suggestParkingButton:UIButton
@@ -240,9 +248,10 @@ class RestaurantInformationView : UIView {
             self.frame.width/2,
             self.frame.height - (mMapView!.frame.origin.y + mMapView!.frame.height)))
         suggestParkingButton.center = CGPoint(x: self.frame.width * 0.75, y: mMapView!.frame.origin.y + mMapView!.frame.height + navigateButton.frame.height/2)
-        suggestParkingButton.backgroundColor = UIColor(red: 0.0, green: 0, blue: 1, alpha: 1)
+        suggestParkingButton.backgroundColor = HourglassConstants.logoColor
         suggestParkingButton.setTitle("Suggested Parking", forState: UIControlState.Normal)
         suggestParkingButton.layer.cornerRadius = 10
+        suggestParkingButton.addTarget(self, action: "suggestParking", forControlEvents: .TouchUpInside)
         self.addSubview(suggestParkingButton)
     }
     
@@ -258,8 +267,7 @@ class RestaurantInformationView : UIView {
         mCategoryLabel?.text = mRestaurantCategory
         
         mRatingLabel?.frame = CGRectMake(
-            horizontalOffset!,
-            mCategoryLabel!.frame.origin.y + mCategoryLabel!.frame.height + verticalPadding,
+            horizontalOffset!, mHoursLabel!.frame.origin.y - mHoursLabel!.frame.height/2,
             self.frame.width - (2 * horizontalOffset!),
             self.frame.height * 3 / 4.0)
         mRatingLabel?.text = "Price Rating: " + String(mRestaurantPriceRating)
@@ -276,7 +284,7 @@ class RestaurantInformationView : UIView {
                 if pmarks.count > 0 {
                     let topResult = pmarks[0]
                     let placemark = MKPlacemark(placemark: topResult)
-                    
+                    self.mPlacemark = placemark
                     let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 4000, 4000)
                     self.mMapView?.setRegion(region, animated: true)
                     self.mMapView?.addAnnotation(placemark)
@@ -284,5 +292,30 @@ class RestaurantInformationView : UIView {
             }
         }
         
+    }
+    
+    func navigate() {
+        let destinationItem = MKMapItem(placemark: mPlacemark!)
+        destinationItem.name = mRestaurantName
+        let options = NSDictionary(objects: [MKLaunchOptionsDirectionsModeDriving], forKeys: [MKLaunchOptionsDirectionsModeKey])
+        MKMapItem.openMapsWithItems([destinationItem], launchOptions: options as? [String : AnyObject])
+    }
+    
+    func suggestParking() {
+        UIAlertView(title: "Coming Soon", message: "Thanks for using Hourglass! The suggested parking feature is coming soon!", delegate: nil, cancelButtonTitle: "Ok").show()
+    }
+    
+    func openMenu() {
+        UIAlertView(title: "Coming Soon", message: "Thanks for using Hourglass! The menu feature is coming soon!", delegate: nil, cancelButtonTitle: "Ok").show()
+    }
+    
+    func call() {
+        var phoneNumber = mRestaurantPhoneNumber
+        phoneNumber = phoneNumber.stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        UIApplication.sharedApplication().openURL(NSURL(string: "tel://" + phoneNumber)!)
+    }
+    
+    func submitContent() {
+        UIAlertView(title: "Coming Soon", message: "Thanks for using Hourglass! The content submission and browsing feature is coming soon!", delegate: nil, cancelButtonTitle: "Ok").show()
     }
 }

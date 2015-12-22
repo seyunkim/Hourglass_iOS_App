@@ -149,6 +149,11 @@ class AccountCreationView : UIView, UITextFieldDelegate {
             PFUser.currentUser()?.signUpInBackgroundWithBlock({ (finished : Bool, error : NSError?) -> Void in
                 if error == nil {
                     PFUser.logInWithUsernameInBackground(self.mUserNameField!.text!, password: self.mPasswordField!.text!, block: { (newUser : PFUser?, logInError : NSError?) -> Void in
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        defaults.setValue(self.mUserNameField!.text!, forKey: "HGUsername")
+                        defaults.setValue(self.mPasswordField!.text!, forKey: "HGPassword")
+                        defaults.synchronize()
+                        
                         self.cleanupFirstStage()
                         self.setupSecondStage()
                     })

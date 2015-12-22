@@ -137,6 +137,7 @@ class CameraController : AnalyticsViewController {
                 self.mVideoNumber++
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(self.mVideoNumber, forKey: "hourglassVideoNumber")
+                defaults.synchronize()
                 
                 self.drawCircle()
         })

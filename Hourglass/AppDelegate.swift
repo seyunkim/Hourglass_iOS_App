@@ -21,19 +21,42 @@ class AppDelegate: AnalyticsAppDelegate {
             clientKey: "kaK4EbHU8hQTEthuY5nXdY6qHMTLudchiApfPHZN")
         
         if (PFUser.currentUser() == nil) {
-            PFAnonymousUtils.logInWithBlock { (user : PFUser?, error : NSError?) -> Void in
-                if let unwrappedUser = user as PFUser! {
-                    if let unwrappedObjectId = unwrappedUser.objectId as String! {
-                        AnalyticsController.sharedController.userName = unwrappedObjectId
-                        user!.setValue(false, forKey: "claimed")
-                        user!.setValue("Anonymous", forKey: "firstName")
-                        user!.setValue("User", forKey: "lastName")
-                        user!.saveInBackground()
-                        
-                        HourglassNavigationController.sharedInstance?.mProfileController?.reloadData()
-                    }
+            var found = false
+            let defaults = NSUserDefaults.standardUserDefaults()
+            if let username = defaults.stringForKey("HGUsername") {
+                if let password = defaults.stringForKey("HGPassword") {
+                    PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error: NSError?) -> Void in
+                        if let unwrappedUser = user as PFUser! {
+                            if let unwrappedObjectId = unwrappedUser.objectId as String! {
+                                AnalyticsController.sharedController.userName = unwrappedObjectId
+                                
+                                HourglassNavigationController.sharedInstance?.mProfileController?.reloadData()
+                            }
+                        } else {
+                            print(error)
+                        }
+                    })
                 } else {
-                    print(error)
+                    found = true
+                }
+            } else {
+                found = true
+            }
+            if found {
+                PFAnonymousUtils.logInWithBlock { (user : PFUser?, error : NSError?) -> Void in
+                    if let unwrappedUser = user as PFUser! {
+                        if let unwrappedObjectId = unwrappedUser.objectId as String! {
+                            AnalyticsController.sharedController.userName = unwrappedObjectId
+                            user!.setValue(false, forKey: "claimed")
+                            user!.setValue("Anonymous", forKey: "firstName")
+                            user!.setValue("User", forKey: "lastName")
+                            user!.saveInBackground()
+                            
+                            HourglassNavigationController.sharedInstance?.mProfileController?.reloadData()
+                        }
+                    } else {
+                        print(error)
+                    }
                 }
             }
             

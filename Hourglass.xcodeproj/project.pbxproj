@@ -340,10 +340,11 @@
 				TargetAttributes = {
 					5ED6134D1B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 2PZRPD9794;
+						DevelopmentTeam = 7NUPNZKJRB;
 					};
 					5ED613621B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7NUPNZKJRB;
 						TestTargetID = 5ED6134D1B9681DE00D2E8FC;
 					};
 				};
@@ -588,7 +589,7 @@
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
@@ -608,7 +609,7 @@
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
@@ -620,6 +621,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -631,6 +634,7 @@
 				INFOPLIST_FILE = HourglassTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hourglass.app/Hourglass";
 			};
 			name = Debug;
@@ -639,6 +643,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -646,6 +652,7 @@
 				INFOPLIST_FILE = HourglassTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hourglass.app/Hourglass";
 			};
 			name = Release;
