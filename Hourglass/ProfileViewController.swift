@@ -34,6 +34,7 @@ class ProfileViewController : AnalyticsViewController, UITableViewDelegate, UITa
         mProfilePicture!.layer.borderWidth = CGFloat(3.0)
         mProfilePicture!.layer.borderColor = UIColor.darkGrayColor().CGColor
         mProfilePicture!.layer.masksToBounds = true
+        mProfilePicture!.userInteractionEnabled = true
         view.addSubview(mProfilePicture!)
         
         let profileTapRec = UITapGestureRecognizer(target: self, action: "photoTapped")

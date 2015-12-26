@@ -1,0 +1,686 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2410F7811C2B191C00FF547E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7801C2B191C00FF547E /* AppDelegate.swift */; };
+		2410F7861C2B191C00FF547E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2410F7841C2B191C00FF547E /* Main.storyboard */; };
+		2410F7881C2B191C00FF547E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2410F7871C2B191C00FF547E /* Assets.xcassets */; };
+		2410F78B1C2B191C00FF547E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2410F7891C2B191C00FF547E /* LaunchScreen.storyboard */; };
+		2410F7961C2B191C00FF547E /* Hourglass_AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7951C2B191C00FF547E /* Hourglass_AnalyticsTests.swift */; };
+		2410F7A11C2B191C00FF547E /* Hourglass_AnalyticsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7A01C2B191C00FF547E /* Hourglass_AnalyticsUITests.swift */; };
+		2410F7B51C2B1B0500FF547E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7AF1C2B1B0500FF547E /* Bolts.framework */; };
+		2410F7B61C2B1B0500FF547E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7B01C2B1B0500FF547E /* Parse.framework */; };
+		2410F7B71C2B1B0500FF547E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7B11C2B1B0500FF547E /* ParseFacebookUtils.framework */; };
+		2410F7B81C2B1B0500FF547E /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7B21C2B1B0500FF547E /* ParseFacebookUtilsV4.framework */; };
+		2410F7B91C2B1B0500FF547E /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7B31C2B1B0500FF547E /* ParseTwitterUtils.framework */; };
+		2410F7BA1C2B1B0500FF547E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7B41C2B1B0500FF547E /* ParseUI.framework */; };
+		2410F7BC1C2B1CCD00FF547E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7BB1C2B1CCD00FF547E /* AudioToolbox.framework */; };
+		2410F7BE1C2B1CD900FF547E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7BD1C2B1CD900FF547E /* CFNetwork.framework */; };
+		2410F7C01C2B1CE200FF547E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7BF1C2B1CE200FF547E /* CoreGraphics.framework */; };
+		2410F7C21C2B1CEB00FF547E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7C11C2B1CEB00FF547E /* CoreLocation.framework */; };
+		2410F7C41C2B1CF600FF547E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7C31C2B1CF600FF547E /* QuartzCore.framework */; };
+		2410F7C61C2B1D0000FF547E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7C51C2B1D0000FF547E /* Security.framework */; };
+		2410F7C81C2B1D0800FF547E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7C71C2B1D0800FF547E /* StoreKit.framework */; };
+		2410F7CA1C2B1D1200FF547E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7C91C2B1D1200FF547E /* SystemConfiguration.framework */; };
+		2410F7CC1C2B1D1C00FF547E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7CB1C2B1D1C00FF547E /* libz.tbd */; };
+		2410F7CE1C2B1D2800FF547E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2410F7CD1C2B1D2800FF547E /* libsqlite3.tbd */; };
+		2410F7D01C2B1EDE00FF547E /* HANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7CF1C2B1EDE00FF547E /* HANavigationController.swift */; };
+		2410F7D21C2B213500FF547E /* HAConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7D11C2B213500FF547E /* HAConstants.swift */; };
+		2410F7D91C2B21B400FF547E /* HACameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7D81C2B21B400FF547E /* HACameraController.swift */; };
+		2410F7DB1C2B236500FF547E /* HAProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7DA1C2B236500FF547E /* HAProfileViewController.swift */; };
+		2410F7DD1C2B246D00FF547E /* HAProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7DC1C2B246D00FF547E /* HAProfileCell.swift */; };
+		2410F7DF1C2B24B000FF547E /* HAAccountCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7DE1C2B24B000FF547E /* HAAccountCreationView.swift */; };
+		2410F7E11C2B258A00FF547E /* HACategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E01C2B258A00FF547E /* HACategoriesViewController.swift */; };
+		2410F7E31C2B26AB00FF547E /* HAVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E21C2B26AB00FF547E /* HAVideoPlayerController.swift */; };
+		2410F7E51C2B276400FF547E /* HAVideoPlayerScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E41C2B276400FF547E /* HAVideoPlayerScrollView.swift */; };
+		2410F7E71C2B280800FF547E /* HAVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E61C2B280800FF547E /* HAVideoPlayerView.swift */; };
+		2410F7E91C2B288F00FF547E /* HARestaurantPromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E81C2B288F00FF547E /* HARestaurantPromoView.swift */; };
+		2410F7EB1C2B28CE00FF547E /* HARestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7EA1C2B28CE00FF547E /* HARestaurantInformationView.swift */; };
+		2410F7EF1C2F200100FF547E /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2410F7921C2B191C00FF547E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2410F7751C2B191C00FF547E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2410F77C1C2B191C00FF547E;
+			remoteInfo = "Hourglass Analytics";
+		};
+		2410F79D1C2B191C00FF547E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2410F7751C2B191C00FF547E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2410F77C1C2B191C00FF547E;
+			remoteInfo = "Hourglass Analytics";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2410F77D1C2B191C00FF547E /* Hourglass Analytics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hourglass Analytics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2410F7801C2B191C00FF547E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2410F7851C2B191C00FF547E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2410F7871C2B191C00FF547E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2410F78A1C2B191C00FF547E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2410F78C1C2B191C00FF547E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2410F7911C2B191C00FF547E /* Hourglass AnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hourglass AnalyticsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2410F7951C2B191C00FF547E /* Hourglass_AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hourglass_AnalyticsTests.swift; sourceTree = "<group>"; };
+		2410F7971C2B191C00FF547E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2410F79C1C2B191C00FF547E /* Hourglass AnalyticsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hourglass AnalyticsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2410F7A01C2B191C00FF547E /* Hourglass_AnalyticsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hourglass_AnalyticsUITests.swift; sourceTree = "<group>"; };
+		2410F7A21C2B191C00FF547E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2410F7AF1C2B1B0500FF547E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		2410F7B01C2B1B0500FF547E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		2410F7B11C2B1B0500FF547E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		2410F7B21C2B1B0500FF547E /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		2410F7B31C2B1B0500FF547E /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
+		2410F7B41C2B1B0500FF547E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		2410F7BB1C2B1CCD00FF547E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2410F7BD1C2B1CD900FF547E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		2410F7BF1C2B1CE200FF547E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2410F7C11C2B1CEB00FF547E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2410F7C31C2B1CF600FF547E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2410F7C51C2B1D0000FF547E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2410F7C71C2B1D0800FF547E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2410F7C91C2B1D1200FF547E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2410F7CB1C2B1D1C00FF547E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2410F7CD1C2B1D2800FF547E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		2410F7CF1C2B1EDE00FF547E /* HANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HANavigationController.swift; sourceTree = "<group>"; };
+		2410F7D11C2B213500FF547E /* HAConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAConstants.swift; sourceTree = "<group>"; };
+		2410F7D81C2B21B400FF547E /* HACameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HACameraController.swift; sourceTree = "<group>"; };
+		2410F7DA1C2B236500FF547E /* HAProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAProfileViewController.swift; sourceTree = "<group>"; };
+		2410F7DC1C2B246D00FF547E /* HAProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAProfileCell.swift; sourceTree = "<group>"; };
+		2410F7DE1C2B24B000FF547E /* HAAccountCreationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAAccountCreationView.swift; sourceTree = "<group>"; };
+		2410F7E01C2B258A00FF547E /* HACategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HACategoriesViewController.swift; sourceTree = "<group>"; };
+		2410F7E21C2B26AB00FF547E /* HAVideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAVideoPlayerController.swift; sourceTree = "<group>"; };
+		2410F7E41C2B276400FF547E /* HAVideoPlayerScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAVideoPlayerScrollView.swift; sourceTree = "<group>"; };
+		2410F7E61C2B280800FF547E /* HAVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAVideoPlayerView.swift; sourceTree = "<group>"; };
+		2410F7E81C2B288F00FF547E /* HARestaurantPromoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HARestaurantPromoView.swift; sourceTree = "<group>"; };
+		2410F7EA1C2B28CE00FF547E /* HARestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HARestaurantInformationView.swift; sourceTree = "<group>"; };
+		2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2410F77A1C2B191C00FF547E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2410F7CE1C2B1D2800FF547E /* libsqlite3.tbd in Frameworks */,
+				2410F7CC1C2B1D1C00FF547E /* libz.tbd in Frameworks */,
+				2410F7CA1C2B1D1200FF547E /* SystemConfiguration.framework in Frameworks */,
+				2410F7C81C2B1D0800FF547E /* StoreKit.framework in Frameworks */,
+				2410F7C61C2B1D0000FF547E /* Security.framework in Frameworks */,
+				2410F7C41C2B1CF600FF547E /* QuartzCore.framework in Frameworks */,
+				2410F7C21C2B1CEB00FF547E /* CoreLocation.framework in Frameworks */,
+				2410F7C01C2B1CE200FF547E /* CoreGraphics.framework in Frameworks */,
+				2410F7BE1C2B1CD900FF547E /* CFNetwork.framework in Frameworks */,
+				2410F7BC1C2B1CCD00FF547E /* AudioToolbox.framework in Frameworks */,
+				2410F7BA1C2B1B0500FF547E /* ParseUI.framework in Frameworks */,
+				2410F7B61C2B1B0500FF547E /* Parse.framework in Frameworks */,
+				2410F7B51C2B1B0500FF547E /* Bolts.framework in Frameworks */,
+				2410F7B81C2B1B0500FF547E /* ParseFacebookUtilsV4.framework in Frameworks */,
+				2410F7B71C2B1B0500FF547E /* ParseFacebookUtils.framework in Frameworks */,
+				2410F7B91C2B1B0500FF547E /* ParseTwitterUtils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F78E1C2B191C00FF547E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F7991C2B191C00FF547E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2410F7741C2B191C00FF547E = {
+			isa = PBXGroup;
+			children = (
+				2410F7AE1C2B1AF800FF547E /* Frameworks */,
+				2410F77F1C2B191C00FF547E /* Hourglass Analytics */,
+				2410F7941C2B191C00FF547E /* Hourglass AnalyticsTests */,
+				2410F79F1C2B191C00FF547E /* Hourglass AnalyticsUITests */,
+				2410F77E1C2B191C00FF547E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2410F77E1C2B191C00FF547E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2410F77D1C2B191C00FF547E /* Hourglass Analytics.app */,
+				2410F7911C2B191C00FF547E /* Hourglass AnalyticsTests.xctest */,
+				2410F79C1C2B191C00FF547E /* Hourglass AnalyticsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2410F77F1C2B191C00FF547E /* Hourglass Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7ED1C2F1FD500FF547E /* Miscellaneous */,
+				2410F7D71C2B21A200FF547E /* Categories */,
+				2410F7D61C2B219B00FF547E /* Profile */,
+				2410F7D51C2B219000FF547E /* Restaurant */,
+				2410F7D41C2B218C00FF547E /* Camera */,
+				2410F7D31C2B218600FF547E /* Navigation */,
+				2410F7841C2B191C00FF547E /* Main.storyboard */,
+				2410F7871C2B191C00FF547E /* Assets.xcassets */,
+				2410F7891C2B191C00FF547E /* LaunchScreen.storyboard */,
+				2410F78C1C2B191C00FF547E /* Info.plist */,
+			);
+			path = "Hourglass Analytics";
+			sourceTree = "<group>";
+		};
+		2410F7941C2B191C00FF547E /* Hourglass AnalyticsTests */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7951C2B191C00FF547E /* Hourglass_AnalyticsTests.swift */,
+				2410F7971C2B191C00FF547E /* Info.plist */,
+			);
+			path = "Hourglass AnalyticsTests";
+			sourceTree = "<group>";
+		};
+		2410F79F1C2B191C00FF547E /* Hourglass AnalyticsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7A01C2B191C00FF547E /* Hourglass_AnalyticsUITests.swift */,
+				2410F7A21C2B191C00FF547E /* Info.plist */,
+			);
+			path = "Hourglass AnalyticsUITests";
+			sourceTree = "<group>";
+		};
+		2410F7AE1C2B1AF800FF547E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7CD1C2B1D2800FF547E /* libsqlite3.tbd */,
+				2410F7CB1C2B1D1C00FF547E /* libz.tbd */,
+				2410F7C91C2B1D1200FF547E /* SystemConfiguration.framework */,
+				2410F7C71C2B1D0800FF547E /* StoreKit.framework */,
+				2410F7C51C2B1D0000FF547E /* Security.framework */,
+				2410F7C31C2B1CF600FF547E /* QuartzCore.framework */,
+				2410F7C11C2B1CEB00FF547E /* CoreLocation.framework */,
+				2410F7BF1C2B1CE200FF547E /* CoreGraphics.framework */,
+				2410F7BD1C2B1CD900FF547E /* CFNetwork.framework */,
+				2410F7BB1C2B1CCD00FF547E /* AudioToolbox.framework */,
+				2410F7AF1C2B1B0500FF547E /* Bolts.framework */,
+				2410F7B01C2B1B0500FF547E /* Parse.framework */,
+				2410F7B11C2B1B0500FF547E /* ParseFacebookUtils.framework */,
+				2410F7B21C2B1B0500FF547E /* ParseFacebookUtilsV4.framework */,
+				2410F7B31C2B1B0500FF547E /* ParseTwitterUtils.framework */,
+				2410F7B41C2B1B0500FF547E /* ParseUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2410F7D31C2B218600FF547E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7801C2B191C00FF547E /* AppDelegate.swift */,
+				2410F7CF1C2B1EDE00FF547E /* HANavigationController.swift */,
+				2410F7D11C2B213500FF547E /* HAConstants.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		2410F7D41C2B218C00FF547E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7D81C2B21B400FF547E /* HACameraController.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		2410F7D51C2B219000FF547E /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7E21C2B26AB00FF547E /* HAVideoPlayerController.swift */,
+				2410F7E41C2B276400FF547E /* HAVideoPlayerScrollView.swift */,
+				2410F7E61C2B280800FF547E /* HAVideoPlayerView.swift */,
+				2410F7E81C2B288F00FF547E /* HARestaurantPromoView.swift */,
+				2410F7EA1C2B28CE00FF547E /* HARestaurantInformationView.swift */,
+			);
+			name = Restaurant;
+			sourceTree = "<group>";
+		};
+		2410F7D61C2B219B00FF547E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7DA1C2B236500FF547E /* HAProfileViewController.swift */,
+				2410F7DC1C2B246D00FF547E /* HAProfileCell.swift */,
+				2410F7DE1C2B24B000FF547E /* HAAccountCreationView.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		2410F7D71C2B21A200FF547E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7E01C2B258A00FF547E /* HACategoriesViewController.swift */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		2410F7ED1C2F1FD500FF547E /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */,
+			);
+			name = Miscellaneous;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2410F77C1C2B191C00FF547E /* Hourglass Analytics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2410F7A51C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass Analytics" */;
+			buildPhases = (
+				2410F7791C2B191C00FF547E /* Sources */,
+				2410F77A1C2B191C00FF547E /* Frameworks */,
+				2410F77B1C2B191C00FF547E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hourglass Analytics";
+			productName = "Hourglass Analytics";
+			productReference = 2410F77D1C2B191C00FF547E /* Hourglass Analytics.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2410F7901C2B191C00FF547E /* Hourglass AnalyticsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2410F7A81C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsTests" */;
+			buildPhases = (
+				2410F78D1C2B191C00FF547E /* Sources */,
+				2410F78E1C2B191C00FF547E /* Frameworks */,
+				2410F78F1C2B191C00FF547E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2410F7931C2B191C00FF547E /* PBXTargetDependency */,
+			);
+			name = "Hourglass AnalyticsTests";
+			productName = "Hourglass AnalyticsTests";
+			productReference = 2410F7911C2B191C00FF547E /* Hourglass AnalyticsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2410F79B1C2B191C00FF547E /* Hourglass AnalyticsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2410F7AB1C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsUITests" */;
+			buildPhases = (
+				2410F7981C2B191C00FF547E /* Sources */,
+				2410F7991C2B191C00FF547E /* Frameworks */,
+				2410F79A1C2B191C00FF547E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2410F79E1C2B191C00FF547E /* PBXTargetDependency */,
+			);
+			name = "Hourglass AnalyticsUITests";
+			productName = "Hourglass AnalyticsUITests";
+			productReference = 2410F79C1C2B191C00FF547E /* Hourglass AnalyticsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2410F7751C2B191C00FF547E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Patrick Bradshaw";
+				TargetAttributes = {
+					2410F77C1C2B191C00FF547E = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 7NUPNZKJRB;
+					};
+					2410F7901C2B191C00FF547E = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2410F77C1C2B191C00FF547E;
+					};
+					2410F79B1C2B191C00FF547E = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2410F77C1C2B191C00FF547E;
+					};
+				};
+			};
+			buildConfigurationList = 2410F7781C2B191C00FF547E /* Build configuration list for PBXProject "Hourglass Analytics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2410F7741C2B191C00FF547E;
+			productRefGroup = 2410F77E1C2B191C00FF547E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2410F77C1C2B191C00FF547E /* Hourglass Analytics */,
+				2410F7901C2B191C00FF547E /* Hourglass AnalyticsTests */,
+				2410F79B1C2B191C00FF547E /* Hourglass AnalyticsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2410F77B1C2B191C00FF547E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2410F78B1C2B191C00FF547E /* LaunchScreen.storyboard in Resources */,
+				2410F7881C2B191C00FF547E /* Assets.xcassets in Resources */,
+				2410F7861C2B191C00FF547E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F78F1C2B191C00FF547E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F79A1C2B191C00FF547E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2410F7791C2B191C00FF547E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2410F7D91C2B21B400FF547E /* HACameraController.swift in Sources */,
+				2410F7E31C2B26AB00FF547E /* HAVideoPlayerController.swift in Sources */,
+				2410F7E51C2B276400FF547E /* HAVideoPlayerScrollView.swift in Sources */,
+				2410F7DB1C2B236500FF547E /* HAProfileViewController.swift in Sources */,
+				2410F7E11C2B258A00FF547E /* HACategoriesViewController.swift in Sources */,
+				2410F7E91C2B288F00FF547E /* HARestaurantPromoView.swift in Sources */,
+				2410F7D01C2B1EDE00FF547E /* HANavigationController.swift in Sources */,
+				2410F7DF1C2B24B000FF547E /* HAAccountCreationView.swift in Sources */,
+				2410F7EF1C2F200100FF547E /* UIViewExtensions.swift in Sources */,
+				2410F7EB1C2B28CE00FF547E /* HARestaurantInformationView.swift in Sources */,
+				2410F7D21C2B213500FF547E /* HAConstants.swift in Sources */,
+				2410F7DD1C2B246D00FF547E /* HAProfileCell.swift in Sources */,
+				2410F7E71C2B280800FF547E /* HAVideoPlayerView.swift in Sources */,
+				2410F7811C2B191C00FF547E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F78D1C2B191C00FF547E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2410F7961C2B191C00FF547E /* Hourglass_AnalyticsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2410F7981C2B191C00FF547E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2410F7A11C2B191C00FF547E /* Hourglass_AnalyticsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2410F7931C2B191C00FF547E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2410F77C1C2B191C00FF547E /* Hourglass Analytics */;
+			targetProxy = 2410F7921C2B191C00FF547E /* PBXContainerItemProxy */;
+		};
+		2410F79E1C2B191C00FF547E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2410F77C1C2B191C00FF547E /* Hourglass Analytics */;
+			targetProxy = 2410F79D1C2B191C00FF547E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2410F7841C2B191C00FF547E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2410F7851C2B191C00FF547E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2410F7891C2B191C00FF547E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2410F78A1C2B191C00FF547E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2410F7A31C2B191C00FF547E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2410F7A41C2B191C00FF547E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2410F7A61C2B191C00FF547E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Hourglass Analytics/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.hourglassanalytics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2410F7A71C2B191C00FF547E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Hourglass Analytics/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.hourglassanalytics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2410F7A91C2B191C00FF547E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Hourglass AnalyticsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hourglass.Hourglass-AnalyticsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hourglass Analytics.app/Hourglass Analytics";
+			};
+			name = Debug;
+		};
+		2410F7AA1C2B191C00FF547E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Hourglass AnalyticsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hourglass.Hourglass-AnalyticsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hourglass Analytics.app/Hourglass Analytics";
+			};
+			name = Release;
+		};
+		2410F7AC1C2B191C00FF547E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Hourglass AnalyticsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hourglass.Hourglass-AnalyticsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Hourglass Analytics";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		2410F7AD1C2B191C00FF547E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Hourglass AnalyticsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hourglass.Hourglass-AnalyticsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Hourglass Analytics";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2410F7781C2B191C00FF547E /* Build configuration list for PBXProject "Hourglass Analytics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2410F7A31C2B191C00FF547E /* Debug */,
+				2410F7A41C2B191C00FF547E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2410F7A51C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass Analytics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2410F7A61C2B191C00FF547E /* Debug */,
+				2410F7A71C2B191C00FF547E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2410F7A81C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2410F7A91C2B191C00FF547E /* Debug */,
+				2410F7AA1C2B191C00FF547E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2410F7AB1C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2410F7AC1C2B191C00FF547E /* Debug */,
+				2410F7AD1C2B191C00FF547E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2410F7751C2B191C00FF547E /* Project object */;
+}

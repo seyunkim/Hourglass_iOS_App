@@ -8,6 +8,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: AnalyticsAppDelegate {
@@ -17,6 +19,8 @@ class AppDelegate: AnalyticsAppDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        Fabric.with([Crashlytics.self])
+        
         Parse.setApplicationId("0j36fiUUAH1Y0IFjuTA3fljjmUT3Wh3hU3srLX1k",
             clientKey: "kaK4EbHU8hQTEthuY5nXdY6qHMTLudchiApfPHZN")
         

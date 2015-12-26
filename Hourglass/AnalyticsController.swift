@@ -34,6 +34,9 @@ class AnalyticsController {
     var userName : String
     var topViewController : AnalyticsViewController?
     
+    var screenWidth : Double = 0.0
+    var screenHeight : Double = 0.0
+    
     // MARK: Initialization function
     init() {
         userName = "Unknown"
@@ -98,7 +101,9 @@ class AnalyticsController {
         request.setValue("xZPc6ujTypgTXV0lnd72EW7MLEU9V0f0D6SVNrQG", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         do {
-            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen, "xPos":xPos, "yPos":yPos]
+            let xPerc = Double(xPos) / AnalyticsController.sharedController.screenWidth
+            let yPerc = Double(yPos) / AnalyticsController.sharedController.screenHeight
+            let params = ["time":timeFormatter.stringFromDate(time), "userName":AnalyticsController.sharedController.userName, "screenName":screen, "xPos":xPerc, "yPos":yPerc]
             request.HTTPMethod = "POST"
             let dataSTR = NSString(data: try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions()), encoding: NSUTF8StringEncoding)
             request.HTTPBody = dataSTR?.dataUsingEncoding(NSUTF8StringEncoding)

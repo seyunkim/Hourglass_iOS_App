@@ -315,6 +315,7 @@
 				5ED6134B1B9681DE00D2E8FC /* Frameworks */,
 				5ED6134C1B9681DE00D2E8FC /* Resources */,
 				3A3609EFE13714254A902E21 /* Copy Pods Resources */,
+				2410F7EC1C2B735600FF547E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -351,11 +352,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
-				ORGANIZATIONNAME = "Seyun Kim";
+				ORGANIZATIONNAME = Hourglass;
 				TargetAttributes = {
 					5ED6134D1B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 2PZRPD9794;
+						DevelopmentTeam = 7NUPNZKJRB;
 					};
 					5ED613621B9681DE00D2E8FC = {
 						CreatedOnToolsVersion = 6.4;
@@ -416,6 +417,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2410F7EC1C2B735600FF547E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" fd71b0e6f6ee1caac21e03eae6f5b2a5d7a6b0f0 9b95f5017a1df3fa2afe43680f1b5ee34e9b5498a5f3c8b3293a7c83b6d9369f";
+		};
 		3A3609EFE13714254A902E21 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,9 +623,9 @@
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "59f771d8-e6ed-4172-9521-ff3d2e74e66a";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -629,9 +643,9 @@
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discoveryusc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hourglass.discovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "59f771d8-e6ed-4172-9521-ff3d2e74e66a";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hourglass/Hourglass-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

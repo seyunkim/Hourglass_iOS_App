@@ -18,6 +18,8 @@ class VideoPlayerController : AnalyticsViewController {
         super.viewDidLoad()
         
         screenName = "VideoPlayerController"
+        AnalyticsController.sharedController.screenHeight = Double(view.frame.size.height)
+        AnalyticsController.sharedController.screenWidth = Double(view.frame.size.width)
         
         var frame = self.view.frame
         if (frame.origin.y == 0) {

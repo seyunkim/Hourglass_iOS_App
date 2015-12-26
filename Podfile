@@ -1,3 +1,5 @@
 platform :ios, '8.0'
 pod 'SpinKit', '~> 1.1'
 pod 'Parse'
+pod 'Fabric'
+pod 'Crashlytics'
