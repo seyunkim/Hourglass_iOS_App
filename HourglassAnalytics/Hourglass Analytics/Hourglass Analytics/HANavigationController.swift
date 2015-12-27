@@ -36,6 +36,11 @@ class HANavigationController : UIViewController {
     var mSpecialEventsLoaded = false
     var mTapsLoaded = false
     
+    var mStatsView : HAStatsTableView?
+    var mStatsUp = false
+    
+    var mLoadingView : UIView?
+    
     
     // MARK: Initialization methods
     required init?(coder aDecoder: NSCoder) {
@@ -104,8 +109,7 @@ class HANavigationController : UIViewController {
         mAppIcon?.frame = CGRectMake((view.frame.width / 2.0 - (HAConstants.navBarHeight + 25.0) / 2.0) , statusBarHeight + 4.0, HAConstants.navBarHeight + 80.0, HAConstants.navBarHeight - 8.0)
         mAppIcon?.center = CGPointMake(navView.frame.size.width/2, navView.frame.size.height * 0.70)
         mAppIcon?.setTitle("Hourglass", forState: .Normal)
-        // We need a new transparent version of the icon for here
-        //mAppIcon?.setImage(UIImage(named: "HourglassLogo"), forState: .Normal)
+        mAppIcon?.addTarget(self, action: "iconPressed", forControlEvents: .TouchUpInside)
         navView.addSubview(mAppIcon!)
         
         mProfileButton = UIButton(type: .System)
@@ -132,6 +136,8 @@ class HANavigationController : UIViewController {
         rightOffscreenFrame.origin.x += subFrame!.width
         var topOffsetFrame = subFrame!
         topOffsetFrame.origin.y -= subFrame!.height
+        var bottomOffsetFrame = subFrame!
+        bottomOffsetFrame.origin.y += subFrame!.height
         
         self.addChildViewController(mCategoriesController!)
         mCategoriesController!.view.frame = rightOffscreenFrame
@@ -179,7 +185,14 @@ class HANavigationController : UIViewController {
         mCategoriesLabel?.textAlignment = .Center
         pageTitleView.addSubview(mCategoriesLabel!)
         
+        mStatsView = HAStatsTableView(frame: bottomOffsetFrame)
+        mStatsView?.delegate = mStatsView!
+        mStatsView?.dataSource = mStatsView!
+        view.addSubview(mStatsView!)
+        
         view.bringSubviewToFront(navView)
+        
+        showLoading()
     }
     
     // MARK: Navigation Methods
@@ -391,6 +404,21 @@ class HANavigationController : UIViewController {
         }
     }
     
+    func iconPressed() {
+        if mStatsUp {
+            var bottomOffsetFrame = subFrame!
+            bottomOffsetFrame.origin.y += subFrame!.height
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.mStatsView?.frame = bottomOffsetFrame
+            })
+        } else {
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.mStatsView?.frame = self.subFrame!
+            })
+        }
+        mStatsUp = !mStatsUp
+    }
+    
     // MARK: Search Functions
     func openSearch() {
         
@@ -441,6 +469,9 @@ class HANavigationController : UIViewController {
         reloadButtons()
         reloadScreenBackgrounds()
         reloadTaps()
+        reloadStats()
+        
+        hideLoading()
     }
     
     internal func reloadButtons() {
@@ -482,5 +513,29 @@ class HANavigationController : UIViewController {
         mCameraController?.reloadTaps()
         mProfileController?.reloadTaps()
         mCategoriesController?.reloadTaps()
+    }
+    
+    internal func reloadStats() {
+        mStatsView?.reloadData()
+    }
+    
+    // MARK: Loading Functions
+    internal func showLoading() {
+        mLoadingView = UIView(frame: subFrame!)
+        
+        let loadingHeight = CGFloat(60.0)
+        let loadingLabel = UILabel(frame: CGRectMake(0, mLoadingView!.frame.height / 2.0 - loadingHeight / 2.0, mLoadingView!.frame.width, loadingHeight))
+        loadingLabel.textAlignment = .Center
+        loadingLabel.text = "Loading..."
+        loadingLabel.adjustsFontSizeToFitWidth = true
+        loadingLabel.backgroundColor = UIColor.blackColor()
+        loadingLabel.textColor = UIColor.whiteColor()
+        mLoadingView?.addSubview(loadingLabel)
+        
+        view.addSubview(mLoadingView!)
+    }
+    
+    internal func hideLoading() {
+        mLoadingView?.removeFromSuperview()
     }
 }

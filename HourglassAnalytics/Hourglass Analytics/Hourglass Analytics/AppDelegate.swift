@@ -70,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             allObjects.addObjectsFromArray(newObjects!)
                             
                             for object in allObjects {
+                                HAConstants.totalButtonTaps += 1
                                 let buttonPress = object as! PFObject
                                 var number = NSNumber(int: 1)
                                 if HAConstants.buttonTapDictionary[buttonPress.valueForKey("buttonIdentifier") as! String] != nil {
@@ -87,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                 } else {
                     for object in allObjects {
+                        HAConstants.totalButtonTaps += 1
                         let buttonPress = object as! PFObject
                         var number = NSNumber(int: 1)
                         if HAConstants.buttonTapDictionary[buttonPress.valueForKey("buttonIdentifier") as! String] != nil {
@@ -123,6 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             allObjects.addObjectsFromArray(newObjects!)
                             
                             for object in allObjects {
+                                HAConstants.totalEnterBackgrounds += 1
                                 let enterBackground = object as! PFObject
                                 var number = NSNumber(int: 1)
                                 if HAConstants.enterBackgroundDictionary[enterBackground.valueForKey("screenName") as! String] != nil {
@@ -140,6 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                 } else {
                     for object in allObjects {
+                        HAConstants.totalEnterBackgrounds += 1
                         let enterBackground = object as! PFObject
                         var number = NSNumber(int: 1)
                         if HAConstants.enterBackgroundDictionary[enterBackground.valueForKey("screenName") as! String] != nil {
@@ -176,6 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             allObjects.addObjectsFromArray(newObjects!)
                             
                             for object in allObjects {
+                                HAConstants.totalScreenLoads += 1
                                 let screenLoad = object as! PFObject
                                 var number = NSNumber(int: 1)
                                 if HAConstants.screenLoadDictionary[screenLoad.valueForKey("screenName") as! String] != nil {
@@ -193,6 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                 } else {
                     for object in allObjects {
+                        HAConstants.totalScreenLoads += 1
                         let screenLoad = object as! PFObject
                         var number = NSNumber(int: 1)
                         if HAConstants.screenLoadDictionary[screenLoad.valueForKey("screenName") as! String] != nil {
@@ -229,6 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             allObjects.addObjectsFromArray(newObjects!)
                             
                             for object in allObjects {
+                                HAConstants.totalSpecialEvents += 1
                                 let specialEvent = object as! PFObject
                                 var number = NSNumber(int: 1)
                                 if HAConstants.specialEventDictionary[specialEvent.valueForKey("eventName") as! String] != nil {
@@ -246,6 +253,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                 } else {
                     for object in allObjects {
+                        HAConstants.totalSpecialEvents += 1
                         let specialEvent = object as! PFObject
                         var number = NSNumber(int: 1)
                         if HAConstants.specialEventDictionary[specialEvent.valueForKey("eventName") as! String] != nil {
@@ -282,6 +290,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             allObjects.addObjectsFromArray(newObjects!)
                             
                             for object in allObjects {
+                                HAConstants.totalTapEvents += 1
                                 let tapEvent = object as! PFObject
                                 if tapEvent.valueForKey("screenName") == nil {
                                     continue
@@ -300,6 +309,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                 } else {
                     for object in allObjects {
+                        HAConstants.totalTapEvents += 1
                         let tapEvent = object as! PFObject
                         if tapEvent.valueForKey("screenName") == nil {
                             continue

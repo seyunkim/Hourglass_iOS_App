@@ -41,7 +41,9 @@
 		2410F7E71C2B280800FF547E /* HAVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E61C2B280800FF547E /* HAVideoPlayerView.swift */; };
 		2410F7E91C2B288F00FF547E /* HARestaurantPromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7E81C2B288F00FF547E /* HARestaurantPromoView.swift */; };
 		2410F7EB1C2B28CE00FF547E /* HARestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7EA1C2B28CE00FF547E /* HARestaurantInformationView.swift */; };
-		2410F7EF1C2F200100FF547E /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */; };
+		2410F7EF1C2F200100FF547E /* HAHeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410F7EE1C2F200100FF547E /* HAHeatmapView.swift */; };
+		24AD49041C30687D00ACDF3A /* HAStatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD49031C30687D00ACDF3A /* HAStatsTableView.swift */; };
+		24AD49061C30698000ACDF3A /* HAStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD49051C30698000ACDF3A /* HAStatsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +104,9 @@
 		2410F7E61C2B280800FF547E /* HAVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAVideoPlayerView.swift; sourceTree = "<group>"; };
 		2410F7E81C2B288F00FF547E /* HARestaurantPromoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HARestaurantPromoView.swift; sourceTree = "<group>"; };
 		2410F7EA1C2B28CE00FF547E /* HARestaurantInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HARestaurantInformationView.swift; sourceTree = "<group>"; };
-		2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		2410F7EE1C2F200100FF547E /* HAHeatmapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAHeatmapView.swift; sourceTree = "<group>"; };
+		24AD49031C30687D00ACDF3A /* HAStatsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAStatsTableView.swift; sourceTree = "<group>"; };
+		24AD49051C30698000ACDF3A /* HAStatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAStatsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +280,9 @@
 		2410F7ED1C2F1FD500FF547E /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				2410F7EE1C2F200100FF547E /* UIViewExtensions.swift */,
+				2410F7EE1C2F200100FF547E /* HAHeatmapView.swift */,
+				24AD49031C30687D00ACDF3A /* HAStatsTableView.swift */,
+				24AD49051C30698000ACDF3A /* HAStatsTableViewCell.swift */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24AD49061C30698000ACDF3A /* HAStatsTableViewCell.swift in Sources */,
 				2410F7D91C2B21B400FF547E /* HACameraController.swift in Sources */,
 				2410F7E31C2B26AB00FF547E /* HAVideoPlayerController.swift in Sources */,
 				2410F7E51C2B276400FF547E /* HAVideoPlayerScrollView.swift in Sources */,
@@ -421,12 +428,13 @@
 				2410F7E91C2B288F00FF547E /* HARestaurantPromoView.swift in Sources */,
 				2410F7D01C2B1EDE00FF547E /* HANavigationController.swift in Sources */,
 				2410F7DF1C2B24B000FF547E /* HAAccountCreationView.swift in Sources */,
-				2410F7EF1C2F200100FF547E /* UIViewExtensions.swift in Sources */,
+				2410F7EF1C2F200100FF547E /* HAHeatmapView.swift in Sources */,
 				2410F7EB1C2B28CE00FF547E /* HARestaurantInformationView.swift in Sources */,
 				2410F7D21C2B213500FF547E /* HAConstants.swift in Sources */,
 				2410F7DD1C2B246D00FF547E /* HAProfileCell.swift in Sources */,
 				2410F7E71C2B280800FF547E /* HAVideoPlayerView.swift in Sources */,
 				2410F7811C2B191C00FF547E /* AppDelegate.swift in Sources */,
+				24AD49041C30687D00ACDF3A /* HAStatsTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +671,7 @@
 				2410F7A71C2B191C00FF547E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2410F7A81C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsTests" */ = {
 			isa = XCConfigurationList;
@@ -671,6 +680,7 @@
 				2410F7AA1C2B191C00FF547E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2410F7AB1C2B191C00FF547E /* Build configuration list for PBXNativeTarget "Hourglass AnalyticsUITests" */ = {
 			isa = XCConfigurationList;
@@ -679,6 +689,7 @@
 				2410F7AD1C2B191C00FF547E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
